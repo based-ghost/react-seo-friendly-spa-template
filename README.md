@@ -4,7 +4,7 @@ React PWA/SPA template configured for SEO (initially scaffolded with Create Reac
 ![](demo/react-seo-friendly-demo-2.gif)
 
 ## General Overview
-This is the React version based on my Vue SEO template - [vue-seo-friendly-spa-template](https://github.com/based-ghost/vue-seo-friendly-spa-template).
+This is the React version based on my Vue SEO template which you can find here: [vue-seo-friendly-spa-template](https://github.com/based-ghost/vue-seo-friendly-spa-template)
 
 ## Technology Stack Overview
 - **Client**
