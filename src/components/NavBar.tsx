@@ -10,18 +10,18 @@ export default class NavBar extends React.Component<{}> {
             <nav className='navbar' role='navigation' aria-label='main navigation'>
                 <div className='navbar-wrapper'>
                     <div className='brand-wrapper'>
-                        <img src={require('../assets/img/react-seo-template.png')} width='215' alt='' />
+                        <img src={require('../assets/img/react-seo-template.png')} width='215' alt='react-seo-template' />
                     </div>
                     <div id='navbar-routes' className='navbar-routes'>
                         <NavLink exact={true} to={RoutesConfig.Home.path} className='navbar-item' activeClassName='is-active'>
                             <span className='icon'>
-                                <FontAwesomeIcon icon={RoutesConfig.Home.meta.icon as IconProp} />
+                                <FontAwesomeIcon icon={RoutesConfig.Home.icon as IconProp} />
                             </span>
                             <span>{RoutesConfig.Home.displayName}</span>
                         </NavLink>
                         <NavLink to={RoutesConfig.About.path} className='navbar-item' activeClassName='is-active'>
                             <span className='icon'>
-                                <FontAwesomeIcon icon={RoutesConfig.About.meta.icon as IconProp} />
+                                <FontAwesomeIcon icon={RoutesConfig.About.icon as IconProp} />
                             </span>
                             <span>{RoutesConfig.About.displayName}</span>
                         </NavLink>

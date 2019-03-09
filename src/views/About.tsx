@@ -8,10 +8,10 @@ export default class About extends React.PureComponent<{}> {
         return (
             <section className='container'>
                 <Helmet>
-                    <title>{RoutesConfig.About.meta.metaInfo.title}</title>
-                    <meta name="og:title" content={RoutesConfig.About.meta.metaInfo.title} />
-                    <meta name="description" content={RoutesConfig.About.meta.metaInfo.description} />
-                    <meta name="og:description" content={RoutesConfig.About.meta.metaInfo.description} />
+                    <title>{RoutesConfig.About.metaInfo.title}</title>
+                    <meta name="og:title" content={RoutesConfig.About.metaInfo.title} />
+                    <meta name="description" content={RoutesConfig.About.metaInfo.description} />
+                    <meta name="og:description" content={RoutesConfig.About.metaInfo.description} />
                 </Helmet>
                 <div className='tile is-parent is-notification-tile-parent is-vertical is-8'>
                     <div className='notification is-primary'>
