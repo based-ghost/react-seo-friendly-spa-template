@@ -4,7 +4,7 @@ import ReactGA from 'react-ga';
 // Initialize the react-ga plugin using your issued GA tracker code
 ReactGA.initialize("UA-0000000-0");
 
-// React.FunctionalComponent used to auto-trigger google-analytics pageviews on route change (using react hooks pattern)
+// React.FC component used as a wrapper for route components - e.g. withTracker(RouteComponent)
 export const withTracker = (WrappedComponent, options = {}) => {
   const trackPage = (page) => {
     ReactGA.set({

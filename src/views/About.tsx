@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import { RoutesConfig } from '../config/routes.config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export default class About extends React.PureComponent<{}> {
+export default class About extends React.Component<{}> {
     public render(): React.ReactNode {
         return (
             <section className='container'>
