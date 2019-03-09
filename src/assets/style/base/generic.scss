@@ -1,0 +1,126 @@
+﻿.title {
+    color: $color-hero-is-dark;
+    font-weight: 700;
+
+    @include renderTabletTitleText {
+        font-size: 1.75em;
+    }
+
+    @include renderMobileTitleText {
+        font-size: 1.5em;
+    }
+}
+
+.image {  
+    &.is-154x154 {
+        height: 154px;
+        width: 154px;
+    }
+}
+  
+.subtitle {
+    color: $color-hero-is-dark;
+    font-size: 1.6em;
+    letter-spacing: 0.01em;
+
+    @include renderTabletTitleText {
+        font-size: 1.35em;
+    }
+
+    @include renderMobileTitleText {
+        font-size: 1.125em;
+    }
+
+    &.is-tile-subtitle {
+        font-size: 1.25em;
+        margin-bottom: .55rem;
+
+        > strong {
+            font-weight: 900;
+        }
+
+        @include renderTabletTitleText {
+            font-size: 1.125em;
+        }
+
+        @include renderMobileTitleText {
+            font-size: 1em;
+        }
+    }
+}
+
+.footer {
+    color: #fff;
+    background-color: $color-nav-bar;
+    padding: 3rem 1.5rem 3rem;
+    font-size: 1.15rem;
+    width: 100%;
+    margin: auto;
+
+    @include centerStackedColumnContent {
+        font-size: 1rem;
+    }
+        
+    .content {
+        text-align: center;
+        word-spacing: 0.05rem; 
+    }
+
+    .buttons {
+        margin-bottom: 0rem;
+
+        > .button {
+            margin-bottom: 0;
+            margin-right: 0 !important;
+            color: #fff;
+            background-color: transparent;
+            border-color: transparent;
+            padding-left: 0.5em;
+            padding-right: 0.5em;
+
+            &:first-child {
+                margin-left: auto !important;
+            }
+
+            &:last-child {
+                margin-right: auto !important;
+            }
+
+            .icon {
+                align-items: baseline;
+            }
+        }
+    }
+}
+
+.is-notification-tile-parent {
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 4rem !important;
+    padding-bottom: 42rem !important;
+
+    .notification {
+        text-align: center;
+        padding: 1.25rem 0.25rem 1.25rem 0.25rem;
+
+        &.is-primary {
+            color: $color-hero-is-dark;
+            background-color: $color-blue-highlight;
+        }
+    
+        svg {
+            margin-right: 0.5rem;
+        }
+    
+        .subtitle {
+            padding-top: .5rem;
+        }
+    }
+}
+
+.is-horizontal-center {
+    justify-content: center;
+    align-items: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+}

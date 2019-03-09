@@ -1,0 +1,123 @@
+﻿.navbar {
+    width: 100%;
+    background-color: $color-nav-bar;
+    padding-left: 11rem;
+    padding-right: 11rem;
+
+    @include reduceNavBarPadding {
+        padding-left: 7rem;
+        padding-right: 7rem;
+    }
+
+    @include removeNavBarPadding {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    @include renderMobileTitleText {
+        padding-right: 0rem;
+    }
+}
+
+.navbar-wrapper {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    height: 75px;
+}
+
+.brand-wrapper {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    width: 46%;
+    margin: auto;
+
+    @include renderMobileNavView {
+        margin-right: .25rem;
+    }
+}
+
+.navbar-routes {
+    font-size: 1.25rem;
+    height: 100%;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    justify-content: flex-end;
+    margin: auto;
+    width: 54%;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+
+    a.navbar-item {
+        color: white;
+        opacity: .8;
+        background-color: transparent;
+        -webkit-transition: all .15s ease-in;
+        transition: all .15s ease-in;
+        border-bottom: 3px solid $color-nav-bar;
+        border-top: 3px solid $color-nav-bar;
+        display: flex;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: row;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        height: 100%;
+
+        @include renderMobileNavView {
+            font-size: 1em;
+            padding: 0.75rem 0.2rem 0.75rem 0.2rem;
+            border-bottom: 2px solid $color-nav-bar;
+            border-top: 4px solid $color-nav-bar;
+        }
+
+        &:not(:first-child) {
+            margin-left: 1.25rem;
+
+            @include renderMobileNavView {
+                margin-left: .25rem;
+            }
+        }
+
+        &:hover {
+            color: white;
+            background-color: transparent;
+            opacity: 1;
+        }
+
+        &.is-active {
+            color: $color-blue-highlight !important;
+            opacity: 1 !important;
+            border-bottom: 3px solid $color-blue-highlight !important;
+
+            @include renderMobileNavView {
+                border-bottom: 2px solid $color-blue-highlight !important;
+            }
+        }
+
+        > span:first-child {
+            @include renderMobileNavView {
+                display: none;
+            }
+        }
+
+        > span:last-child {
+            margin-left: .25rem;
+            margin-right: auto;
+
+            @include renderMobileNavView {
+                margin-left: 0;
+                padding-left: .25rem;
+                padding-right: .25rem;
+            }
+        }
+    }
+}

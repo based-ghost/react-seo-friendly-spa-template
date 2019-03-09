@@ -1,0 +1,29 @@
+﻿// Bulma imports
+@import '~bulma/sass/utilities/_all.sass';
+@import '~bulma/sass/base/_all.sass';
+@import '~bulma/sass/elements/box.sass';
+@import '~bulma/sass/elements/button.sass';
+@import '~bulma/sass/elements/container.sass';
+@import '~bulma/sass/elements/content.sass';
+@import '~bulma/sass/elements/icon.sass';
+@import '~bulma/sass/elements/image.sass';
+@import '~bulma/sass/elements/notification.sass';
+@import '~bulma/sass/elements/other.sass';
+@import '~bulma/sass/elements/title.sass';
+@import '~bulma/sass/components/card.sass';
+@import '~bulma/sass/components/list.sass';
+@import '~bulma/sass/components/media.sass';
+@import '~bulma/sass/components/navbar.sass';
+@import '~bulma/sass/grid/_all.sass';
+@import '~bulma/sass/layout/_all.sass';
+
+// Fontawesome SVG imports
+@import '~@fortawesome/fontawesome-svg-core/styles.css';
+
+// Custom variables/Bulma overrides
+@import 'base/variables.scss';
+
+// Custom SCSS imports
+@import 'base/generic.scss';
+@import 'components/home.scss';
+@import 'components/navbar.scss';
