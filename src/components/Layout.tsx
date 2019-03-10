@@ -5,7 +5,7 @@ import NavBar from './NavBar';
 const Layout: React.FC<{}> = (props) => (
     <React.Fragment>
         <NavBar />
-        { props.children }
+        {props.children}
         <Footer />
     </React.Fragment>
 );
