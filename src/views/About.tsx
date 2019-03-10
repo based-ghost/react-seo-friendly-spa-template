@@ -1,16 +1,11 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import MetaInfo from '../components/MetaInfo';
 import { RoutesConfig } from '../config/routes.config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const About: React.FC<{}> = () => (
     <section className='container'>
-        <Helmet>
-            <title>{RoutesConfig.About.metaInfo.title}</title>
-            <meta name="og:title" content={RoutesConfig.About.metaInfo.title} />
-            <meta name="description" content={RoutesConfig.About.metaInfo.description} />
-            <meta name="og:description" content={RoutesConfig.About.metaInfo.description} />
-        </Helmet>
+        <MetaInfo metaInfo={RoutesConfig.About.metaInfo} />
         <div className='tile is-parent is-notification-tile-parent is-vertical is-8'>
             <div className='notification is-primary'>
                 <div className='title'>

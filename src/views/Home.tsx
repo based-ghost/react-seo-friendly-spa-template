@@ -1,17 +1,12 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import MetaInfo from '../components/MetaInfo';
 import { RoutesConfig } from '../config/routes.config';
 import reactLogo from '../assets/img/react-logo-512px.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Home: React.FC<{}> = () =>  (
     <div>
-        <Helmet>
-            <title>{RoutesConfig.Home.metaInfo.title}</title>
-            <meta name="og:title" content={RoutesConfig.Home.metaInfo.title} />
-            <meta name="description" content={RoutesConfig.Home.metaInfo.description} />
-            <meta name="og:description" content={RoutesConfig.Home.metaInfo.description} />
-        </Helmet>
+        <MetaInfo metaInfo={RoutesConfig.Home.metaInfo} />
         <section className='hero is-dark'>
             <div className='hero-body'>
                 <div className='container has-text-centered'>
