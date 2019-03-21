@@ -2,8 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\components"
+    "\\src\\utils"
   ],
-  "SelectedNode": "\\src\\components\\NotFoundComponent.tsx",
+  "SelectedNode": "\\public",
   "PreviewInSolutionExplorer": false
 }
