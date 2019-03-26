@@ -1,6 +1,8 @@
 # react-seo-friendly-spa-template
 React PWA/SPA template configured for SEO (initially scaffolded with Create React App)
 
+## Demo
+
 ![demo](./demo/react-seo-friendly-demo-2.gif)
 
 ## General Overview
