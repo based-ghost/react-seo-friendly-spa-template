@@ -12,6 +12,7 @@ import {
     faTwitter,
 } from '@fortawesome/free-brands-svg-icons';
 
+// Prevents adding of @fortawesome/fontawesome-svg-core/styles.css - global css will have only what we need
 config.autoAddCss = false;
 
 library.add(
