@@ -8,7 +8,7 @@ type MetaInfoProps = {
   };
 };
 
-const MetaInfo: React.FC<MetaInfoProps> = props => (
+const MetaInfo: React.FC<MetaInfoProps> = (props) => (
   <Helmet>
     <title>{props.metaInfo.title || ''}</title>
     <meta name='og:title' content={props.metaInfo.title || ''} />

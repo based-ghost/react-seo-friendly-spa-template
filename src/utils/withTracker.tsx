@@ -6,10 +6,7 @@ import { RouteComponentProps } from 'react-router-dom';
 ReactGA.initialize('UA-0000000-0');
 
 // React.FC component used as a wrapper for route components - e.g. withTracker(RouteComponent)
-export const withTracker = <P extends RouteComponentProps>(
-  WrappedComponent: React.ComponentType<P>,
-  options: FieldsObject = {}
-) => {
+export const withTracker = <P extends RouteComponentProps>(WrappedComponent: React.ComponentType<P>, options: FieldsObject = {}) => {
   const trackPage = (page: string) => {
     ReactGA.set({
       page,

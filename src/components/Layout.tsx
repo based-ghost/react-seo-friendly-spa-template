@@ -1,13 +1,13 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Footer from "./Footer";
 import NavBar from "./NavBar";
 
-const Layout: React.FC<{}> = props => (
-  <React.Fragment>
+const Layout: React.FC<{}> = (props) => (
+  <Fragment>
     <NavBar />
     {props.children}
     <Footer />
-  </React.Fragment>
+  </Fragment>
 );
 
 export default Layout;
