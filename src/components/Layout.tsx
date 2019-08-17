@@ -2,10 +2,10 @@ import React, { Fragment } from "react";
 import Footer from "./Footer";
 import NavBar from "./NavBar";
 
-const Layout: React.FC<{}> = (props) => (
+const Layout: React.FC<{}> = ({ children }) => (
   <Fragment>
     <NavBar />
-    {props.children}
+    {children}
     <Footer />
   </Fragment>
 );

@@ -6,7 +6,7 @@ const NotFoundComponent: React.FC<{}> = () => {
     if (window.location.pathname !== '/404') {
       window.location.href = '/404';
     }
-  }, []);
+  });
 
   return (
     <section className='container'>

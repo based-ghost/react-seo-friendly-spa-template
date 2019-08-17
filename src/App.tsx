@@ -7,7 +7,7 @@ import { withTracker } from './utils/withTracker';
 import { RoutesConfig } from './config/routes.config';
 import NotFoundComponent from './components/NotFoundComponent';
 
-const App: React.FC<{}> = (props) => (
+const App: React.FC<{}> = () => (
   <Layout>
     <Switch>
       <Route
