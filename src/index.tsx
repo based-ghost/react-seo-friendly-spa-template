@@ -1,6 +1,6 @@
 import React from 'react';
-import './assets/style/main.scss';
 import './config/fa.config';
+import './assets/style/main.scss';
 import App from './App';
 import { render } from 'react-snapshot';
 import { BrowserRouter } from 'react-router-dom';

@@ -6,7 +6,11 @@ import reactSeoLogo from '../assets/img/react-seo-template.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const NavBar: React.FC<{}> = () => (
-  <nav className='navbar' role='navigation' aria-label='main navigation'>
+  <nav 
+    role='navigation'
+    className='navbar'
+    aria-label='main navigation'
+  >
     <div className='navbar-wrapper'>
       <div className='brand-wrapper'>
         <img src={reactSeoLogo} width='215' alt='react-seo-template' />
