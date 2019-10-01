@@ -1,16 +1,28 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const Footer: React.FC<{}> = () => (
+const Footer: React.FC = () => (
   <footer className='footer'>
     <div className='buttons'>
-      <a className='button is-medium' aria-label='GitHub'>
+      <a 
+        href='#/' 
+        aria-label='GitHub'
+        className='button is-medium'
+      >
         <FontAwesomeIcon icon={['fab', 'github']} />
       </a>
-      <a className='button is-medium' aria-label='Twitter'>
+      <a 
+        href='#/' 
+        aria-label='Twitter'
+        className='button is-medium'
+      >
         <FontAwesomeIcon icon={['fab', 'twitter']} />
       </a>
-      <a className='button is-medium' aria-label='Medium'>
+      <a 
+        href='#/' 
+        aria-label='Medium'
+        className='button is-medium'
+      >
         <FontAwesomeIcon icon={['fab', 'medium-m']} />
       </a>
     </div>

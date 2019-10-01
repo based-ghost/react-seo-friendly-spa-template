@@ -4,7 +4,7 @@ import { RoutesConfig } from '../config/routes.config';
 import reactLogo from '../assets/img/react-logo-512px.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const Home: React.FC<{}> = () => (
+const Home: React.FC = () => (
   <div>
     <MetaInfo metaInfo={RoutesConfig.Home.metaInfo} />
     <section className='hero is-dark'>

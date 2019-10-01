@@ -5,8 +5,12 @@ import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import reactSeoLogo from '../assets/img/react-seo-template.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const NavBar: React.FC<{}> = () => (
-  <nav className='navbar' role='navigation' aria-label='main navigation'>
+const NavBar: React.FC = () => (
+  <nav 
+    role='navigation'
+    className='navbar'
+    aria-label='main navigation'
+  >
     <div className='navbar-wrapper'>
       <div className='brand-wrapper'>
         <img src={reactSeoLogo} width='215' alt='react-seo-template' />

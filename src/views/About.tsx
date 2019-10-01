@@ -3,7 +3,7 @@ import MetaInfo from '../components/MetaInfo';
 import { RoutesConfig } from '../config/routes.config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const About: React.FC<{}> = () => (
+const About: React.FC = () => (
   <section className='container'>
     <MetaInfo metaInfo={RoutesConfig.About.metaInfo} />
     <div className='tile is-parent is-notification-tile-parent is-vertical is-8'>

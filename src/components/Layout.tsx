@@ -1,11 +1,15 @@
-import React, { Fragment } from "react";
-import Footer from "./Footer";
-import NavBar from "./NavBar";
+import React, { Fragment, ReactNode } from 'react';
+import Footer from './Footer';
+import NavBar from './NavBar';
 
-const Layout: React.FC<{}> = (props) => (
+type LayoutProps = {
+  children: ReactNode
+};
+
+const Layout: React.FC<LayoutProps> = ({ children }) => (
   <Fragment>
     <NavBar />
-    {props.children}
+    {children}
     <Footer />
   </Fragment>
 );
