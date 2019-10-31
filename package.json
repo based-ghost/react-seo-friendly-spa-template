@@ -6,16 +6,16 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.25",
     "@fortawesome/free-brands-svg-icons": "^5.11.2",
     "@fortawesome/free-solid-svg-icons": "^5.11.2",
-    "@fortawesome/react-fontawesome": "^0.1.6",
+    "@fortawesome/react-fontawesome": "^0.1.7",
     "bulma": "^0.8.0",
-    "react": "^16.10.2",
-    "react-dom": "^16.10.2",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
     "react-ga": "^2.7.0",
     "react-helmet": "^5.2.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
     "react-snapshot": "^1.3.0",
-    "styled-components": "^4.4.0"
+    "styled-components": "^4.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -34,14 +34,14 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@types/jest": "^24.0.19",
-    "@types/node": "^12.11.1",
-    "@types/react": "^16.9.9",
-    "@types/react-dom": "^16.9.2",
-    "@types/react-helmet": "^5.0.12",
-    "@types/react-router-dom": "^5.1.0",
-    "node-sass": "^4.12.0",
-    "sitemap-generator": "^8.4.1",
+    "@types/jest": "^24.0.21",
+    "@types/node": "^12.12.3",
+    "@types/react": "^16.9.11",
+    "@types/react-dom": "^16.9.3",
+    "@types/react-helmet": "^5.0.14",
+    "@types/react-router-dom": "^5.1.1",
+    "node-sass": "^4.13.0",
+    "sitemap-generator": "^8.4.2",
     "typescript": "^3.6.4"
   }
 }
