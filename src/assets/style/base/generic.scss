@@ -93,6 +93,10 @@ code {
       background-color: #E93E60;
     }
 
+    &.hide {
+      visibility: hidden;
+    }
+
     /* IE fix for min-heigh on tiles */
     @include browserIsIE {
       min-height: 115px;

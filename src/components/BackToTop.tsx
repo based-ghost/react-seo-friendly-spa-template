@@ -41,14 +41,14 @@ const AngleDoubleUpIcon = styled(FontAwesomeIcon)`
   margin: 0.75rem auto auto auto;
 `;
 
+// Write the show state value to a ref so we can use it as a check to prevent 
+// ...re-renders on every scroll down that triggers a show for the button
 const BackToTop: React.FC = () => {
   const showRef = useRef<boolean>(false);
   const [show, setShow] = useState<boolean>(false);
 
   useEffect(() => {
     const handleScroll = () => {
-       // Write value to a ref so we can use it as a check to prevent 
-       // ...re-renders on every scroll down that triggers a show for the button
       if (!showRef.current && (window.scrollY || window.pageYOffset) > 100) {
         showRef.current = true;
         setShow(true);
