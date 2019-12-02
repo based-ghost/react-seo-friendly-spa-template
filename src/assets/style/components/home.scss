@@ -1,115 +1,99 @@
 ﻿.hero.is-dark {
-    background-color: $color-hero-is-dark;
+  background-color: $color-hero-is-dark;
 
-    .hero-body {
-        padding: 2.25rem 1.5rem;
+  .hero-body {
+    padding: 1.25rem 1.5rem 2.5rem;
 
+    svg {
+      color: $color-blue-highlight;
+    }
+
+    .container {
+      > .subtitle {
         svg {
-            margin-right: .35rem;
-            font-size: 1.25em !important;
-            color: #67DEA9;
-
-            @include centerStackedColumnContent {
-                font-size: 1.075em !important;
-            }
+          font-size: 90%;
+          margin-right: 0.6rem;
         }
+      }
 
-        hr {
-            background-color: white;
-            height: 1px;
-            margin: 0 0 1.75em 0;
-            opacity: .5;    
-        }
-
-        .blog-title-img {
-            padding-bottom: .5rem;
-        }
-
-        .subtitle {
-            color: #fff;
-            font-size: 1.25em;
-
-            @include centerStackedColumnContent {
-                line-height: 1.60;
-                font-size: 1.025em;
-            }
-
-            &:first-of-type {
-                margin-top: -0.025rem;
-            }
-
-            &:not(:last-child) {
-                margin-bottom: .90rem;
-
-                @include centerStackedColumnContent {
-                    margin-bottom: .80rem;
-                }
-            }
-        }
-
-        code {
-            background-color: #4E525A;
-            color: $color-blue-highlight;
-            font-size: 1em;
-            font-weight: 600;
-            padding: 0.085em 0.12em 0.085em;
-            font-family: inherit;
-
-            @include centerStackedColumnContent {
-                font-size: .95em;
-            }
-        }
+      hr {
+        background-color: hsla(0,0%,100%,.45);
+        height: 1px;
+        margin: 0 auto 1.75em auto;
+        opacity: 0.6;
+        width: 75%;
+      }
     }
 
-    .title {
-        color: #fff;
-        margin-bottom: 2.55rem;
+    .subtitle {
+      color: #fff;
+      font-size: 1.1em;
 
-        &.blog-title {
-            font-size: 3em;
-            font-family: Segoe Script;
-            -moz-osx-font-smoothing: auto;
-            -webkit-font-smoothing: auto;
-            letter-spacing: 0.015em;
-            padding-bottom: 1.5rem;
-            margin: auto;
-    
-            @include renderMobileTitleText {
-                font-size: 2em;
-            }
+      &:first-of-type {
+        margin-top: -0.025rem;
+      }
+
+      &:not(:last-child) {
+        margin-bottom: 0.75rem;
+      }
+
+      @include centerStackedColumnContent {
+        line-height: 1.6;
+        font-size: 1.025em;
+        &:not(:last-child) {
+          margin-bottom: 0.65rem;
         }
+      }
     }
+  }
+
+  .title {
+    color: #fff;
+    margin-bottom: 2.55rem;
+
+    &.blog-title {
+      font-size: 3em;
+      font-family: Segoe Script;
+      letter-spacing: 0.015em;
+      padding-bottom: 1.5rem;
+      margin: auto;
+
+      @include renderMobileTitleText {
+        font-size: 2em;
+      }
+    }
+  }
 }
 
 .dashboard-content {
-    padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 
-    code {
-        background-color: rgba(97, 218, 251, .25);
-        color: black;
+  code {
+    background-color: rgba(97, 218, 251, 0.25);
+    color: black;
+  }
+
+  hr {
+    background-color: hsla(0,100%,0%,.125);
+    margin: 0.5rem 0;
+    height: 1px;
+  }
+
+  > .columns {
+    > .column {
+      padding: 2rem !important;
+
+      > .title {
+        color: #6d6d6d;
+        font-weight: 600;
+      }
     }
-
-    hr {
-        background-color: #dbdbdb;
-        margin: 1rem 0;
-        height: 1px;
+    
+    @media (min-width: 769px) {
+      > hr {
+        display: none;
+      }
     }
-
-    > .columns {
-        > .column {
-            padding: 2rem !important;
-
-            > .title {
-                color: #6d6d6d;
-                font-weight: 600;
-            }
-        }
-
-        > hr {          
-            @media (min-width: 769px) {
-                display: none;
-            }
-        }
-    }
+  }
 }

@@ -1,15 +1,17 @@
 import React from 'react';
-import './config/fa.config';
-import './assets/style/main.scss';
 import App from './App';
 import { render } from 'react-snapshot';
 import { BrowserRouter } from 'react-router-dom';
+import './assets/style/main.scss';
+import './config/fa.config';
 import * as serviceWorker from './serviceWorker';
 
 render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
+  (
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  ),
   document.getElementById('root')
 );
 

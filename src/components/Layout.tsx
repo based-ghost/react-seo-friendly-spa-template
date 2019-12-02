@@ -1,15 +1,13 @@
-import React, { Fragment, ReactNode } from 'react';
+import React, { Fragment } from 'react';
 import Footer from './Footer';
 import NavBar from './NavBar';
+import BackToTop from './BackToTop';
 
-type LayoutProps = {
-  children: ReactNode
-};
-
-const Layout: React.FC<LayoutProps> = ({ children }) => (
+const Layout: React.FC = ({ children }) => (
   <Fragment>
     <NavBar />
     {children}
+    <BackToTop />
     <Footer />
   </Fragment>
 );

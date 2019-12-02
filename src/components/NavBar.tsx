@@ -1,43 +1,51 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { RoutesConfig } from '../config/routes.config';
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import reactSeoLogo from '../assets/img/react-seo-template.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+const ReactSeoLogoSvg = require('../assets/img/ReactSeoLogo.svg');
 
 const NavBar: React.FC = () => (
-  <nav 
+  <nav
     role='navigation'
     className='navbar'
     aria-label='main navigation'
   >
     <div className='navbar-wrapper'>
       <div className='brand-wrapper'>
-        <img src={reactSeoLogo} width='215' alt='react-seo-template' />
+        <img
+          width='170'
+          src={ReactSeoLogoSvg}
+          alt='react-seo-template' 
+        />
       </div>
-      <div id='navbar-routes' className='navbar-routes'>
+      <div className='navbar-routes'>
         <NavLink
-          exact={true}
-          to={RoutesConfig.Home.path}
           className='navbar-item'
-          activeClassName='is-active'
+          to={RoutesConfig.Home.path}
+          exact={RoutesConfig.Home.exact}
+          activeClassName={RoutesConfig.Home.activeClassName} 
         >
-          <span className='icon'>
-            <FontAwesomeIcon icon={RoutesConfig.Home.icon as IconProp} />
-          </span>
           <span>{RoutesConfig.Home.displayName}</span>
         </NavLink>
         <NavLink
-          exact={true}
-          to={RoutesConfig.About.path}
           className='navbar-item'
-          activeClassName='is-active'
+          to={RoutesConfig.About.path}
+          exact={RoutesConfig.About.exact}
+          activeClassName={RoutesConfig.About.activeClassName} 
         >
-          <span className='icon'>
-            <FontAwesomeIcon icon={RoutesConfig.About.icon as IconProp} />
-          </span>
           <span>{RoutesConfig.About.displayName}</span>
         </NavLink>
+        <div className='seperator' />
+        <a
+          target='_blank'
+          aria-label='GitHub'
+          className='navbar-item'
+          rel='noopener noreferrer'
+          href='https://github.com/based-ghost'
+        >
+          <span>GitHub</span>
+          <FontAwesomeIcon icon='external-link-alt' />
+        </a>
       </div>
     </div>
   </nav>
