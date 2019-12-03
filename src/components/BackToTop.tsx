@@ -7,8 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const scroll = Scroll.animateScroll;
 
 const scrollOptions = Object.freeze({
-  delay: 10,
-  duration: 550,
+  delay: 5,
+  duration: 500,
   smooth: 'easeInOutCubic'
 });
 
