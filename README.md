@@ -1,5 +1,5 @@
 # react-seo-friendly-spa-template
-React PWA/SPA template configured for SEO (initially scaffolded with Create React App)
+React PWA/SPA template configured for SEO (initially scaffolded with Create React App).
 
 ## Demo
 
