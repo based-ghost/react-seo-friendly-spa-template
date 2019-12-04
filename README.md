@@ -1,6 +1,14 @@
 # react-seo-friendly-spa-template
 React PWA/SPA template configured for SEO (initially scaffolded with Create React App).
 
+Features:
+- TypeScript
+- All components written as `FunctionComponents` using `React Hooks`
+- Custom `BackToTop.tsx` component that uses [`react-scroll`](https://github.com/fisshy/react-scroll) and [`styled-components`](https://github.com/styled-components/styled-components)
+- Google analytics management with [`react-ga`](https://github.com/react-ga/react-ga)
+- Route meta tag management with [`react-helmet`](https://github.com/nfl/react-helmet)
+- Configured to serve prerendered static HTML with [`react-snapshot`](https://github.com/geelen/react-snapshot)
+
 ## Demo
 
 ![demo](./demo/ReactSeoFriendlyDemo.gif)
@@ -21,31 +29,35 @@ initial scaffolding
 I have it configured to use one more level of abstraction, where I have the Helmet component and child meta tags broken out to its own component `MetaInfo.tsx`:
 
 `MetaInfo.tsx`
-
 ```TSX
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
 type MetaInfoProps = {
-    metaInfo: { 
-        title?: string;
-        description?: string;
-    }
-}
+  metaInfo: {
+    title?: string;
+    description?: string;
+  };
+};
 
-const MetaInfo: React.FC<MetaInfoProps> = (props) => (
-    <Helmet>
-        <title>{props.metaInfo.title || ''}</title>
-        <meta name="og:title" content={props.metaInfo.title || ''} />
-        <meta name="description" content={props.metaInfo.description || ''} />
-        <meta name="og:description" content={props.metaInfo.description || ''} />
-    </Helmet>
+const MetaInfo: React.FC<MetaInfoProps> = ({ 
+  metaInfo: {
+    title,
+    description,
+  },
+}) => (
+  <Helmet>
+    <title>{title}</title>
+    <meta name='og:title' content={title} />
+    <meta name='description' content={description} />
+    <meta name='og:description' content={description} />
+  </Helmet>
 );
 
 export default MetaInfo;
 ```
 
-e.g. used in view component `About.tsx`
+...and used in component `About.tsx`
 
 ```TSX
 import React from 'react';
@@ -53,18 +65,19 @@ import MetaInfo from '../components/MetaInfo';
 import { RoutesConfig } from '../config/routes.config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const About: React.FC<{}> = () => (
-    <section className='container'>
-        <MetaInfo metaInfo={RoutesConfig.About.metaInfo} />
-        <div className='tile is-parent is-notification-tile-parent is-vertical is-8'>
-            <div className='notification is-primary'>
-                <div className='title'>
-                    <FontAwesomeIcon icon='info' /> About Page
-                </div>
-                <p className='subtitle'>About page/application/company description.</p>
-            </div>
+const About: React.FC = () => (
+  <section className='container view-wrapper'>
+    <MetaInfo metaInfo={RoutesConfig.About.metaInfo} />
+    <div className='tile is-parent is-8 is-vertical is-notification-tile'>
+      <div className='notification tile is-child is-primary pageSlideDown-animation'>
+        <div>
+          <FontAwesomeIcon icon='info-circle' size="2x" />
+          <span className="title">About Page</span>
         </div>
-    </section>
+        <p className='subtitle'>Very interesting information may go here.</p>
+      </div>
+    </div>
+  </section>
 );
 
 export default About;
@@ -74,20 +87,22 @@ export default About;
 
 [`react-ga`](https://github.com/react-ga/react-ga) - This is a JavaScript module that can be used to include Google Analytics tracking code in a website or app that uses React for its front-end codebase. It does not currently use any React code internally, but has been written for use with a number of Mozilla Foundation websites that are using React, as a way to standardize our GA Instrumentation across projects.
 
-My preferred configuration:
-
-In a seperate utility component named `withTracker.tsx`:
+My preferred configuration - in a seperate utility function named `withTracker.tsx`:
 
 ```TSX
 import React, { useEffect } from 'react';
-import ReactGA from 'react-ga';
+import ReactGA, { FieldsObject } from 'react-ga';
+import { RouteComponentProps } from 'react-router-dom';
 
 // Initialize the react-ga plugin using your issued GA tracker code
-ReactGA.initialize("UA-0000000-0");
+ReactGA.initialize('UA-0000000-0');
 
 // React.FC component used as a wrapper for route components - e.g. withTracker(RouteComponent)
-export const withTracker = (WrappedComponent, options = {}) => {
-  const trackPage = (page) => {
+export const withTracker = <P extends RouteComponentProps>(
+  WrappedComponent: React.ComponentType<P>,
+  options: FieldsObject = {}
+) => {
+  const trackPage = (page: string) => {
     ReactGA.set({
       page,
       ...options
@@ -95,15 +110,15 @@ export const withTracker = (WrappedComponent, options = {}) => {
     ReactGA.pageview(page);
   };
 
-  const HOC = (props) => {
-    useEffect(() => trackPage(props.location.pathname), [
-      props.location.pathname
-    ]);
+  return (props: P) => {
+    const { pathname } = props.location;
+
+    useEffect(() => {
+      trackPage(pathname);
+    }, [pathname]);
 
     return <WrappedComponent {...props} />;
   };
-
-  return HOC;
 };
 ```
 
@@ -112,15 +127,24 @@ export const withTracker = (WrappedComponent, options = {}) => {
 e.g. in my `App.tsx`
 
 ```TSX
+import { withTracker } from './withTracker';
 import { Route, Switch } from 'react-router-dom';
-import { withTracker } from './utils/withTracker';
+import { RoutesConfig } from './config/routes.config';
 
-const App: React.FC<{}> = (props) => (
+const App: React.FC = () => (
   <Layout>
     <Switch>
-      <Route exact path={RoutesConfig.Home.path} component={withTracker(Home)} />
-      <Route exact path={RoutesConfig.About.path} component={withTracker(About)} />
-      <Route component={NotFoundComponent} />
+      <Route
+        path={RoutesConfig.Home.path}
+        component={withTracker(Home)}
+        exact={RoutesConfig.Home.exact}
+      />
+      <Route
+        path={RoutesConfig.About.path}
+        component={withTracker(About)}
+        exact={RoutesConfig.About.exact}
+      />
+      <Route component={NotFound} />
     </Switch>
   </Layout>
 );
@@ -140,21 +164,26 @@ Configured in a React (TypeScript) as follows:
 /// <reference types="react-scripts" />
 
 declare module 'react-snapshot' {
-    import * as ReactDOM from 'react-dom';
-    var render: ReactDOM.Renderer;
-  }
+  import * as ReactDOM from 'react-dom';
+  var render: ReactDOM.Renderer;
+}
 ```
  
 `index.tsx` - import the `render` method from `react-snapshot`...
 
 ```typescript
+import React from 'react';
+import App from './App';
 import { render } from 'react-snapshot';
+import { BrowserRouter } from 'react-router-dom';
 
 render(
+  (
     <BrowserRouter>
       <App />
-    </BrowserRouter>, 
-    document.getElementById('root')
+    </BrowserRouter>
+  ),
+  document.getElementById('root')
 );
 ```
 
