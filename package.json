@@ -44,6 +44,6 @@
     "@types/styled-components": "^4.4.0",
     "node-sass": "^4.13.0",
     "sitemap-generator": "^8.4.2",
-    "typescript": "^3.7.2"
+    "typescript": "^3.7.3"
   }
 }
