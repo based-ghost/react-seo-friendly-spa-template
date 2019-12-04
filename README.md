@@ -4,7 +4,7 @@ React PWA/SPA template configured for SEO (initially scaffolded with Create Reac
 Features:
 - TypeScript
 - All components written as `FunctionComponents` using `React Hooks`
-- Custom `BackToTop.tsx` component that uses [`react-scroll`](https://github.com/fisshy/react-scroll)
+- Custom `BackToTop.tsx` component that uses [`react-scroll`](https://github.com/fisshy/react-scroll) and [`styled-components`](https://github.com/styled-components/styled-components)
 - Google analytics management with [`react-ga`](https://github.com/react-ga/react-ga)
 - Route meta tag management with [`react-helmet`](https://github.com/nfl/react-helmet)
 - Configured to serve prerendered static HTML with [`react-snapshot`](https://github.com/geelen/react-snapshot)
