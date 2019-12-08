@@ -6,7 +6,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.25",
     "@fortawesome/free-brands-svg-icons": "^5.11.2",
     "@fortawesome/free-solid-svg-icons": "^5.11.2",
-    "@fortawesome/react-fontawesome": "^0.1.7",
+    "@fortawesome/react-fontawesome": "^0.1.8",
     "bulma": "^0.8.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -37,7 +37,7 @@
   "devDependencies": {
     "@types/jest": "^24.0.23",
     "@types/node": "^12.12.14",
-    "@types/react": "^16.9.14",
+    "@types/react": "^16.9.15",
     "@types/react-dom": "^16.9.4",
     "@types/react-helmet": "^5.0.14",
     "@types/react-router-dom": "^5.1.3",
