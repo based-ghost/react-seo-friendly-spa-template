@@ -8,7 +8,7 @@ type MetaInfoProps = {
   };
 };
 
-const MetaInfo: React.FC<MetaInfoProps> = ({ metaInfo }) => {
+const MetaInfo: React.FC<MetaInfoProps> = React.memo(({ metaInfo }) => {
   const {
     title,
     description
@@ -22,6 +22,8 @@ const MetaInfo: React.FC<MetaInfoProps> = ({ metaInfo }) => {
       <meta name='og:description' content={description} />
     </Helmet>
   );
-};
+});
+
+MetaInfo.displayName = 'MetaInfo';
 
 export default MetaInfo;
