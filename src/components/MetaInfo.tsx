@@ -2,24 +2,26 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 
 type MetaInfoProps = {
-  metaInfo: {
-    title?: string;
-    description?: string;
+  readonly metaInfo: {
+    readonly title?: string;
+    readonly description?: string;
   };
 };
 
-const MetaInfo: React.FC<MetaInfoProps> = ({ 
-  metaInfo: {
+const MetaInfo: React.FC<MetaInfoProps> = ({ metaInfo }) => {
+  const {
     title,
-    description,
-  },
-}) => (
-  <Helmet>
-    <title>{title}</title>
-    <meta name='og:title' content={title} />
-    <meta name='description' content={description} />
-    <meta name='og:description' content={description} />
-  </Helmet>
-);
+    description
+  } = metaInfo;
+
+  return(
+    <Helmet>
+      <title>{title}</title>
+      <meta name='og:title' content={title} />
+      <meta name='description' content={description} />
+      <meta name='og:description' content={description} />
+    </Helmet>
+  );
+};
 
 export default MetaInfo;
