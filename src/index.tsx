@@ -2,8 +2,8 @@ import React from 'react';
 import { render } from 'react-snapshot';
 import './assets/style/main.scss';
 import App from './App';
-import './config/fa.config';
 import { BrowserRouter } from 'react-router-dom';
+import './config/fa.config';
 import * as serviceWorker from './serviceWorker';
 
 const AppContainer = (

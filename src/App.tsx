@@ -1,9 +1,8 @@
 import React from 'react';
-import Home from './views/Home';
-import About from './views/About';
-import Layout from './components/Layout';
+import Layout from './Layout';
+import { NotFound } from './components';
+import { Home, About } from './containers';
 import { withTracker } from './withTracker';
-import NotFound from './components/NotFound';
 import { Route, Switch } from 'react-router-dom';
 import { RoutesConfig } from './config/routes.config';
 
