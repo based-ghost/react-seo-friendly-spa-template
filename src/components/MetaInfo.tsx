@@ -9,10 +9,7 @@ type MetaInfoProps = {
 };
 
 const MetaInfo: React.FC<MetaInfoProps> = React.memo(({ metaInfo }) => {
-  const {
-    title,
-    description
-  } = metaInfo;
+  const { title, description } = metaInfo;
 
   return(
     <Helmet>

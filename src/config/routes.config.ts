@@ -12,9 +12,7 @@ export type Route = {
   };
 };
 
-export type RoutesConfig = { [key: string]: Route };
-
-export const RoutesConfig = Object.freeze<RoutesConfig>({
+export const RoutesConfig = Object.freeze<Record<string, Route>>({
   Home: {
     path: '/',
     exact: true,

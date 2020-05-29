@@ -2,14 +2,14 @@ import React, { useLayoutEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const NotFound: React.FC = () => {
+  const isLocation404 = (window && window.location.pathname === '/404');
+  const className = `notification tile is-child is-danger ${isLocation404 ? 'rubberBand-animation' : 'hide'}`;
+
   useLayoutEffect(() => {
     if (window.location.pathname !== '/404') {
       window.location.href = '/404';
     }
   }, []);
-
-  const isLocation404: boolean = (window && window.location.pathname === '/404');
-  const className: string = `notification tile is-child is-danger ${isLocation404 ? 'rubberBand-animation' : 'hide'}`;
 
   return (
     <section className='container view-wrapper'>

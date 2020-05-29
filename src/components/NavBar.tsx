@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { RoutesConfig } from '../config/routes.config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 const ReactSeoLogoSvg = require('../assets/img/ReactSeoLogo.svg');
 
 const NavBar: React.FC = () => (
@@ -15,7 +16,7 @@ const NavBar: React.FC = () => (
         <img
           width='170'
           src={ReactSeoLogoSvg}
-          alt='react-seo-template' 
+          alt='react-seo-template'
         />
       </div>
       <div className='navbar-routes'>
@@ -23,7 +24,7 @@ const NavBar: React.FC = () => (
           className='navbar-item'
           to={RoutesConfig.Home.path}
           exact={RoutesConfig.Home.exact}
-          activeClassName={RoutesConfig.Home.activeClassName} 
+          activeClassName={RoutesConfig.Home.activeClassName}
         >
           <span>{RoutesConfig.Home.displayName}</span>
         </NavLink>
@@ -31,7 +32,7 @@ const NavBar: React.FC = () => (
           className='navbar-item'
           to={RoutesConfig.About.path}
           exact={RoutesConfig.About.exact}
-          activeClassName={RoutesConfig.About.activeClassName} 
+          activeClassName={RoutesConfig.About.activeClassName}
         >
           <span>{RoutesConfig.About.displayName}</span>
         </NavLink>

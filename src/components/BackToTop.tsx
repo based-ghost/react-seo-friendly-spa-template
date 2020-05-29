@@ -6,11 +6,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // 'react-scroll' configuration
 const scroll = Scroll.animateScroll;
 
-const scrollOptions = Object.freeze({
+const scrollOptions = {
   delay: 5,
   duration: 500,
   smooth: 'easeInOutCubic'
-});
+};
 
 // 'styled-components' specific to BackToTop.tsx component
 const BackToTopLink = styled.a<{ $show: boolean }>`
@@ -41,7 +41,7 @@ const AngleDoubleUpIcon = styled(FontAwesomeIcon)`
   margin: 0.75rem auto auto auto;
 `;
 
-// Write the show state value to a ref so we can use it as a check to prevent 
+// Write the show state value to a ref so we can use it as a check to prevent
 // ...re-renders on every scroll down that triggers a show for the button
 const BackToTop: React.FC = () => {
   const showRef = useRef<boolean>(false);
@@ -70,7 +70,7 @@ const BackToTop: React.FC = () => {
       $show={show}
       role='button'
       aria-label='BackToTop'
-      onClick={(): void => scroll.scrollToTop(scrollOptions)}
+      onClick={() => scroll.scrollToTop(scrollOptions)}
     >
       <AngleDoubleUpIcon icon='angle-double-up' />
     </BackToTopLink>

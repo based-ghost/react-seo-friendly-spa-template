@@ -7,11 +7,7 @@ import { FeatureInfoConfig, FeatureInfo } from '../../config/features.config';
 
 const Home: React.FC = () => {
   const featureList = useMemo<FeatureInfo[]>(() => {
-    const arr: FeatureInfo[] = [];
-    Object.keys(FeatureInfoConfig).forEach((key: string): void => {
-      arr.push({ ...FeatureInfoConfig[key] });
-    });
-    return arr;
+    return Object.keys(FeatureInfoConfig).map((key) => FeatureInfoConfig[key]);
   }, []);
 
   return (
