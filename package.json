@@ -10,7 +10,7 @@
     "bulma": "^0.8.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-ga": "^2.7.0",
+    "react-ga": "^3.0.0",
     "react-helmet": "^6.0.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.1",
