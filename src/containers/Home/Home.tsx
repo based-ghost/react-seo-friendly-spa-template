@@ -12,7 +12,7 @@ const Home: React.FC = () => {
 
   return (
     <div className='view-wrapper'>
-      <MetaInfo metaInfo={RoutesConfig.Home.metaInfo} />
+      <MetaInfo {...RoutesConfig.Home.metaInfo} />
       <section className='hero is-dark'>
         <div className='hero-body'>
           <div className='container has-text-centered'>

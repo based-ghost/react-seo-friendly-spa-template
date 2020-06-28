@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { RoutesConfig } from '../config/routes.config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const ReactSeoLogoSvg = require('../assets/img/ReactSeoLogo.svg');
+const ReactSeoLogoSvg = require('../assets/img/ReactSeoLogo.svg') as string;
 
 const NavBar: React.FC = () => (
   <nav

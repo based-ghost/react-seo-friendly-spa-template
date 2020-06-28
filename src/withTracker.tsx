@@ -11,10 +11,7 @@ export const withTracker = <P extends RouteComponentProps>(
   options: FieldsObject = {}
 ) => {
   const trackPage = (page: string) => {
-    ReactGA.set({
-      page,
-      ...options
-    });
+    ReactGA.set({ page, ...options });
     ReactGA.pageview(page);
   };
 

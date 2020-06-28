@@ -6,13 +6,12 @@ import { BrowserRouter } from 'react-router-dom';
 import './config/fa.config';
 import * as serviceWorker from './serviceWorker';
 
-const AppContainer = (
+render(
   <BrowserRouter>
     <App />
-  </BrowserRouter>
+  </BrowserRouter>,
+  document.getElementById("root")
 );
-
-render(AppContainer, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
