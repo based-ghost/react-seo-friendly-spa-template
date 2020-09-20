@@ -8,7 +8,8 @@ type FeatureListProps = {
 
 const FeatureList = React.memo<FeatureListProps>(({ featureList }) => (
   <Fragment>
-    {featureList.map(({ packageName, description }: FeatureInfo, index: number) => (
+    {featureList.map(
+      ({ packageName, description }: FeatureInfo, index: number) => (
         <h2 key={index} className='subtitle'>
           <FontAwesomeIcon icon='check' />
           {` ${description} `}

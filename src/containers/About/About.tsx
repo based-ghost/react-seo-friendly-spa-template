@@ -10,7 +10,7 @@ const About: React.FC = () => (
       <div className='notification tile is-child is-primary pageSlideDown-animation'>
         <div>
           <FontAwesomeIcon icon='info-circle' size='2x' />
-          <span className="title">About Page</span>
+          <span className='title'>About Page</span>
         </div>
         <p className='subtitle'>Very interesting information may go here.</p>
       </div>

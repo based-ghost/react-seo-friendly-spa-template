@@ -1,15 +1,17 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
+export type MetaInfoProps = {
+  readonly title?: string;
+  readonly description?: string;
+};
+
 export type Route = {
   readonly path: string;
   readonly icon: IconProp;
   readonly exact?: boolean;
   readonly displayName: string;
   readonly activeClassName: string;
-  readonly metaInfo: {
-    readonly title?: string;
-    readonly description?: string;
-  };
+  readonly metaInfo: MetaInfoProps;
 };
 
 export const RoutesConfig = Object.freeze<Record<string, Route>>({

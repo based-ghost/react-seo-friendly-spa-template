@@ -3,7 +3,7 @@ export type FeatureInfo = {
   readonly packageName?: string;
 };
 
-export const FeatureInfoConfig = Object.freeze<Record<string, FeatureInfo>>({
+export const FeatureInfoConfig: Record<string, FeatureInfo> = {
   typescript: {
     description: 'TypeScript + TSX'
   },
@@ -25,4 +25,4 @@ export const FeatureInfoConfig = Object.freeze<Record<string, FeatureInfo>>({
     description: 'Configured to serve prerendered html using',
     packageName: 'react-snapshot'
   },
-});
+};

@@ -48,13 +48,15 @@ const BackToTop: React.FC = () => {
   const [show, setShow] = useState<boolean>(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (!showRef.current && (window.scrollY || window.pageYOffset) > 100) {
+    const handleScroll = (): void => {
+      const scrollY: number = (window.scrollY || window.pageYOffset);
+
+      if (!showRef.current && scrollY > 100) {
         showRef.current = true;
-        setShow(true);
-      } else if ((window.scrollY || window.pageYOffset) === 0) {
+        setShow(showRef.current);
+      } else if (scrollY === 0) {
         showRef.current = false;
-        setShow(false);
+        setShow(showRef.current);
       }
     };
 

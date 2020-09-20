@@ -25,34 +25,32 @@ initial scaffolding
 ### react-helmet
 
 [`react-helmet`](https://github.com/nfl/react-helmet) - plugin that allows you to manage your app's meta information. It is reusable React component will manage all of your changes to the document head - Helmet takes plain HTML tags and outputs plain HTML tags. It's dead simple, and React beginner friendly.
-  
+
 I have it configured to use one more level of abstraction, where I have the Helmet component and child meta tags broken out to its own component `MetaInfo.tsx`:
 
 `MetaInfo.tsx`
 ```TSX
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import { MetaInfoProps } from '../config/routes.config';
 
-type MetaInfoProps = {
-  metaInfo: {
-    title?: string;
-    description?: string;
-  };
+export type MetaInfoProps = {
+  title?: string;
+  description?: string;
 };
 
-const MetaInfo: React.FC<MetaInfoProps> = ({ 
-  metaInfo: {
-    title,
-    description,
-  },
-}) => (
-  <Helmet>
-    <title>{title}</title>
-    <meta name='og:title' content={title} />
-    <meta name='description' content={description} />
-    <meta name='og:description' content={description} />
-  </Helmet>
+const MetaInfo: React.FC<MetaInfoProps> = React.memo(
+  ({ title, description }) => (
+    <Helmet>
+      <title>{title}</title>
+      <meta name='og:title' content={title} />
+      <meta name='description' content={description} />
+      <meta name='og:description' content={description} />
+    </Helmet>
+  )
 );
+
+MetaInfo.displayName = 'MetaInfo';
 
 export default MetaInfo;
 ```
@@ -67,12 +65,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const About: React.FC = () => (
   <section className='container view-wrapper'>
-    <MetaInfo metaInfo={RoutesConfig.About.metaInfo} />
+    <MetaInfo {...RoutesConfig.About.metaInfo} />
     <div className='tile is-parent is-8 is-vertical is-notification-tile'>
       <div className='notification tile is-child is-primary pageSlideDown-animation'>
         <div>
-          <FontAwesomeIcon icon='info-circle' size="2x" />
-          <span className="title">About Page</span>
+          <FontAwesomeIcon icon='info-circle' size='2x' />
+          <span className='title'>About Page</span>
         </div>
         <p className='subtitle'>Very interesting information may go here.</p>
       </div>
@@ -103,10 +101,7 @@ export const withTracker = <P extends RouteComponentProps>(
   options: FieldsObject = {}
 ) => {
   const trackPage = (page: string) => {
-    ReactGA.set({
-      page,
-      ...options
-    });
+    ReactGA.set({ page, ...options });
     ReactGA.pageview(page);
   };
 
@@ -127,6 +122,10 @@ export const withTracker = <P extends RouteComponentProps>(
 e.g. in my `App.tsx`
 
 ```TSX
+import React from 'react';
+import Layout from './Layout';
+import { NotFound } from './components';
+import { Home, About } from './containers';
 import { withTracker } from './withTracker';
 import { Route, Switch } from 'react-router-dom';
 import { RoutesConfig } from './config/routes.config';
@@ -168,7 +167,7 @@ declare module 'react-snapshot' {
   var render: ReactDOM.Renderer;
 }
 ```
- 
+
 `index.tsx` - import the `render` method from `react-snapshot`...
 
 ```typescript
@@ -178,11 +177,9 @@ import { render } from 'react-snapshot';
 import { BrowserRouter } from 'react-router-dom';
 
 render(
-  (
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  ),
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
   document.getElementById('root')
 );
 ```
