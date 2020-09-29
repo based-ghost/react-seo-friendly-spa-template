@@ -17,7 +17,7 @@
       }
 
       hr {
-        background-color: hsla(0,0%,100%,.3);
+        background-color: hsla(0,0%,100%,.2);
         height: 1px;
         margin: 0 auto 1.75em auto;
         width: 65%;
@@ -88,7 +88,7 @@
         font-weight: 600;
       }
     }
-    
+
     @media (min-width: 769px) {
       > hr {
         display: none;
