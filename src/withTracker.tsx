@@ -10,12 +10,12 @@ export const withTracker = <P extends RouteComponentProps>(
   WrappedComponent: React.ComponentType<P>,
   options: FieldsObject = {}
 ) => {
-  const trackPage = (page: string) => {
+  const trackPage = (page: string): void => {
     ReactGA.set({ page, ...options });
     ReactGA.pageview(page);
   };
 
-  return (props: P) => {
+  return (props: P): JSX.Element => {
     const { pathname } = props.location;
 
     useEffect(() => {
