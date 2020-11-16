@@ -2,8 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { RoutesConfig } from '../config/routes.config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-const ReactSeoLogoSvg = require('../assets/img/ReactSeoLogo.svg') as string;
+import { ReactComponent as ReactSeoLogoSvg } from '../assets/img/ReactSeoLogo.svg';
 
 const NavBar: React.FC = () => (
   <nav
@@ -13,10 +12,11 @@ const NavBar: React.FC = () => (
   >
     <div className='navbar-wrapper'>
       <div className='brand-wrapper'>
-        <img
+        <ReactSeoLogoSvg
+          height='68'
           width='170'
-          src={ReactSeoLogoSvg}
-          alt='react-seo-template'
+          aria-hidden={true}
+          title='react-seo-template'
         />
       </div>
       <div className='navbar-routes'>
