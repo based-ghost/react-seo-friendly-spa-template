@@ -1,10 +1,7 @@
-import React, { useEffect, useState, useRef } from 'react';
-import Scroll from 'react-scroll';
+import { useEffect, useState, useRef, FunctionComponent } from 'react';
 import styled from 'styled-components';
+import { animateScroll } from 'react-scroll';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-// 'react-scroll' configuration
-const scroll = Scroll.animateScroll;
 
 const scrollOptions = {
   delay: 5,
@@ -12,7 +9,6 @@ const scrollOptions = {
   smooth: 'easeInOutCubic'
 };
 
-// 'styled-components' specific to BackToTop.tsx component
 const BackToTopLink = styled.a<{ $show: boolean }>`
   width: 3.5rem;
   z-index: 9999;
@@ -43,13 +39,13 @@ const AngleDoubleUpIcon = styled(FontAwesomeIcon)`
 
 // Write the show state value to a ref so we can use it as a check to prevent
 // ...re-renders on every scroll down that triggers a show for the button
-const BackToTop: React.FC = () => {
+const BackToTop: FunctionComponent = () => {
   const showRef = useRef<boolean>(false);
   const [show, setShow] = useState<boolean>(false);
 
   useEffect(() => {
     const handleScroll = (): void => {
-      const scrollY: number = (window.scrollY || window.pageYOffset);
+      const scrollY = (window.scrollY || window.pageYOffset);
 
       if (!showRef.current && scrollY > 100) {
         showRef.current = true;
@@ -72,7 +68,7 @@ const BackToTop: React.FC = () => {
       $show={show}
       role='button'
       aria-label='BackToTop'
-      onClick={() => scroll.scrollToTop(scrollOptions)}
+      onClick={() => animateScroll.scrollToTop(scrollOptions)}
     >
       <AngleDoubleUpIcon icon='angle-double-up' />
     </BackToTopLink>

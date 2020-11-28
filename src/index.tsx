@@ -1,8 +1,7 @@
-import React from 'react';
 import { render } from 'react-snapshot';
-import './assets/style/main.scss';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
+import './assets/style/main.scss';
 import './config/fa.config';
 import * as serviceWorker from './serviceWorker';
 

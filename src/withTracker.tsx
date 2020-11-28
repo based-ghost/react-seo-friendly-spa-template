@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import ReactGA, { FieldsObject } from 'react-ga';
 import { RouteComponentProps } from 'react-router-dom';
 

@@ -1,7 +1,7 @@
-import React from 'react';
+import { FunctionComponent } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const Footer: React.FC = () => (
+const Footer: FunctionComponent = () => (
   <footer className='footer'>
     <div className='buttons'>
       <a

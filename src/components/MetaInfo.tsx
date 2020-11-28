@@ -1,8 +1,8 @@
-import React from 'react';
+import { memo } from 'react';
 import { Helmet } from 'react-helmet';
 import { MetaInfoProps } from '../config/routes.config';
 
-const MetaInfo: React.FC<MetaInfoProps> = React.memo(({ title, description }) => (
+const MetaInfo = memo<MetaInfoProps>(({ title, description }) => (
   <Helmet>
     <title>{title}</title>
     <meta name='og:title' content={title} />

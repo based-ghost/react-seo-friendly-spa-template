@@ -1,9 +1,9 @@
-import React from 'react';
+import { FunctionComponent } from 'react';
 import { MetaInfo } from '../../components';
 import { RoutesConfig } from '../../config/routes.config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const About: React.FC = () => (
+const About: FunctionComponent = () => (
   <section className='container view-wrapper'>
     <MetaInfo {...RoutesConfig.About.metaInfo} />
     <div className='tile is-parent is-8 is-vertical is-notification-tile'>

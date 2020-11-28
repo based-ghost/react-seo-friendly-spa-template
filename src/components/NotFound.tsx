@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import { useEffect, FunctionComponent } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const NotFound: React.FC = () => {
+const NotFound: FunctionComponent = () => {
   useEffect(() => {
     if (window.location.pathname !== '/404') {
       window.location.href = '/404';

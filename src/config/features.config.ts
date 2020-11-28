@@ -1,7 +1,7 @@
-export type FeatureInfo = {
-  readonly description: string;
-  readonly packageName?: string;
-};
+export type FeatureInfo = Readonly<{
+  description: string;
+  packageName?: string;
+}>;
 
 export const FeatureInfoConfig: Record<string, FeatureInfo> = {
   typescript: {

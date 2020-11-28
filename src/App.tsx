@@ -1,4 +1,4 @@
-import React from 'react';
+import { FunctionComponent } from 'react';
 import Layout from './Layout';
 import { NotFound } from './components';
 import { Home, About } from './containers';
@@ -6,7 +6,7 @@ import { withTracker } from './withTracker';
 import { Route, Switch } from 'react-router-dom';
 import { RoutesConfig } from './config/routes.config';
 
-const App: React.FC = () => (
+const App: FunctionComponent = () => (
   <Layout>
     <Switch>
       <Route

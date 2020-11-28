@@ -1,7 +1,7 @@
-import React, { Fragment } from 'react';
+import { FunctionComponent, Fragment } from 'react';
 import { Footer, NavBar, BackToTop } from './components';
 
-const Layout: React.FC = ({ children }) => (
+const Layout: FunctionComponent = ({ children }) => (
   <Fragment>
     <NavBar />
     {children}

@@ -1,12 +1,12 @@
-import React, { Fragment } from 'react';
+import { memo, Fragment } from 'react';
 import { FeatureInfo } from '../../../config/features.config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-type FeatureListProps = {
-  readonly featureList: FeatureInfo[];
-};
+type FeatureListProps = Readonly<{
+  featureList: FeatureInfo[];
+}>;
 
-const FeatureList = React.memo<FeatureListProps>(({ featureList }) => (
+const FeatureList = memo<FeatureListProps>(({ featureList }) => (
   <Fragment>
     {featureList.map(
       ({ packageName, description }: FeatureInfo, index: number) => (
