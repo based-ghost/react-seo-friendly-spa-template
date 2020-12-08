@@ -8,15 +8,13 @@ type FeatureListProps = Readonly<{
 
 const FeatureList = memo<FeatureListProps>(({ featureList }) => (
   <Fragment>
-    {featureList.map(
-      ({ packageName, description }: FeatureInfo, index: number) => (
-        <h2 key={index} className='subtitle'>
-          <FontAwesomeIcon icon='check' />
-          {` ${description} `}
-          {packageName && <code>{packageName}</code>}
-        </h2>
-      )
-    )}
+    {featureList.map(({ packageName, description }, index) => (
+      <h2 key={index} className='subtitle'>
+        <FontAwesomeIcon icon='check' />
+        {` ${description} `}
+        {packageName && <code>{packageName}</code>}
+      </h2>
+    ))}
   </Fragment>
 ));
 

@@ -19,7 +19,6 @@ const BackToTopLink = styled.a<{ $show: boolean }>`
   position: fixed;
   user-select: none;
   border-radius: 50%;
-  -webkit-touch-callout: none;
   background: rgb(37, 40, 47);
   -webkit-tap-highlight-color: transparent;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -49,10 +48,10 @@ const BackToTop: FunctionComponent = () => {
 
       if (!showRef.current && scrollY > 100) {
         showRef.current = true;
-        setShow(showRef.current);
+        setShow(true);
       } else if (scrollY === 0) {
         showRef.current = false;
-        setShow(showRef.current);
+        setShow(false);
       }
     };
 
@@ -67,7 +66,7 @@ const BackToTop: FunctionComponent = () => {
     <BackToTopLink
       $show={show}
       role='button'
-      aria-label='BackToTop'
+      aria-label='back to top'
       onClick={() => animateScroll.scrollToTop(scrollOptions)}
     >
       <AngleDoubleUpIcon icon='angle-double-up' />

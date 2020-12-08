@@ -28,7 +28,9 @@ const Footer: FunctionComponent = () => (
         <FontAwesomeIcon icon={['fab', 'medium-m']} />
       </a>
     </div>
-    <div className='content'>ReactSeoFriendlySpaTemplate.com &copy; 2019</div>
+    <div className='content'>
+      ReactSeoFriendlySpaTemplate.com &copy; 2019
+    </div>
   </footer>
 );
 

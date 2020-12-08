@@ -6,9 +6,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FeatureInfoConfig, FeatureInfo } from '../../config/features.config';
 
 const Home: FunctionComponent = () => {
-  const featureList = useMemo<FeatureInfo[]>(() => {
-    return Object.keys(FeatureInfoConfig).map((key) => FeatureInfoConfig[key]);
-  }, []);
+  const featureList = useMemo<FeatureInfo[]>(
+    () => Object.values(FeatureInfoConfig),
+    []
+  );
 
   return (
     <div className='view-wrapper'>
