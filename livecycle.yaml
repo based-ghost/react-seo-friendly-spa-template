@@ -22,3 +22,8 @@ web:
           action: rewrite
           force: true
           target: https://jsonplaceholder.typicode.com/$1
+        - match: /favicon-local/(.*)
+          action: rewrite
+          force: false
+          target: /favicon.ico
+
