@@ -16,3 +16,9 @@ web:
         type: static
         static:
             path: /app/build
+    proxy:
+        rules:
+        - match: /api/(.*)
+          action: rewrite
+          force: true
+          target: https://jsonplaceholder.typicode.com/$1
