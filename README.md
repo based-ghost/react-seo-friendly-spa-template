@@ -29,26 +29,22 @@ initial scaffolding
 I have it configured to use one more level of abstraction, where I have the Helmet component and child meta tags broken out to its own component `MetaInfo.tsx`:
 
 `MetaInfo.tsx`
-```TSX
-import React from 'react';
-import { Helmet } from 'react-helmet';
+```jsx
+import { memo } from 'react';
+import Helmet from 'react-helmet';
 import { MetaInfoProps } from '../config/routes.config';
 
-export type MetaInfoProps = {
-  title?: string;
-  description?: string;
-};
-
-const MetaInfo: React.FC<MetaInfoProps> = React.memo(
-  ({ title, description }) => (
-    <Helmet>
-      <title>{title}</title>
-      <meta name='og:title' content={title} />
-      <meta name='description' content={description} />
-      <meta name='og:description' content={description} />
-    </Helmet>
-  )
-);
+const MetaInfo = memo<MetaInfoProps>(({
+  title,
+  description
+}) => (
+  <Helmet>
+    <title>{title}</title>
+    <meta property='og:title' content={title} />
+    <meta name='description' content={description} />
+    <meta property='og:description' content={description} />
+  </Helmet>
+));
 
 MetaInfo.displayName = 'MetaInfo';
 
@@ -57,13 +53,13 @@ export default MetaInfo;
 
 ...and used in component `About.tsx`
 
-```TSX
-import React from 'react';
-import MetaInfo from '../components/MetaInfo';
-import { RoutesConfig } from '../config/routes.config';
+```jsx
+import { FunctionComponent } from 'react';
+import { MetaInfo } from '../../components';
+import { RoutesConfig } from '../../config/routes.config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const About: React.FC = () => (
+const About: FunctionComponent = () => (
   <section className='container view-wrapper'>
     <MetaInfo {...RoutesConfig.About.metaInfo} />
     <div className='tile is-parent is-8 is-vertical is-notification-tile'>
@@ -87,25 +83,31 @@ export default About;
 
 My preferred configuration - in a seperate utility function named `withTracker.tsx`:
 
-```TSX
-import React, { useEffect } from 'react';
-import ReactGA, { FieldsObject } from 'react-ga';
+```jsx
+import { useEffect } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
+import ReactGA, { FieldsObject, InitializeOptions } from 'react-ga';
 
-// Initialize the react-ga plugin using your issued GA tracker code
-ReactGA.initialize('UA-0000000-0');
+// Initialize the react-ga plugin using your issued GA tracker code + options
+const initializeOptions: InitializeOptions = {
+  gaOptions: {
+    cookieFlags: 'max-age=7200;secure;samesite=none'
+  }
+};
+
+ReactGA.initialize('UA-0000000-0', initializeOptions);
 
 // React.FC component used as a wrapper for route components - e.g. withTracker(RouteComponent)
 export const withTracker = <P extends RouteComponentProps>(
   WrappedComponent: React.ComponentType<P>,
   options: FieldsObject = {}
 ) => {
-  const trackPage = (page: string) => {
+  const trackPage = (page: string): void => {
     ReactGA.set({ page, ...options });
     ReactGA.pageview(page);
   };
 
-  return (props: P) => {
+  return (props: P): JSX.Element => {
     const { pathname } = props.location;
 
     useEffect(() => {
@@ -121,8 +123,8 @@ export const withTracker = <P extends RouteComponentProps>(
 
 e.g. in my `App.tsx`
 
-```TSX
-import React from 'react';
+```jsx
+import { FunctionComponent } from 'react';
 import Layout from './Layout';
 import { NotFound } from './components';
 import { Home, About } from './containers';
@@ -130,7 +132,7 @@ import { withTracker } from './withTracker';
 import { Route, Switch } from 'react-router-dom';
 import { RoutesConfig } from './config/routes.config';
 
-const App: React.FC = () => (
+const App: FunctionComponent = () => (
   <Layout>
     <Switch>
       <Route
@@ -170,11 +172,13 @@ declare module 'react-snapshot' {
 
 `index.tsx` - import the `render` method from `react-snapshot`...
 
-```typescript
-import React from 'react';
-import App from './App';
+```jsx
 import { render } from 'react-snapshot';
+import App from './App';
 import { BrowserRouter } from 'react-router-dom';
+import './assets/style/main.scss';
+import './config/fa.config';
+import * as serviceWorker from './serviceWorker';
 
 render(
   <BrowserRouter>

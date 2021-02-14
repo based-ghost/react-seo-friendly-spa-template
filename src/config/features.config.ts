@@ -3,7 +3,7 @@ export type FeatureInfo = Readonly<{
   packageName?: string;
 }>;
 
-export const FeatureInfoConfig: Record<string, FeatureInfo> = {
+export const FeatureInfoConfig: { [key: string]: FeatureInfo } = {
   typescript: {
     description: 'TypeScript + TSX'
   },

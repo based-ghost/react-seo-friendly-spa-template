@@ -83,12 +83,10 @@
 
         &:hover {
           color: $color-blue-highlight;
-          background-color: transparent;
         }
 
         &.is-active {
-          background-color: transparent;
-          color: $color-blue-highlight!important;
+          color: $color-blue-highlight !important;
           border-bottom-color: $color-blue-highlight !important;
         }
 

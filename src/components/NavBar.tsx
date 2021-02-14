@@ -15,7 +15,7 @@ const NavBar: FunctionComponent = () => (
         <ReactSeoLogoSvg
           height='68'
           width='170'
-          aria-hidden={true}
+          aria-hidden
           title='react-seo-template'
         />
       </div>

@@ -24,8 +24,9 @@ const BackToTopLink = styled.a<{ $show: boolean }>`
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 20px;
   transition: opacity 0.4s ease, bottom 0.4s ease;
-  bottom: ${({ $show }) => $show ? '1.25rem' : '-3.5rem'};
+
   opacity: ${({ $show }) => $show ? 1 : 0};
+  bottom: ${({ $show }) => $show ? '1.25' : '-3.5'}rem;
 `;
 
 const AngleDoubleUpIcon = styled(FontAwesomeIcon)`
