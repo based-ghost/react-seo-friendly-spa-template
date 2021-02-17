@@ -1,13 +1,15 @@
 import Footer from './Footer';
-import NavBar from './NavBar';
+import Navbar from './Navbar';
 import MetaInfo from './MetaInfo';
-import NotFound from './NotFound';
 import BackToTop from './BackToTop';
+import WithTracker from './WithTracker';
+import NotFound404 from './NotFound404';
 
 export {
   Footer,
-  NavBar,
+  Navbar,
   MetaInfo,
-  NotFound,
-  BackToTop
+  BackToTop,
+  WithTracker,
+  NotFound404
 };

@@ -1,5 +1,5 @@
 import { useMemo, FunctionComponent } from 'react';
-import { FeatureList } from './components';
+import FeatureList from './FeatureList';
 import { MetaInfo } from '../../components';
 import { RoutesConfig } from '../../config/routes.config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

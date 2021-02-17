@@ -2,9 +2,11 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
-    "allowJs": true,
+    "baseUrl": ".",
+    "sourceMap": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
+    "importHelpers": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
@@ -17,10 +19,15 @@
     "lib": [
       "dom",
       "dom.iterable",
-      "esnext"
-    ]
+      "esnext",
+      "scripthost"
+    ],
+    "allowJs": true
   },
   "include": [
     "src"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }

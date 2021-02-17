@@ -23,6 +23,10 @@ code {
 
 .view-wrapper {
   padding-top: $navbar-height;
+
+  &.view-not-found {
+    min-height: 757px;
+  }
 }
 
 .react-svg {
@@ -91,10 +95,6 @@ code {
 
     &.is-danger {
       background-color: #E93E60;
-    }
-
-    &.hide {
-      visibility: hidden;
     }
 
     /* IE fix for min-heigh on tiles */

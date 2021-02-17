@@ -45,7 +45,7 @@ const BackToTop: FunctionComponent = () => {
 
   useEffect(() => {
     const handleScroll = (): void => {
-      const scrollY = (window.scrollY || window.pageYOffset);
+      const scrollY = window.scrollY || window.pageYOffset;
 
       if (!showRef.current && scrollY > 100) {
         showRef.current = true;
@@ -56,10 +56,10 @@ const BackToTop: FunctionComponent = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    document.addEventListener('scroll', handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('scroll', handleScroll);
     };
   }, []);
 

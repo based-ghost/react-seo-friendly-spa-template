@@ -4,7 +4,7 @@ import { RoutesConfig } from '../config/routes.config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ReactComponent as ReactSeoLogoSvg } from '../assets/img/ReactSeoLogo.svg';
 
-const NavBar: FunctionComponent = () => (
+const Navbar: FunctionComponent = () => (
   <nav
     role='navigation'
     className='navbar'
@@ -13,6 +13,7 @@ const NavBar: FunctionComponent = () => (
     <div className='navbar-wrapper'>
       <div className='brand-wrapper'>
         <ReactSeoLogoSvg
+          role='img'
           height='68'
           width='170'
           aria-hidden
@@ -52,4 +53,4 @@ const NavBar: FunctionComponent = () => (
   </nav>
 );
 
-export default NavBar;
+export default Navbar;

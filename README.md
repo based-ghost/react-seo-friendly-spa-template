@@ -24,29 +24,78 @@ initial scaffolding
 
 ### react-helmet
 
-[`react-helmet`](https://github.com/nfl/react-helmet) - plugin that allows you to manage your app's meta information. It is reusable React component will manage all of your changes to the document head - Helmet takes plain HTML tags and outputs plain HTML tags. It's dead simple, and React beginner friendly.
+[`react-helmet`](https://github.com/nfl/react-helmet) - plugin that allows you to manage your app's meta information. It is a reusable React component that will manage all of your changes to the document head - Helmet takes plain HTML tags and outputs plain HTML tags. It's dead simple, and React beginner friendly.
 
-I have it configured to use one more level of abstraction, where I have the Helmet component and child meta tags broken out to its own component `MetaInfo.tsx`:
+I have it configured to use one more level of abstraction, where I have the Helmet component and child meta tags broken out to its own component `MetaInfo.tsx` - referenced at the root of the app i `App.tsx` to initialize data and then referenced in each route component to override route-specific values (`Home.tsx`, `About.tsx`, `NotFound404.tsx`):
 
 `MetaInfo.tsx`
 ```jsx
-import { memo } from 'react';
 import Helmet from 'react-helmet';
-import { MetaInfoProps } from '../config/routes.config';
+import { FunctionComponent } from 'react';
+import { RoutesConfig, MetaInfoProps } from '../config/routes.config';
+import { APP_NAME, DEFAULT_LOCALE, BASE_URL, AUTHOR_NAME } from '../config/env.config';
 
-const MetaInfo = memo<MetaInfoProps>(({
-  title,
-  description
+const {
+  title: _defaultTitle,
+  description: _defaultDescription
+} = RoutesConfig.Home.metaInfo;
+
+const MetaInfo: FunctionComponent<MetaInfoProps> = ({
+  meta = [],
+  defer = false,
+  lang = DEFAULT_LOCALE,
+  title = _defaultTitle,
+  description = _defaultDescription
 }) => (
-  <Helmet>
-    <title>{title}</title>
-    <meta property='og:title' content={title} />
-    <meta name='description' content={description} />
-    <meta property='og:description' content={description} />
-  </Helmet>
-));
-
-MetaInfo.displayName = 'MetaInfo';
+  <Helmet
+    defer={defer}
+    title={title}
+    htmlAttributes={{ lang }}
+    titleTemplate={`%s | ${APP_NAME}`}
+    meta={[
+      {
+        name: 'description',
+        content: description
+      },
+      {
+        property: 'og:description',
+        content: description
+      },
+      {
+        property: 'og:title',
+        content: title
+      },
+      {
+        property: 'og:type',
+        content: 'website'
+      },
+      {
+        property: 'og:image',
+        content: `${BASE_URL}logo192.png`
+      },
+      {
+        name: 'twitter:card',
+        content: 'summary'
+      },
+      {
+        name: 'twitter:creator',
+        content: AUTHOR_NAME
+      },
+      {
+        name: 'twitter:title',
+        content: title
+      },
+      {
+        name: 'twitter:description',
+        content: description
+      },
+      {
+        name: 'author',
+        content: AUTHOR_NAME
+      }
+    ].concat(meta)}
+  />
+);
 
 export default MetaInfo;
 ```
@@ -81,25 +130,27 @@ export default About;
 
 [`react-ga`](https://github.com/react-ga/react-ga) - This is a JavaScript module that can be used to include Google Analytics tracking code in a website or app that uses React for its front-end codebase. It does not currently use any React code internally, but has been written for use with a number of Mozilla Foundation websites that are using React, as a way to standardize our GA Instrumentation across projects.
 
-My preferred configuration - in a seperate utility function named `withTracker.tsx`:
+My preferred configuration - in a seperate file that initializes your google analytics settings and exports an HOC wrapper component to consume your route components with - `WithTracker.tsx`:
 
 ```jsx
-import { useEffect } from 'react';
-import { RouteComponentProps } from 'react-router-dom';
+import { useEffect, ComponentType } from 'react';
+import { IS_PRODUCTION } from '../config/env.config';
+import { RouteComponentProps, useLocation } from 'react-router-dom';
 import ReactGA, { FieldsObject, InitializeOptions } from 'react-ga';
 
 // Initialize the react-ga plugin using your issued GA tracker code + options
 const initializeOptions: InitializeOptions = {
+  debug: !IS_PRODUCTION,
   gaOptions: {
     cookieFlags: 'max-age=7200;secure;samesite=none'
   }
 };
 
-ReactGA.initialize('UA-0000000-0', initializeOptions);
+ReactGA.initialize('UA-000000-01', initializeOptions);
 
-// React.FC component used as a wrapper for route components - e.g. withTracker(RouteComponent)
-export const withTracker = <P extends RouteComponentProps>(
-  WrappedComponent: React.ComponentType<P>,
+// HOC component handling page tracking - e.g. withTracker(RouteComponent)
+const WithTracker = <P extends RouteComponentProps>(
+  WrappedComponent: ComponentType<P>,
   options: FieldsObject = {}
 ) => {
   const trackPage = (page: string): void => {
@@ -107,16 +158,21 @@ export const withTracker = <P extends RouteComponentProps>(
     ReactGA.pageview(page);
   };
 
-  return (props: P): JSX.Element => {
-    const { pathname } = props.location;
+  const HOC = (props: P): JSX.Element => {
+    const location = useLocation();
 
     useEffect(() => {
-      trackPage(pathname);
-    }, [pathname]);
+      const { pathname, search } = location;
+      trackPage(pathname + search);
+    }, [location]);
 
     return <WrappedComponent {...props} />;
   };
+
+  return HOC;
 };
+
+export default WithTracker;
 ```
 
 ...and then used as a wrapper for your route components whereever you define your `Route` objects:
@@ -126,26 +182,26 @@ e.g. in my `App.tsx`
 ```jsx
 import { FunctionComponent } from 'react';
 import Layout from './Layout';
-import { NotFound } from './components';
 import { Home, About } from './containers';
-import { withTracker } from './withTracker';
 import { Route, Switch } from 'react-router-dom';
 import { RoutesConfig } from './config/routes.config';
+import { MetaInfo, WithTracker, NotFound404 } from './components';
 
 const App: FunctionComponent = () => (
   <Layout>
+    <MetaInfo />
     <Switch>
       <Route
         path={RoutesConfig.Home.path}
-        component={withTracker(Home)}
+        component={WithTracker(Home)}
         exact={RoutesConfig.Home.exact}
       />
       <Route
         path={RoutesConfig.About.path}
-        component={withTracker(About)}
+        component={WithTracker(About)}
         exact={RoutesConfig.About.exact}
       />
-      <Route component={NotFound} />
+      <Route component={NotFound404} />
     </Switch>
   </Layout>
 );

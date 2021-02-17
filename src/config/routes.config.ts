@@ -1,9 +1,14 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
-export type MetaInfoProps = Readonly<{
-  title?: string;
-  description?: string;
-}>;
+export type MetaInfoProps = Partial<
+  Readonly<{
+    meta: any[];
+    lang: string;
+    title: string;
+    defer: boolean;
+    description: string;
+  }>
+>;
 
 export type Route = Readonly<{
   path: string;
@@ -14,6 +19,8 @@ export type Route = Readonly<{
   metaInfo: MetaInfoProps;
 }>;
 
+export const getDescription = (title: string) => `${title} description - length <= 160 (optimal 150-155).`;
+
 export const RoutesConfig = Object.freeze<Record<string, Route>>({
   Home: {
     path: '/',
@@ -22,8 +29,8 @@ export const RoutesConfig = Object.freeze<Record<string, Route>>({
     activeClassName: 'is-active',
     icon: 'home',
     metaInfo: {
-      title: 'Home | ReactSeoFriendlySpaTemplate',
-      description: 'Home page description - limit of 160 characters (try for 150-155).'
+      title: 'Home',
+      description: getDescription('Home')
     }
   },
   About: {
@@ -33,8 +40,8 @@ export const RoutesConfig = Object.freeze<Record<string, Route>>({
     activeClassName: 'is-active',
     icon: 'info',
     metaInfo: {
-      title: 'About | ReactSeoFriendlySpaTemplate',
-      description: 'About page description - limit of 160 characters (try for 150-155).'
+      title: 'About',
+      description: getDescription('About')
     }
   }
 });
