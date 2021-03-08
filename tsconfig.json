@@ -2,9 +2,12 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
-    "lib": ["dom", "esnext"],
-    "baseUrl": ".",
-    "allowJs": false,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
     "sourceMap": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -21,8 +24,5 @@
   },
   "include": [
     "src"
-  ],
-  "exclude": [
-    "node_modules"
   ]
 }

@@ -42,22 +42,6 @@ const MetaInfo: FunctionComponent<MetaInfoProps> = ({
         content: `${BASE_URL}logo192.png`
       },
       {
-        name: 'twitter:card',
-        content: 'summary'
-      },
-      {
-        name: 'twitter:creator',
-        content: AUTHOR_NAME
-      },
-      {
-        name: 'twitter:title',
-        content: title
-      },
-      {
-        name: 'twitter:description',
-        content: description
-      },
-      {
         name: 'author',
         content: AUTHOR_NAME
       }

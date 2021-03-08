@@ -9,7 +9,7 @@ const scrollOptions = {
   smooth: 'easeInOutCubic'
 };
 
-const BackToTopLink = styled.a<{ $show: boolean }>`
+const BackToTopLink = styled.a<{ show: boolean }>`
   width: 3.5rem;
   z-index: 9999;
   display: block;
@@ -25,8 +25,8 @@ const BackToTopLink = styled.a<{ $show: boolean }>`
   box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 20px;
   transition: opacity 0.4s ease, bottom 0.4s ease;
 
-  opacity: ${({ $show }) => $show ? 1 : 0};
-  bottom: ${({ $show }) => $show ? '1.25' : '-3.5'}rem;
+  opacity: ${({ show }) => show ? 1 : 0};
+  bottom: ${({ show }) => show ? '1.25' : '-3.5'}rem;
 `;
 
 const AngleDoubleUpIcon = styled(FontAwesomeIcon)`
@@ -65,7 +65,7 @@ const BackToTop: FunctionComponent = () => {
 
   return (
     <BackToTopLink
-      $show={show}
+      show={show}
       role='button'
       aria-label='back to top'
       onClick={() => animateScroll.scrollToTop(scrollOptions)}

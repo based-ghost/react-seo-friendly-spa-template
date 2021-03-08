@@ -6,15 +6,15 @@
 .vscode/
 
 # dependencies
-node_modules
+/node_modules
 
 # testing
-coverage
+/coverage
 
 # production
 lib
 dist
-build
+/build
 
 # Log files
 logs

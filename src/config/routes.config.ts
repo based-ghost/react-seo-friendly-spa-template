@@ -19,7 +19,7 @@ export type Route = Readonly<{
   metaInfo: MetaInfoProps;
 }>;
 
-export const getDescription = (title: string) => `${title} description - length <= 160 (optimal 150-155).`;
+const getDescription = (title: string) => `${title} description - length <= 160 (optimal 150-155).`;
 
 export const RoutesConfig = Object.freeze<Record<string, Route>>({
   Home: {
