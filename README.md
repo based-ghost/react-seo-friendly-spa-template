@@ -167,10 +167,11 @@ e.g. in my `App.tsx`
 ```jsx
 import { FunctionComponent } from 'react';
 import Layout from './Layout';
+import { WithTracker } from './utils';
 import { Home, About } from './containers';
 import { Route, Switch } from 'react-router-dom';
+import { MetaInfo, NotFound404 } from './components';
 import { RoutesConfig } from './config/routes.config';
-import { MetaInfo, WithTracker, NotFound404 } from './components';
 
 const App: FunctionComponent = () => (
   <Layout>
@@ -215,15 +216,19 @@ declare module 'react-snapshot' {
 
 ```jsx
 import { render } from 'react-snapshot';
-import App from './App';
+import { StrictMode } from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import App from './App';
 import './assets/style/main.scss';
 import './config/fa.config';
-import * as serviceWorker from './serviceWorker';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import reportWebVitals from './reportWebVitals';
 
 render(
   <BrowserRouter>
-    <App />
+    <StrictMode>
+      <App />
+    </StrictMode>
   </BrowserRouter>,
   document.getElementById('root')
 );
