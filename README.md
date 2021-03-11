@@ -201,14 +201,12 @@ export default App;
 
 Configured in a React (TypeScript) as follows:
 
-`react-app-env.d.ts` - at the bottom of this generated typings file add the following module declaration...
+`react-snapshot.d.ts` - in this typings file add the following module declaration...
 
 ```typescript
-/// <reference types="react-scripts" />
-
 declare module 'react-snapshot' {
   import * as ReactDOM from 'react-dom';
-  var render: ReactDOM.Renderer;
+  const render: ReactDOM.Renderer;
 }
 ```
 
