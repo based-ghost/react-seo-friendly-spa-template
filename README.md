@@ -74,22 +74,6 @@ const MetaInfo: FunctionComponent<MetaInfoProps> = ({
         content: `${BASE_URL}logo192.png`
       },
       {
-        name: 'twitter:card',
-        content: 'summary'
-      },
-      {
-        name: 'twitter:creator',
-        content: AUTHOR_NAME
-      },
-      {
-        name: 'twitter:title',
-        content: title
-      },
-      {
-        name: 'twitter:description',
-        content: description
-      },
-      {
         name: 'author',
         content: AUTHOR_NAME
       }
@@ -148,7 +132,7 @@ const initializeOptions: InitializeOptions = {
 
 ReactGA.initialize('UA-000000-01', initializeOptions);
 
-// HOC component handling page tracking - e.g. withTracker(RouteComponent)
+// HOC component handling page tracking - e.g. WithTracker(RouteComponent)
 const WithTracker = <P extends RouteComponentProps>(
   WrappedComponent: ComponentType<P>,
   options: FieldsObject = {}
@@ -163,7 +147,8 @@ const WithTracker = <P extends RouteComponentProps>(
 
     useEffect(() => {
       const { pathname, search } = location;
-      trackPage(pathname + search);
+      const page = pathname + search;
+      trackPage(page);
     }, [location]);
 
     return <WrappedComponent {...props} />;
