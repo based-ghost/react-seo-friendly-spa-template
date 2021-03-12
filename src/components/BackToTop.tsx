@@ -9,6 +9,14 @@ const scrollOptions = {
   smooth: 'easeInOutCubic'
 };
 
+const AngleDoubleUpIcon = styled(FontAwesomeIcon)`
+  display: block;
+  color: #61dafb;
+  font-size: 1.75em;
+  padding-left: 0.1rem;
+  margin: 0.75rem auto auto auto;
+`;
+
 const BackToTopLink = styled.a<{ show: boolean }>`
   width: 3.5rem;
   z-index: 9999;
@@ -27,14 +35,6 @@ const BackToTopLink = styled.a<{ show: boolean }>`
 
   opacity: ${({ show }) => show ? 1 : 0};
   bottom: ${({ show }) => show ? '1.25' : '-3.5'}rem;
-`;
-
-const AngleDoubleUpIcon = styled(FontAwesomeIcon)`
-  display: block;
-  color: #61dafb;
-  font-size: 1.75em;
-  padding-left: 0.1rem;
-  margin: 0.75rem auto auto auto;
 `;
 
 // Write the show state value to a ref so we can use it as a check to prevent
