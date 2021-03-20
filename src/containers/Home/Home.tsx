@@ -1,9 +1,12 @@
-import { useMemo, FunctionComponent } from 'react';
+import { useMemo } from 'react';
 import FeatureList from './FeatureList';
 import { MetaInfo } from '../../components';
 import { RoutesConfig } from '../../config/routes.config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { FeatureInfoConfig, FeatureInfo } from '../../config/features.config';
+import { FeatureInfoConfig } from '../../config/features.config';
+
+import type { FunctionComponent } from 'react';
+import type { FeatureInfo } from '../../config/features.config';
 
 const Home: FunctionComponent = () => {
   const featureList = useMemo<FeatureInfo[]>(

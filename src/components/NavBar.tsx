@@ -1,8 +1,9 @@
-import { FunctionComponent } from 'react';
 import { NavLink } from 'react-router-dom';
 import { RoutesConfig } from '../config/routes.config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ReactComponent as ReactSeoLogoSvg } from '../assets/img/ReactSeoLogo.svg';
+
+import type { FunctionComponent } from 'react';
 
 const Navbar: FunctionComponent = () => (
   <nav

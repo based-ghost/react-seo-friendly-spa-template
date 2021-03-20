@@ -1,7 +1,11 @@
-import { useEffect, ComponentType } from 'react';
+import ReactGA from 'react-ga';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { IS_PRODUCTION } from '../config/env.config';
-import { RouteComponentProps, useLocation } from 'react-router-dom';
-import ReactGA, { FieldsObject, InitializeOptions } from 'react-ga';
+
+import type { ComponentType } from 'react';
+import type { RouteComponentProps } from 'react-router-dom';
+import type { FieldsObject, InitializeOptions } from 'react-ga';
 
 // Initialize the react-ga plugin using your issued GA tracker code + options
 const initializeOptions: InitializeOptions = {

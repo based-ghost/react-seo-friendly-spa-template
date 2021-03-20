@@ -1,7 +1,8 @@
-import { FunctionComponent } from 'react';
 import { MetaInfo } from '../../components';
 import { RoutesConfig } from '../../config/routes.config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import type { FunctionComponent } from 'react';
 
 const About: FunctionComponent = () => (
   <section className='container view-wrapper'>

@@ -1,6 +1,7 @@
 import { memo, Fragment } from 'react';
-import { FeatureInfo } from '../../config/features.config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import type { FeatureInfo } from '../../config/features.config';
 
 type FeatureListProps = Readonly<{
   featureList: FeatureInfo[];

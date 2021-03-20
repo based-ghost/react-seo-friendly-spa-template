@@ -1,10 +1,11 @@
-import { FunctionComponent } from 'react';
 import Layout from './Layout';
 import { WithTracker } from './utils';
 import { Home, About } from './containers';
 import { Route, Switch } from 'react-router-dom';
 import { MetaInfo, NotFound404 } from './components';
 import { RoutesConfig } from './config/routes.config';
+
+import type { FunctionComponent } from 'react';
 
 const App: FunctionComponent = () => (
   <Layout>

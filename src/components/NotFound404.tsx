@@ -1,6 +1,8 @@
 import { MetaInfo } from '.';
-import { useEffect, FunctionComponent, Fragment } from 'react';
+import { useEffect, Fragment } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import type { FunctionComponent } from 'react';
 
 const NotFound404: FunctionComponent = () => {
   const title = '404: Not Found';

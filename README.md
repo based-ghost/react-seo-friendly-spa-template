@@ -31,9 +31,11 @@ I have it configured to use one more level of abstraction, where I have the Helm
 `MetaInfo.tsx`
 ```jsx
 import Helmet from 'react-helmet';
-import { FunctionComponent } from 'react';
-import { RoutesConfig, MetaInfoProps } from '../config/routes.config';
+import { RoutesConfig } from '../config/routes.config';
 import { APP_NAME, DEFAULT_LOCALE, BASE_URL, AUTHOR_NAME } from '../config/env.config';
+
+import type { FunctionComponent } from 'react';
+import type { MetaInfoProps } from '../config/routes.config';
 
 const {
   title: _defaultTitle,
@@ -87,10 +89,11 @@ export default MetaInfo;
 ...and used in component `About.tsx`
 
 ```jsx
-import { FunctionComponent } from 'react';
 import { MetaInfo } from '../../components';
 import { RoutesConfig } from '../../config/routes.config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import type { FunctionComponent } from 'react';
 
 const About: FunctionComponent = () => (
   <section className='container view-wrapper'>
@@ -117,10 +120,14 @@ export default About;
 My preferred configuration - in a seperate file that initializes your google analytics settings and exports an HOC wrapper component to consume your route components with - `WithTracker.tsx`:
 
 ```jsx
-import { useEffect, ComponentType } from 'react';
+import ReactGA from 'react-ga';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { IS_PRODUCTION } from '../config/env.config';
-import { RouteComponentProps, useLocation } from 'react-router-dom';
-import ReactGA, { FieldsObject, InitializeOptions } from 'react-ga';
+
+import type { ComponentType } from 'react';
+import type { RouteComponentProps } from 'react-router-dom';
+import type { FieldsObject, InitializeOptions } from 'react-ga';
 
 // Initialize the react-ga plugin using your issued GA tracker code + options
 const initializeOptions: InitializeOptions = {
@@ -165,13 +172,14 @@ export default WithTracker;
 e.g. in my `App.tsx`
 
 ```jsx
-import { FunctionComponent } from 'react';
 import Layout from './Layout';
 import { WithTracker } from './utils';
 import { Home, About } from './containers';
 import { Route, Switch } from 'react-router-dom';
 import { MetaInfo, NotFound404 } from './components';
 import { RoutesConfig } from './config/routes.config';
+
+import type { FunctionComponent } from 'react';
 
 const App: FunctionComponent = () => (
   <Layout>
