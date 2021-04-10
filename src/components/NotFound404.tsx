@@ -20,10 +20,16 @@ const NotFound404: FunctionComponent = () => {
       <div className='tile is-parent is-8 is-vertical is-notification-tile is-not-found-tile'>
         {isPath404 && (
           <Fragment>
-            <MetaInfo title={title} description={description} />
+            <MetaInfo
+              title={title}
+              description={description}
+            />
             <div className='notification tile is-child is-danger rubberBand-animation'>
               <div>
-                <FontAwesomeIcon icon='exclamation-circle' size='2x' />
+                <FontAwesomeIcon
+                  size='2x'
+                  icon='exclamation-circle'
+                />
                 <span className='title'>{title}</span>
               </div>
               <p className='subtitle'>{description}</p>

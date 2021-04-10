@@ -2,8 +2,10 @@ import { render } from 'react-snapshot';
 import { StrictMode } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
+
 import './assets/style/main.scss';
 import './config/fa.config';
+
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 

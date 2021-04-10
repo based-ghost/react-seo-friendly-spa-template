@@ -1,6 +1,8 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 
 import {
+  faSun,
+  faMoon,
   faCheck,
   faInfoCircle,
   faAngleDoubleUp,
@@ -16,6 +18,8 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 
 library.add(
+  faSun,
+  faMoon,
   faCheck,
   faReact,
   faGithub,

@@ -3,11 +3,12 @@ React PWA/SPA template configured for SEO (initially scaffolded with Create Reac
 
 Features:
 - TypeScript
-- All components written as `FunctionComponents` using `React Hooks`
-- Custom `BackToTop.tsx` component that uses [`react-scroll`](https://github.com/fisshy/react-scroll) and [`styled-components`](https://github.com/styled-components/styled-components)
+- Written entirely with the `React Hooks API` (no legacy `class` components)
 - Google analytics management with [`react-ga`](https://github.com/react-ga/react-ga)
 - Route meta tag management with [`react-helmet`](https://github.com/nfl/react-helmet)
 - Configured to serve prerendered static HTML with [`react-snapshot`](https://github.com/geelen/react-snapshot)
+- Custom `BackToTop.tsx` component that uses [`react-scroll`](https://github.com/fisshy/react-scroll) and [`styled-components`](https://github.com/styled-components/styled-components)
+- Custom `ToggleTheme.tsx` component built using [`styled-components`](https://github.com/styled-components/styled-components) - this is intended for toggling between themes (e.g. dark/light mode), however, for demo purposes a toggle event will trigger a toast notification using [`react-toastify`](https://github.com/fkhadra/react-toastify)
 
 ## Demo
 
@@ -123,6 +124,7 @@ My preferred configuration - in a seperate file that initializes your google ana
 import ReactGA from 'react-ga';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { clearAllToasts } from './react-toastify';
 import { IS_PRODUCTION } from '../config/env.config';
 
 import type { ComponentType } from 'react';
@@ -130,14 +132,14 @@ import type { RouteComponentProps } from 'react-router-dom';
 import type { FieldsObject, InitializeOptions } from 'react-ga';
 
 // Initialize the react-ga plugin using your issued GA tracker code + options
-const initializeOptions: InitializeOptions = {
+const _initOptions: InitializeOptions = {
   debug: !IS_PRODUCTION,
   gaOptions: {
     cookieFlags: 'max-age=7200;secure;samesite=none'
   }
 };
 
-ReactGA.initialize('UA-000000-01', initializeOptions);
+ReactGA.initialize('UA-000000-01', _initOptions);
 
 // HOC component handling page tracking - e.g. WithTracker(RouteComponent)
 const WithTracker = <P extends RouteComponentProps>(
@@ -154,8 +156,8 @@ const WithTracker = <P extends RouteComponentProps>(
 
     useEffect(() => {
       const { pathname, search } = location;
-      const page = pathname + search;
-      trackPage(page);
+      trackPage(pathname + search);
+      clearAllToasts();
     }, [location]);
 
     return <WrappedComponent {...props} />;
@@ -173,32 +175,39 @@ e.g. in my `App.tsx`
 
 ```jsx
 import Layout from './Layout';
-import { WithTracker } from './utils';
+import { useEffect } from 'react';
 import { Home, About } from './containers';
 import { Route, Switch } from 'react-router-dom';
 import { MetaInfo, NotFound404 } from './components';
 import { RoutesConfig } from './config/routes.config';
+import { WithTracker, configureReactToastify } from './utils';
 
 import type { FunctionComponent } from 'react';
 
-const App: FunctionComponent = () => (
-  <Layout>
-    <MetaInfo />
-    <Switch>
-      <Route
-        path={RoutesConfig.Home.path}
-        component={WithTracker(Home)}
-        exact={RoutesConfig.Home.exact}
-      />
-      <Route
-        path={RoutesConfig.About.path}
-        component={WithTracker(About)}
-        exact={RoutesConfig.About.exact}
-      />
-      <Route component={NotFound404} />
-    </Switch>
-  </Layout>
-);
+const App: FunctionComponent = () => {
+  useEffect(() => {
+    configureReactToastify();
+  }, []);
+
+  return (
+    <Layout>
+      <MetaInfo />
+      <Switch>
+        <Route
+          path={RoutesConfig.Home.path}
+          component={WithTracker(Home)}
+          exact={RoutesConfig.Home.exact}
+        />
+        <Route
+          path={RoutesConfig.About.path}
+          component={WithTracker(About)}
+          exact={RoutesConfig.About.exact}
+        />
+        <Route component={NotFound404} />
+      </Switch>
+    </Layout>
+  );
+};
 
 export default App;
 ```
@@ -225,8 +234,10 @@ import { render } from 'react-snapshot';
 import { StrictMode } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
+
 import './assets/style/main.scss';
 import './config/fa.config';
+
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 

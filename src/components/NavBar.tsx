@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import ToggleTheme from './ToggleTheme';
 import { RoutesConfig } from '../config/routes.config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ReactComponent as ReactSeoLogoSvg } from '../assets/img/ReactSeoLogo.svg';
@@ -9,7 +10,7 @@ const Navbar: FunctionComponent = () => (
   <nav
     role='navigation'
     className='navbar'
-    aria-label='main navigation'
+    aria-label='Main navigation'
   >
     <div className='navbar-wrapper'>
       <div className='brand-wrapper'>
@@ -49,6 +50,9 @@ const Navbar: FunctionComponent = () => (
           <span>GitHub</span>
           <FontAwesomeIcon icon='external-link-alt' />
         </a>
+        <div className='navbar-theme-toggle'>
+          <ToggleTheme />
+        </div>
       </div>
     </div>
   </nav>

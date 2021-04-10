@@ -10,13 +10,12 @@
     font-size: 1rem;
   }
 
-  .content {
+  > .content {
     text-align: center;
-    word-spacing: 0.05rem;
   }
 
-  .buttons {
-    margin-bottom: 0rem;
+  > .buttons {
+    margin-bottom: 0;
 
     > .button {
       margin-bottom: 0;
@@ -24,14 +23,13 @@
       color: #fff;
       background-color: transparent;
       border-color: transparent;
-      padding-left: 0.5em;
-      padding-right: 0.5em;
+      padding: 0 .5em;
       transition: color 0.2s ease-out;
 
       &:hover {
         color: $color-blue-highlight;
       }
-      
+
       &:first-child {
         margin-left: auto !important;
       }

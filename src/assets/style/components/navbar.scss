@@ -41,6 +41,7 @@
     }
 
     .navbar-routes {
+      line-height: 1.2;
       font-size: 1.2rem;
       height: 100%;
       display: flex;
@@ -114,6 +115,11 @@
             border-bottom-color: $color-blue-highlight !important;
           }
         }
+      }
+
+      > .navbar-theme-toggle {
+        display: flex;
+        margin: 0 0 0 1.25rem;
       }
     }
   }

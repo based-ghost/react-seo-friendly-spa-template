@@ -5,11 +5,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { FunctionComponent } from 'react';
 
-const scrollOptions = {
-  delay: 5,
+const _scrollOptions = {
+  delay: 0,
   duration: 500,
   smooth: 'easeInOutCubic'
 };
+
+const _handleAnimateScroll = () => animateScroll.scrollToTop(_scrollOptions);
 
 const AngleDoubleUpIcon = styled(FontAwesomeIcon)`
   display: block;
@@ -35,7 +37,7 @@ const BackToTopLink = styled.a<{ show: boolean }>`
   box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 20px;
   transition: opacity 0.4s ease, bottom 0.4s ease;
 
-  opacity: ${({ show }) => show ? 1 : 0};
+  opacity: ${({ show }) => show ? '1' : '0'};
   bottom: ${({ show }) => show ? '1.25' : '-3.5'}rem;
 `;
 
@@ -52,16 +54,19 @@ const BackToTop: FunctionComponent = () => {
       if (!showRef.current && scrollY > 100) {
         showRef.current = true;
         setShow(true);
-      } else if (scrollY === 0) {
+      } else if (showRef.current && scrollY < 1) {
         showRef.current = false;
         setShow(false);
       }
     };
 
-    document.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, {
+      passive: true,
+      capture: false
+    });
 
     return () => {
-      document.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -69,8 +74,8 @@ const BackToTop: FunctionComponent = () => {
     <BackToTopLink
       show={show}
       role='button'
-      aria-label='back to top'
-      onClick={() => animateScroll.scrollToTop(scrollOptions)}
+      aria-label='Back to top'
+      onClick={_handleAnimateScroll}
     >
       <AngleDoubleUpIcon icon='angle-double-up' />
     </BackToTopLink>

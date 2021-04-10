@@ -10,6 +10,55 @@
   animation: pageEnterSlideDown 0.35s cubic-bezier(0.4, 0, 0, 1.5) both;
 }
 
+.custom__toast__animate__bounceIn {
+  animation: customToastBounceIn 1s both;
+}
+
+.custom__toast__animate__bounceOut {
+  animation: customToastBounceOut 0.85s both;
+}
+
+@keyframes customToastBounceOut {
+  20% {
+    transform: scale3d(0.9, 0.9, 0.9);
+  } 50%,
+    55% {
+    opacity: 1;
+    transform: scale3d(1.1, 1.1, 1.1);
+  } to {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+}
+
+@keyframes customToastBounceIn {
+  from,
+  20%,
+  40%,
+  60%,
+  80%,
+  to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  0% {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  } 20% {
+    transform: scale3d(1.1, 1.1, 1.1);
+  } 40% {
+    transform: scale3d(0.9, 0.9, 0.9);
+  } 60% {
+    opacity: 1;
+    transform: scale3d(1.03, 1.03, 1.03);
+  } 80% {
+    transform: scale3d(0.97, 0.97, 0.97);
+  } to {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+}
+
 @keyframes spinClockwise {
   from {
     transform: rotate(0deg);

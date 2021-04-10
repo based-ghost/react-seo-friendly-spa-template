@@ -10,7 +10,10 @@ const About: FunctionComponent = () => (
     <div className='tile is-parent is-8 is-vertical is-notification-tile'>
       <div className='notification tile is-child is-primary pageSlideDown-animation'>
         <div>
-          <FontAwesomeIcon icon='info-circle' size='2x' />
+          <FontAwesomeIcon
+            size='2x'
+            icon='info-circle'
+          />
           <span className='title'>About Page</span>
         </div>
         <p className='subtitle'>Very interesting information may go here.</p>
