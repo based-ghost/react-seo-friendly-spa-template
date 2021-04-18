@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
+import ReactIcon from './ReactIcon';
 import FeatureList from './FeatureList';
 import { MetaInfo } from '../../components';
 import { RoutesConfig } from '../../config/routes.config';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FeatureInfoConfig } from '../../config/features.config';
 
 import type { FunctionComponent } from 'react';
@@ -22,10 +22,7 @@ const Home: FunctionComponent = () => {
           <div className='container has-text-centered'>
             <div className='is-flex is-horizontal-center'>
               <figure className='image is-158x158'>
-                <FontAwesomeIcon
-                  icon={['fab', 'react']}
-                  className='react-svg spinClockwise-animation'
-                />
+                <ReactIcon />
               </figure>
             </div>
             <h1 className='title blog-title'>SEO Friendly SPA</h1>

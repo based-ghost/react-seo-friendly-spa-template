@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { toast } from 'react-toastify';
-import { useState, useRef, useCallback, useEffect } from 'react';
 import { useUpdateEffect, useOnClickOutside } from '../hooks';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import type { FunctionComponent } from 'react';
+import type { FunctionComponent, ReactText } from 'react';
 
 type ToggleThemeProps = Readonly<{
   onThemeChange?: (checked: boolean) => any;
@@ -21,16 +21,16 @@ type ToggleTrackProps = Pick<ToggleControlProps, 'checked'>;
 // ===========================================
 // STRART: color hex codes
 
-const _iconColor = '#fac863';
-const _accentColor = '#61dafb';
-const _primaryColor = '#4d4d4d';
-const _toggleCtrlColor = '#fafafa';
+const ICON_COLOR = '#fac863';
+const ACCENT_COLOR = '#61dafb';
+const PRIMARY_COLOR = '#4d4d4d';
+const TOGGLE_CTRL_COLOR = '#fafafa';
 
 // END: color hex codes
 // ===========================================
 //
 
-const _onThemeChangeDefault = (checked: boolean) => {
+const ON_THEME_CHANGE_DEFAULT = (checked: boolean): ReactText => {
   return checked
     ? toast('Light theme!')
     : toast.dark('Dark theme!');
@@ -50,7 +50,7 @@ const ToggleThemeIcon = styled(FontAwesomeIcon)`
     width: 1.05rem;
     height: 1.05rem;
     font-size: 1.05rem;
-    color: ${_iconColor};
+    color: ${ICON_COLOR};
     vertical-align: -.175rem;
   }
 `;
@@ -59,11 +59,12 @@ const ToggleTrack = styled.div<ToggleTrackProps>`
   width: 60px;
   height: 28px;
   border-radius: 30px;
-  background-color: ${_primaryColor};
+  background-color: ${PRIMARY_COLOR};
 
   > div {
     height: 100%;
     position: absolute;
+    will-change: opacity;
     transition: opacity 0.25s ease-in-out;
 
     &:first-of-type {
@@ -86,23 +87,25 @@ const ToggleControl = styled.div<ToggleControlProps>`
   position: absolute;
   border-radius: 50%;
   box-sizing: border-box;
-  background-color: ${_toggleCtrlColor};
+  background-color: ${TOGGLE_CTRL_COLOR};
+  will-change: transform, box-shadow, border-color;
+
   transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1),
     box-shadow 0.5s cubic-bezier(0.23, 1, 0.32, 1),
     border-color 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 
   transform: translateX(${({ checked }) => checked ? '34.5' : '0'}px);
-  border: 1px solid ${({ focused }) => focused ? _accentColor : _primaryColor};
-  box-shadow: ${({ focused }) => focused ? `0 0 3px 2.75px ${_accentColor}` : 'none'};
+  border: 1px solid ${({ focused }) => focused ? ACCENT_COLOR : PRIMARY_COLOR};
+  box-shadow: ${({ focused }) => focused ? `0 0 3px 2.75px ${ACCENT_COLOR}` : 'none'};
 `;
 
 const ToggleTheme: FunctionComponent<ToggleThemeProps> = ({
-  onThemeChange = _onThemeChangeDefault
+  onThemeChange = ON_THEME_CHANGE_DEFAULT
 }) => {
-  const parentDivRef = useRef<HTMLDivElement | null>(null);
-  const onThemeChangeRef = useRef<(checked: boolean) => any>(onThemeChange);
   const [checked, setChecked] = useState<boolean>(false);
   const [focused, setFocused] = useState<boolean>(false);
+  const parentDivRef = useRef<HTMLDivElement | null>(null);
+  const onThemeChangeRef = useRef<(checked: boolean) => any>(onThemeChange);
 
   // Deps list has "focused" to limit extraneous setStates causing rerenders on every outside click
   const onParentClickOutside = useCallback(() => focused && setFocused(false), [

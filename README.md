@@ -39,16 +39,16 @@ import type { FunctionComponent } from 'react';
 import type { MetaInfoProps } from '../config/routes.config';
 
 const {
-  title: _defaultTitle,
-  description: _defaultDescription
+  title: DEFAULT_TITLE,
+  description: DEFAULT_DESCRIPTION
 } = RoutesConfig.Home.metaInfo;
 
 const MetaInfo: FunctionComponent<MetaInfoProps> = ({
   meta = [],
   defer = false,
   lang = DEFAULT_LOCALE,
-  title = _defaultTitle,
-  description = _defaultDescription
+  title = DEFAULT_TITLE,
+  description = DEFAULT_DESCRIPTION
 }) => (
   <Helmet
     defer={defer}
@@ -102,7 +102,10 @@ const About: FunctionComponent = () => (
     <div className='tile is-parent is-8 is-vertical is-notification-tile'>
       <div className='notification tile is-child is-primary pageSlideDown-animation'>
         <div>
-          <FontAwesomeIcon icon='info-circle' size='2x' />
+          <FontAwesomeIcon
+            size='2x'
+            icon='info-circle'
+          />
           <span className='title'>About Page</span>
         </div>
         <p className='subtitle'>Very interesting information may go here.</p>
@@ -132,14 +135,14 @@ import type { RouteComponentProps } from 'react-router-dom';
 import type { FieldsObject, InitializeOptions } from 'react-ga';
 
 // Initialize the react-ga plugin using your issued GA tracker code + options
-const _initOptions: InitializeOptions = {
+const INIT_OPTIONS: InitializeOptions = {
   debug: !IS_PRODUCTION,
   gaOptions: {
     cookieFlags: 'max-age=7200;secure;samesite=none'
   }
 };
 
-ReactGA.initialize('UA-000000-01', _initOptions);
+ReactGA.initialize('UA-000000-01', INIT_OPTIONS);
 
 // HOC component handling page tracking - e.g. WithTracker(RouteComponent)
 const WithTracker = <P extends RouteComponentProps>(

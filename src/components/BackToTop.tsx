@@ -5,20 +5,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { FunctionComponent } from 'react';
 
-const _scrollOptions = {
+const SCROLL_OPTIONS = {
   delay: 0,
   duration: 500,
   smooth: 'easeInOutCubic'
 };
 
-const _handleAnimateScroll = () => animateScroll.scrollToTop(_scrollOptions);
+const ON_ANIMATE_SCROLL = () => animateScroll.scrollToTop(SCROLL_OPTIONS);
 
-const AngleDoubleUpIcon = styled(FontAwesomeIcon)`
+const AngleDoubleUpIcon = styled(FontAwesomeIcon).attrs({
+  icon: 'angle-double-up'
+})`
   display: block;
   color: #61dafb;
   font-size: 1.75em;
   padding-left: 0.1rem;
-  margin: 0.75rem auto auto auto;
+  margin: 0.75rem auto auto;
 `;
 
 const BackToTopLink = styled.a<{ show: boolean }>`
@@ -32,6 +34,7 @@ const BackToTopLink = styled.a<{ show: boolean }>`
   user-select: none;
   border-radius: 50%;
   background: rgb(37, 40, 47);
+  will-change: opacity, bottom;
   -webkit-tap-highlight-color: transparent;
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 20px;
@@ -48,25 +51,27 @@ const BackToTop: FunctionComponent = () => {
   const [show, setShow] = useState<boolean>(false);
 
   useEffect(() => {
-    const handleScroll = (): void => {
-      const scrollY = window.scrollY || window.pageYOffset;
+    const updateShow = (val: boolean): void => {
+      showRef.current = val;
+      setShow(val);
+    };
 
+    const scrollHandler = (): void => {
+      const scrollY = window.scrollY || window.pageYOffset;
       if (!showRef.current && scrollY > 100) {
-        showRef.current = true;
-        setShow(true);
+        updateShow(true);
       } else if (showRef.current && scrollY < 1) {
-        showRef.current = false;
-        setShow(false);
+        updateShow(false);
       }
     };
 
-    window.addEventListener('scroll', handleScroll, {
+    window.addEventListener('scroll', scrollHandler, {
       passive: true,
       capture: false
     });
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', scrollHandler);
     };
   }, []);
 
@@ -75,9 +80,9 @@ const BackToTop: FunctionComponent = () => {
       show={show}
       role='button'
       aria-label='Back to top'
-      onClick={_handleAnimateScroll}
+      onClick={ON_ANIMATE_SCROLL}
     >
-      <AngleDoubleUpIcon icon='angle-double-up' />
+      <AngleDoubleUpIcon />
     </BackToTopLink>
   );
 };

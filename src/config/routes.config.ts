@@ -1,5 +1,9 @@
 import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 
+const GET_DESCRIPTION = (title: string): string => {
+  return `${title} description - length <= 160 (optimal 150-155).`;
+};
+
 export type MetaInfoProps = Partial<
   Readonly<{
     meta: any[];
@@ -19,8 +23,6 @@ export type Route = Readonly<{
   metaInfo: MetaInfoProps;
 }>;
 
-const getDescription = (title: string) => `${title} description - length <= 160 (optimal 150-155).`;
-
 export const RoutesConfig = Object.freeze<Record<string, Route>>({
   Home: {
     path: '/',
@@ -30,7 +32,7 @@ export const RoutesConfig = Object.freeze<Record<string, Route>>({
     icon: 'home',
     metaInfo: {
       title: 'Home',
-      description: getDescription('Home')
+      description: GET_DESCRIPTION('Home')
     }
   },
   About: {
@@ -41,7 +43,7 @@ export const RoutesConfig = Object.freeze<Record<string, Route>>({
     icon: 'info',
     metaInfo: {
       title: 'About',
-      description: getDescription('About')
+      description: GET_DESCRIPTION('About')
     }
   }
 });

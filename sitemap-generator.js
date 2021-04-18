@@ -1,16 +1,16 @@
 const SitemapGenerator = require('sitemap-generator');
-const _sitemapUrl = 'https://www.reactseofriendlyspatemplate.com';
+const SITEMAP_URL = 'https://www.reactseofriendlyspatemplate.com';
 
 // create generator
-const generator = SitemapGenerator(_sitemapUrl, {
+const generator = SitemapGenerator(SITEMAP_URL, {
   lastMod: true,
   stripQuerystring: true,
-  filepath: `${__dirname}/public/sitemap.xml`
+  filepath: `${__dirname}/public/sitemap.xml`,
 });
 
 // register event listener (SUCCESS => sitemaps created)
 generator.on('done', () => {
-  console.log(`sitemap.xml successfully created for URL: ${_sitemapUrl}\n`);
+  console.log(`sitemap.xml successfully created for URL: ${SITEMAP_URL}\n`);
 });
 
 // register event listener (ERROR => { code: 404, message: 'Not found.', url: 'http://example.com/foo' })

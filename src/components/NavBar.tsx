@@ -19,7 +19,7 @@ const Navbar: FunctionComponent = () => (
           height='68'
           width='170'
           aria-hidden
-          title='react-seo-template'
+          title='React SEO'
         />
       </div>
       <div className='navbar-routes'>

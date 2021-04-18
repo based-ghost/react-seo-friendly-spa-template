@@ -6,16 +6,16 @@ import type { FunctionComponent } from 'react';
 import type { MetaInfoProps } from '../config/routes.config';
 
 const {
-  title: _defaultTitle,
-  description: _defaultDescription
+  title: DEFAULT_TITLE,
+  description: DEFAULT_DESCRIPTION
 } = RoutesConfig.Home.metaInfo;
 
 const MetaInfo: FunctionComponent<MetaInfoProps> = ({
   meta = [],
   defer = false,
   lang = DEFAULT_LOCALE,
-  title = _defaultTitle,
-  description = _defaultDescription
+  title = DEFAULT_TITLE,
+  description = DEFAULT_DESCRIPTION
 }) => (
   <Helmet
     defer={defer}

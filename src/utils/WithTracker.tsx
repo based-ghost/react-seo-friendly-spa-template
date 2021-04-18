@@ -9,14 +9,14 @@ import type { RouteComponentProps } from 'react-router-dom';
 import type { FieldsObject, InitializeOptions } from 'react-ga';
 
 // Initialize the react-ga plugin using your issued GA tracker code + options
-const _initOptions: InitializeOptions = {
+const INIT_OPTIONS: InitializeOptions = {
   debug: !IS_PRODUCTION,
   gaOptions: {
     cookieFlags: 'max-age=7200;secure;samesite=none'
   }
 };
 
-ReactGA.initialize('UA-000000-01', _initOptions);
+ReactGA.initialize('UA-000000-01', INIT_OPTIONS);
 
 // HOC component handling page tracking - e.g. WithTracker(RouteComponent)
 const WithTracker = <P extends RouteComponentProps>(
