@@ -12,9 +12,9 @@ const FeatureList = memo<FeatureListProps>(({ featureList }) => (
     {featureList.map(({ packageName, description }, index) => (
       <h2
         key={index}
-        className='subtitle'
+        className="subtitle"
       >
-        <FontAwesomeIcon icon='check' />
+        <FontAwesomeIcon icon="check" />
         {` ${description} `}
         {packageName && <code>{packageName}</code>}
       </h2>

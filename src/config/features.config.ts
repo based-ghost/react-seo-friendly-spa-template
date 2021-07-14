@@ -3,12 +3,9 @@ export type FeatureInfo = Readonly<{
   packageName?: string;
 }>;
 
-export const FeatureInfoConfig: { [key: string]: FeatureInfo } = {
-  typescript: {
-    description: 'TypeScript + TSX'
-  },
+export const FEATURE_INFO_CONIG: Record<string, FeatureInfo> = {
   css: {
-    description: 'UI styled with Bulma CSS + SASS + Font Awesome 5 (svg-core)'
+    description: 'UI styled with Bulma + SASS + Font Awesome 5 (svg-core)'
   },
   pwa: {
     description: 'Configured as a (PWA) Progressive Web App'

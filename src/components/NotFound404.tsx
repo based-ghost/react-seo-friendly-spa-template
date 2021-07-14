@@ -1,42 +1,38 @@
-import { MetaInfo } from '.';
-import { useEffect, Fragment } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useLayoutEffect, Fragment } from 'react';
+import { isLocationPath } from '../utils';
+import Alert from './Alert';
+import MetaInfo from './MetaInfo';
 
 import type { FunctionComponent } from 'react';
 
-const NotFound404: FunctionComponent = () => {
-  const title = '404: Not Found';
-  const description = 'The requested page could not be found.';
-  const isPath404 = window?.location?.pathname === '/404';
+const PATH_404 = '/404';
+const NOT_FOUND_TITLE = '404: Not Found';
+const NOT_FOUND_DESCRIPTION = 'The requested page could not be found.';
 
-  useEffect(() => {
-    if (window && window.location.pathname !== '/404') {
-      window.location.href = '/404';
+const NotFound404: FunctionComponent = () => {
+  useLayoutEffect(() => {
+    if (!isLocationPath(PATH_404)) {
+      window.location.href = PATH_404;
     }
   }, []);
 
   return (
-    <section className='container view-wrapper view-not-found'>
-      <div className='tile is-parent is-8 is-vertical is-notification-tile is-not-found-tile'>
-        {isPath404 && (
-          <Fragment>
-            <MetaInfo
-              title={title}
-              description={description}
-            />
-            <div className='notification tile is-child is-danger rubberBand-animation'>
-              <div>
-                <FontAwesomeIcon
-                  size='2x'
-                  icon='exclamation-circle'
-                />
-                <span className='title'>{title}</span>
-              </div>
-              <p className='subtitle'>{description}</p>
-            </div>
-          </Fragment>
-        )}
-      </div>
+    <section className="container view-wrapper">
+      {isLocationPath(PATH_404) && (
+        <Fragment>
+          <MetaInfo
+            title={NOT_FOUND_TITLE}
+            description={NOT_FOUND_DESCRIPTION}
+          />
+          <Alert
+            title={NOT_FOUND_TITLE}
+            subTitle={NOT_FOUND_DESCRIPTION}
+            icon="exclamation-circle"
+            alertBackgroundColor="#e93e60"
+            alertAnimation="rubberBand_animation 1s"
+          />
+        </Fragment>
+      )}
     </section>
   );
 };

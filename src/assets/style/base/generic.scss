@@ -22,16 +22,13 @@ code {
 }
 
 .view-wrapper {
+  min-height: 875px;
   padding-top: $navbar-height;
-
-  &.view-not-found {
-    min-height: 757px;
-  }
 }
 
-.is-158x158 {
-  height: 158px;
-  width: 158px;
+.is-155x155 {
+  height: 155px;
+  width: 155px;
 }
 
 .subtitle {
@@ -65,61 +62,4 @@ code {
 .is-horizontal-center {
   align-items: center;
   justify-content: center;
-}
-
-.is-notification-tile {
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 4rem !important;
-  padding-bottom: 42rem !important;
-
-  &.is-not-found-tile {
-    padding-top: 15rem !important;
-    padding-bottom: 20rem !important;
-  }
-
-  .notification {
-    color: #fff;
-    text-align: center;
-    padding: 1.75rem .25rem;
-    box-shadow: 0 2px 15px 0 rgba(18,16,19,.2);
-
-    &.is-primary {
-      background-color: #54CDEE;
-    }
-
-    &.is-danger {
-      background-color: #E93E60;
-    }
-
-    /* IE fix for min-heigh on tiles */
-    @include browserIsIE {
-      min-height: 115px;
-    }
-
-    .title {
-      font-size: 2em;
-      font-weight: 700;
-      margin-left: 0.75rem;
-    }
-
-    .subtitle {
-      font-size: 1.6em;
-      margin-top: 0.25rem;
-    }
-
-    @include renderMobileTitleText {
-      svg {
-        vertical-align: -0.225em;
-      }
-
-      .title {
-        font-size: 1.5em;
-      }
-
-      .subtitle {
-        font-size: 1.05em;
-      }
-    }
-  }
 }

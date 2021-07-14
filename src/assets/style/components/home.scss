@@ -11,14 +11,14 @@
     .container {
       > .subtitle {
         svg {
-          font-size: 90%;
-          margin-right: 0.6rem;
+          font-size: 94%;
+          margin-right: 0.35rem;
         }
       }
 
       hr {
-        background-color: hsla(0,0%,100%,.2);
-        height: 1px;
+        background-color: rgba(255,255,255,0.15);
+        height: 2px;
         margin: 0 auto 1.75em auto;
         width: 65%;
       }
@@ -65,8 +65,7 @@
 }
 
 .dashboard-content {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding: 1.75rem 0 2rem;
 
   code {
     background-color: rgba(97, 218, 251, 0.25);
@@ -85,7 +84,8 @@
 
       > .title {
         color: #6d6d6d;
-        font-weight: 600;
+        text-align: center;
+        font-size: 1.875rem;
       }
     }
 

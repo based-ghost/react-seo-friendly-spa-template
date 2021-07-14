@@ -4,34 +4,34 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { FunctionComponent } from 'react';
 
 const Footer: FunctionComponent = () => (
-  <footer className='footer'>
-    <div className='buttons'>
+  <footer className="footer">
+    <div className="buttons">
       <a
-        target='_blank'
-        aria-label='GitHub'
-        rel='noopener noreferrer'
-        className='button is-medium'
-        href='https://github.com/based-ghost'
+        target="_blank"
+        aria-label="GitHub"
+        rel="noopener noreferrer"
+        className="button is-medium"
+        href="https://github.com/based-ghost"
       >
-        <FontAwesomeIcon icon={['fab', 'github']} />
+        <FontAwesomeIcon icon={["fab", "github"]} />
       </a>
       <a
-        href='#/'
-        aria-label='Twitter'
-        className='button is-medium'
+        href="#/"
+        aria-label="Twitter"
+        className="button is-medium"
       >
-        <FontAwesomeIcon icon={['fab', 'twitter']} />
+        <FontAwesomeIcon icon={["fab", "twitter"]} />
       </a>
       <a
-        href='#/'
-        aria-label='Medium'
-        className='button is-medium'
+        href="#/"
+        aria-label="Medium"
+        className="button is-medium"
       >
-        <FontAwesomeIcon icon={['fab', 'medium-m']} />
+        <FontAwesomeIcon icon={["fab", "medium-m"]} />
       </a>
     </div>
-    <div className='content'>
-      {`${APP_NAME}.com © 2019`}
+    <div className="content">
+      {`Copyright © 2021 ${APP_NAME}.com`}
     </div>
   </footer>
 );

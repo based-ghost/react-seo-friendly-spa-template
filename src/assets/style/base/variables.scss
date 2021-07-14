@@ -3,12 +3,6 @@ $color-nav-bar: #20232a;
 $color-blue-highlight: #61dafb;
 $navbar-height: 4.25rem;
 
-@mixin browserIsIE {
-  @media all and (-ms-high-contrast: none) {
-    @content;
-  }
-}
-
 @mixin removeNavBarPadding {
   @media only screen and (max-width: 1099px) {
     @content;

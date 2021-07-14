@@ -4,7 +4,7 @@ import { Home, About } from './containers';
 import { Route, Switch } from 'react-router-dom';
 import { MetaInfo, NotFound404 } from './components';
 import { RoutesConfig } from './config/routes.config';
-import { WithTracker, configureReactToastify } from './utils';
+import { configureReactToastify, WithTracker } from './utils';
 
 import type { FunctionComponent } from 'react';
 

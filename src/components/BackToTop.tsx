@@ -11,14 +11,12 @@ const SCROLL_OPTIONS = {
   smooth: 'easeInOutCubic'
 };
 
-const ON_ANIMATE_SCROLL = () => animateScroll.scrollToTop(SCROLL_OPTIONS);
-
 const AngleDoubleUpIcon = styled(FontAwesomeIcon).attrs({
   icon: 'angle-double-up'
 })`
   display: block;
-  color: #61dafb;
-  font-size: 1.75em;
+  color: #20232a;
+  font-size: 1.8em;
   padding-left: 0.1rem;
   margin: 0.75rem auto auto;
 `;
@@ -33,15 +31,15 @@ const BackToTopLink = styled.a<{ show: boolean }>`
   position: fixed;
   user-select: none;
   border-radius: 50%;
-  background: rgb(37, 40, 47);
+  background: #61dafb;
   will-change: opacity, bottom;
+  border: 1px solid transparent;
   -webkit-tap-highlight-color: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 20px;
+  box-shadow: rgba(0, 0, 0, 0.265) 0px 0px 20px;
   transition: opacity 0.4s ease, bottom 0.4s ease;
 
-  opacity: ${({ show }) => show ? '1' : '0'};
-  bottom: ${({ show }) => show ? '1.25' : '-3.5'}rem;
+  opacity: ${({ show }) => show ? 1 : 0};
+  bottom: ${({ show }) => show ? 1.25 : -3.5}rem;
 `;
 
 // Write the show state value to a ref so we can use it as a check to prevent
@@ -51,19 +49,19 @@ const BackToTop: FunctionComponent = () => {
   const [show, setShow] = useState<boolean>(false);
 
   useEffect(() => {
-    const updateShow = (val: boolean): void => {
+    function updateShow(val: boolean): void {
       showRef.current = val;
       setShow(val);
-    };
+    }
 
-    const scrollHandler = (): void => {
-      const scrollY = window.scrollY || window.pageYOffset;
-      if (!showRef.current && scrollY > 100) {
+    function scrollHandler(): void {
+      const { pageYOffset } = window;
+      if (!showRef.current && pageYOffset > 100) {
         updateShow(true);
-      } else if (showRef.current && scrollY < 1) {
+      } else if (showRef.current && pageYOffset < 1) {
         updateShow(false);
       }
-    };
+    }
 
     window.addEventListener('scroll', scrollHandler, {
       passive: true,
@@ -78,9 +76,9 @@ const BackToTop: FunctionComponent = () => {
   return (
     <BackToTopLink
       show={show}
-      role='button'
-      aria-label='Back to top'
-      onClick={ON_ANIMATE_SCROLL}
+      role="button"
+      aria-label="Back to top"
+      onClick={() => animateScroll.scrollToTop(SCROLL_OPTIONS)}
     >
       <AngleDoubleUpIcon />
     </BackToTopLink>

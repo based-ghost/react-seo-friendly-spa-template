@@ -12,7 +12,6 @@ const SPIN_CLOCKWISE_KEYFRAMES = keyframes`
 const ReactIcon = styled(FontAwesomeIcon).attrs({
   icon: ['fab', 'react']
 })`
-  will-change: transform;
   animation: ${SPIN_CLOCKWISE_KEYFRAMES} infinite 10s linear;
 
   && {

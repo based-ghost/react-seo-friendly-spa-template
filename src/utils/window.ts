@@ -1,0 +1,1 @@
+export const isLocationPath = (path: string): boolean => window.location.pathname === path;

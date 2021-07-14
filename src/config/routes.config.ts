@@ -1,6 +1,6 @@
 import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 
-const GET_DESCRIPTION = (title: string): string => {
+const getDescription = (title: string): string => {
   return `${title} description - length <= 160 (optimal 150-155).`;
 };
 
@@ -32,7 +32,7 @@ export const RoutesConfig = Object.freeze<Record<string, Route>>({
     icon: 'home',
     metaInfo: {
       title: 'Home',
-      description: GET_DESCRIPTION('Home')
+      description: getDescription('Home')
     }
   },
   About: {
@@ -43,7 +43,7 @@ export const RoutesConfig = Object.freeze<Record<string, Route>>({
     icon: 'info',
     metaInfo: {
       title: 'About',
-      description: GET_DESCRIPTION('About')
+      description: getDescription('About')
     }
   }
 });
