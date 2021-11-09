@@ -160,7 +160,7 @@ import Layout from './Layout';
 import { routes } from './config/routes.config';
 import { MetaInfo, NotFound404 } from './components';
 import { usePageTracker, useScrollToTop } from './hooks';
-import { useLocation, Route, Switch } from 'react-router-dom';
+import { useLocation, Route, Routes } from 'react-router-dom';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 
 import type { FunctionComponent } from 'react';
@@ -181,20 +181,19 @@ const App: FunctionComponent = () => {
           timeout={250}
           classNames="fade"
         >
-          <Switch location={location}>
-            {routes.map(({ path, exact, component }) => (
+          <Routes location={location}>
+            {routes.map(({ path, Component }) => (
               <Route
                 key={path}
                 path={path}
-                exact={exact}
-                component={component}
+                element={<Component />}
               />
             ))}
             <Route
               path="*"
-              children={<NotFound404 />}
+              element={<NotFound404 />}
             />
-          </Switch>
+          </Routes>
         </CSSTransition>
       </SwitchTransition>
     </Layout>
@@ -226,20 +225,20 @@ import { StrictMode } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 
-const appNode = (
-  <BrowserRouter>
-    <StrictMode>
+const appElement = (
+  <StrictMode>
+    <BrowserRouter>
       <App />
-    </StrictMode>
-  </BrowserRouter>
+    </BrowserRouter>
+  </StrictMode>
 );
 
 const rootElement = document.getElementById('root');
 const hasChildNodes = !!rootElement?.hasChildNodes();
 
 hasChildNodes
-  ? hydrate(appNode, rootElement)
-  : render(appNode, rootElement);
+  ? hydrate(appElement, rootElement)
+  : render(appElement, rootElement);
 ```
 
 ## Scripts
