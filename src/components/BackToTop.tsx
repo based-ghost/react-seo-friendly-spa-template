@@ -49,17 +49,17 @@ const BackToTop: FunctionComponent = () => {
   const [show, setShow] = useState<boolean>(false);
 
   useEffect(() => {
-    function updateShow(val: boolean): void {
+    function updateShow(val: boolean) {
       showRef.current = val;
       setShow(val);
     }
 
-    function scrollHandler(): void {
+    function scrollHandler() {
       const { pageYOffset } = window;
-      if (!showRef.current && pageYOffset > 100) {
-        updateShow(true);
-      } else if (showRef.current && pageYOffset < 1) {
-        updateShow(false);
+      const { current: show } = showRef;
+
+      if ((!show && pageYOffset > 100) || (show && pageYOffset === 0)) {
+        updateShow(!show);
       }
     }
 

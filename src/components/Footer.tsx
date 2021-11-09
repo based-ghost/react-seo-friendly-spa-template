@@ -30,8 +30,8 @@ const Footer: FunctionComponent = () => (
         <FontAwesomeIcon icon={["fab", "medium-m"]} />
       </a>
     </div>
-    <div className="content">
-      {`Copyright © 2021 ${APP_NAME}.com`}
+    <div className="content has-text-centered">
+      {`Copyright © 2021 ${APP_NAME?.toLowerCase()}.com`}
     </div>
   </footer>
 );

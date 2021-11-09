@@ -1,25 +1,25 @@
-export type FeatureInfo = Readonly<{
+export type Feature = Readonly<{
   description: string;
-  packageName?: string;
+  package_name?: string;
 }>;
 
-export const FEATURE_INFO_CONIG: Record<string, FeatureInfo> = {
-  css: {
+export const Features: Feature[] = [
+  {
     description: 'UI styled with Bulma + SASS + Font Awesome 5 (svg-core)'
   },
-  pwa: {
+  {
     description: 'Configured as a (PWA) Progressive Web App'
   },
-  reacthelmet: {
+  {
     description: 'Meta tags dynamically handled per route using',
-    packageName: 'react-helmet'
+    package_name: 'react-helmet'
   },
-  reactga: {
+  {
     description: 'Google Analytics ready to go and easily configurable using',
-    packageName: 'react-ga'
+    package_name: 'react-ga'
   },
-  prerender: {
+  {
     description: 'Configured to serve prerendered html using',
-    packageName: 'react-snapshot'
-  },
-};
+    package_name: 'react-snap'
+  }
+];

@@ -1,63 +1,19 @@
-.custom__toast__animate__bounceIn {
-  animation: customToastBounceIn 1s both;
+.fade-enter {
+  opacity: 0;
 }
 
-.custom__toast__animate__bounceOut {
-  animation: customToastBounceOut 0.85s both;
+.fade-exit {
+  opacity: 1;
 }
 
-.pageSlideDown-animation {
-  animation: pageEnterSlideDown 0.35s cubic-bezier(0.4, 0, 0, 1.5) forwards;
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 250ms ease;
 }
 
-@keyframes customToastBounceOut {
-  20% {
-    transform: scale3d(0.9, 0.9, 0.9);
-  } 50%,
-    55% {
-    opacity: 1;
-    transform: scale3d(1.1, 1.1, 1.1);
-  } to {
-    opacity: 0;
-    transform: scale3d(0.3, 0.3, 0.3);
-  }
-}
-
-@keyframes customToastBounceIn {
-  from,
-  20%,
-  40%,
-  60%,
-  80%,
-  to {
-    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-  }
-
-  0% {
-    opacity: 0;
-    transform: scale3d(0.3, 0.3, 0.3);
-  } 20% {
-    transform: scale3d(1.1, 1.1, 1.1);
-  } 40% {
-    transform: scale3d(0.9, 0.9, 0.9);
-  } 60% {
-    opacity: 1;
-    transform: scale3d(1.03, 1.03, 1.03);
-  } 80% {
-    transform: scale3d(0.97, 0.97, 0.97);
-  } to {
-    opacity: 1;
-    transform: scale3d(1, 1, 1);
-  }
-}
-
-@keyframes pageEnterSlideDown {
-  from {
-    opacity: 0;
-    transform: translate3d(0, -150px, 0);
-  } to {
-    opacity: 1;
-  }
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 250ms ease;
 }
 
 @keyframes rubberBand_animation {

@@ -25,7 +25,7 @@ const useOnClickOutside = (
     events.forEach((evt) => document.addEventListener(evt, onClickHandler));
 
     return () => {
-      events.forEach((evt) => document?.removeEventListener(evt, onClickHandler));
+      events.forEach((evt) => document.removeEventListener(evt, onClickHandler));
     };
   }, [ref, events]);
 };

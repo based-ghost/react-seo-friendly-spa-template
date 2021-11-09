@@ -8,7 +8,7 @@ type AlertProps = Readonly<{
   title: string;
   subTitle: string;
   show?: boolean;
-  icon?: IconProp;
+  iconName?: IconProp;
   iconSize?: SizeProp;
   alertColor?: string;
   alertAnimation?: string;
@@ -30,16 +30,15 @@ const Notification = styled.div<Partial<AlertProps>>`
 
   .title {
     font-size: 2em;
-    font-weight: 700;
-    margin-left: 0.75rem;
+    margin-left: 0.85rem;
   }
 
   .subtitle {
     font-size: 1.6em;
-    margin-top: 0.25rem;
+    margin-top: 0.5rem;
   }
 
-  @media only screen and (max-width: 449px) {
+  @media all and (max-width: 449px) {
     svg {
       vertical-align: -0.225em;
     }
@@ -60,8 +59,8 @@ const Alert: FunctionComponent<AlertProps> = ({
   show = true,
   iconSize = '2x',
   alertColor = '#fff',
-  icon = 'info-circle',
   alertAnimation = 'none',
+  iconName = 'info-circle',
   alertBackgroundColor = '#4dc6e7'
 }) => (
   <TileContainer className="tile is-parent is-vertical is-8">
@@ -74,12 +73,14 @@ const Alert: FunctionComponent<AlertProps> = ({
       >
         <div>
           <FontAwesomeIcon
-            icon={icon}
+            icon={iconName}
             size={iconSize}
           />
           <span className="title">{title}</span>
         </div>
-        <p className="subtitle">{subTitle}</p>
+        <p className="subtitle">
+          {subTitle}
+        </p>
       </Notification>
     )}
   </TileContainer>

@@ -1,22 +1,26 @@
-import { render } from 'react-snapshot';
+import { hydrate, render } from 'react-dom';
 import { StrictMode } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
-
 import './assets/style/main.scss';
 import './config/fa.config';
-
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
-render(
-  <BrowserRouter>
-    <StrictMode>
+const appElement = (
+  <StrictMode>
+    <BrowserRouter>
       <App />
-    </StrictMode>
-  </BrowserRouter>,
-  document.getElementById('root')
+    </BrowserRouter>
+  </StrictMode>
 );
+
+const rootElement = document.getElementById('root');
+const hasChildNodes = !!rootElement?.hasChildNodes();
+
+hasChildNodes
+  ? hydrate(appElement, rootElement)
+  : render(appElement, rootElement);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

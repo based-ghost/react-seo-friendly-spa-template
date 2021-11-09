@@ -1,7 +1,9 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('App.tsx component mounts and renders without error', async () => {
-  const { container } = render(<App />);
-  expect(container.hasChildNodes()).toBeTruthy();
+test('renders learn react link', async () => {
+  render(<App />);
+  const linkElement = screen.getByText(/learn react/i);
+  expect(linkElement).toBeInTheDocument();
 });
+

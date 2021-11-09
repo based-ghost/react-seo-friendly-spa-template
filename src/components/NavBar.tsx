@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import ToggleTheme from './ToggleTheme';
-import { RoutesConfig } from '../config/routes.config';
+import { routes } from '../config/routes.config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ReactComponent as ReactSeoLogoSvg } from '../assets/img/ReactSeoLogo.svg';
 
@@ -16,29 +16,22 @@ const Navbar: FunctionComponent = () => (
       <div className="brand-wrapper">
         <ReactSeoLogoSvg
           role="img"
-          height="68"
-          width="170"
+          height="65"
+          width="167"
           aria-hidden
           title="React SEO"
         />
       </div>
       <div className="navbar-routes">
-        <NavLink
-          className="navbar-item"
-          to={RoutesConfig.Home.path}
-          exact={RoutesConfig.Home.exact}
-          activeClassName={RoutesConfig.Home.activeClassName}
-        >
-          <span>{RoutesConfig.Home.displayName}</span>
-        </NavLink>
-        <NavLink
-          className="navbar-item"
-          to={RoutesConfig.About.path}
-          exact={RoutesConfig.About.exact}
-          activeClassName={RoutesConfig.About.activeClassName}
-        >
-          <span>{RoutesConfig.About.displayName}</span>
-        </NavLink>
+        {routes.map(({ path, name }) => (
+          <NavLink
+            to={path}
+            key={path}
+            className={({ isActive }) => 'navbar-item' + (isActive ? ' is-active' : '')}
+          >
+            <span>{name}</span>
+          </NavLink>
+        ))}
         <div className="seperator" />
         <a
           target="_blank"

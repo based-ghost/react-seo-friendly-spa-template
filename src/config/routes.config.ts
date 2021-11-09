@@ -1,8 +1,6 @@
-import type { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { Home, About } from '../containers';
 
-const getDescription = (title: string): string => {
-  return `${title} description - length <= 160 (optimal 150-155).`;
-};
+import type { ComponentType } from 'react';
 
 export type MetaInfoProps = Partial<
   Readonly<{
@@ -16,34 +14,35 @@ export type MetaInfoProps = Partial<
 
 export type Route = Readonly<{
   path: string;
-  icon: IconProp;
-  exact?: boolean;
-  displayName: string;
-  activeClassName: string;
+  name: string;
   metaInfo: MetaInfoProps;
+  Component: ComponentType;
 }>;
 
-export const RoutesConfig = Object.freeze<Record<string, Route>>({
-  Home: {
+const DESC_SUFFIX = 'description - length <= 160 chars.';
+
+export const routes: Route[] = [
+  {
     path: '/',
-    exact: true,
-    displayName: 'Home',
-    activeClassName: 'is-active',
-    icon: 'home',
+    name: 'Home',
+    Component: Home,
     metaInfo: {
       title: 'Home',
-      description: getDescription('Home')
+      description: `Home ${DESC_SUFFIX}`
     }
   },
-  About: {
+  {
     path: '/about',
-    exact: true,
-    displayName: 'About',
-    activeClassName: 'is-active',
-    icon: 'info',
+    name: 'About',
+    Component: About,
     metaInfo: {
       title: 'About',
-      description: getDescription('About')
+      description: `About ${DESC_SUFFIX}`
     }
   }
-});
+];
+
+export const getRouteMetaInfo = (name: string): MetaInfoProps => {
+  const route = routes.find((x) => x.name === name);
+  return route?.metaInfo ?? {};
+};

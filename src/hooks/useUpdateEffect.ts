@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react';
 
 export const useUpdateEffect: typeof useEffect = (effect, deps): void => {
-  const isFirstRender = useRef<boolean>(true);
+  const isFirstRender = useRef(true);
 
   useEffect(() => {
     if (isFirstRender.current) {

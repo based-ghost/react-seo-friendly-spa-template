@@ -1,5 +1,5 @@
 import Helmet from 'react-helmet';
-import { RoutesConfig } from '../config/routes.config';
+import { getRouteMetaInfo } from '../config/routes.config';
 import { APP_NAME, DEFAULT_LOCALE, BASE_URL, AUTHOR_NAME } from '../config/env.config';
 
 import type { FunctionComponent } from 'react';
@@ -8,7 +8,7 @@ import type { MetaInfoProps } from '../config/routes.config';
 const {
   title: DEFAULT_TITLE,
   description: DEFAULT_DESCRIPTION
-} = RoutesConfig.Home.metaInfo;
+} = getRouteMetaInfo('Home');
 
 const MetaInfo: FunctionComponent<MetaInfoProps> = ({
   meta = [],
@@ -21,7 +21,7 @@ const MetaInfo: FunctionComponent<MetaInfoProps> = ({
     defer={defer}
     title={title}
     htmlAttributes={{ lang }}
-    titleTemplate={`%s | ${APP_NAME}`}
+    titleTemplate={`${APP_NAME} | %s`}
     meta={[
       {
         name: 'description',

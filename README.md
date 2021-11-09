@@ -3,16 +3,18 @@ React PWA/SPA template configured for SEO (initially scaffolded with Create Reac
 
 Features:
 - TypeScript
-- Written entirely with the `React Hooks API` (no legacy `class` components)
+- Incorporates [`styled-components`](https://github.com/styled-components/styled-components)
+- Route transitions handled using [`react-transition-group`](https://github.com/reactjs/react-transition-group)
+- Written entirely with `React Hooks` (no legacy class components)
 - Google analytics management with [`react-ga`](https://github.com/react-ga/react-ga)
 - Route meta tag management with [`react-helmet`](https://github.com/nfl/react-helmet)
-- Configured to serve prerendered static HTML with [`react-snapshot`](https://github.com/geelen/react-snapshot)
-- Custom `BackToTop.tsx` component that uses [`react-scroll`](https://github.com/fisshy/react-scroll) and [`styled-components`](https://github.com/styled-components/styled-components)
-- Custom `ToggleTheme.tsx` component built using [`styled-components`](https://github.com/styled-components/styled-components) - this is intended for toggling between themes (e.g. dark/light mode), however, for demo purposes a toggle event will trigger a toast notification using [`react-toastify`](https://github.com/fkhadra/react-toastify)
+- Configured to serve prerendered static HTML with [`react-snap`](https://github.com/stereobooster/react-snap)
+- Custom `BackToTop.tsx` component that uses [`react-scroll`](https://github.com/fisshy/react-scroll)
+- Custom `ToggleTheme.tsx` component that handles light/dark theme transitions
 
 ## Demo
 
-![demo](./demo/ReactSeoFriendlyDemo.gif)
+![demo](./demo/react_seo_friendly_demo.gif)
 
 ## General Overview
 This is the React version based on my Vue SEO template which you can find here: [vue-seo-friendly-spa-template](https://github.com/based-ghost/vue-seo-friendly-spa-template)
@@ -32,7 +34,7 @@ I have it configured to use one more level of abstraction, where I have the Helm
 `MetaInfo.tsx`
 ```jsx
 import Helmet from 'react-helmet';
-import { RoutesConfig } from '../config/routes.config';
+import { getRouteMetaInfo } from '../config/routes.config';
 import { APP_NAME, DEFAULT_LOCALE, BASE_URL, AUTHOR_NAME } from '../config/env.config';
 
 import type { FunctionComponent } from 'react';
@@ -41,7 +43,7 @@ import type { MetaInfoProps } from '../config/routes.config';
 const {
   title: DEFAULT_TITLE,
   description: DEFAULT_DESCRIPTION
-} = RoutesConfig.Home.metaInfo;
+} = getRouteMetaInfo('Home');
 
 const MetaInfo: FunctionComponent<MetaInfoProps> = ({
   meta = [],
@@ -54,7 +56,7 @@ const MetaInfo: FunctionComponent<MetaInfoProps> = ({
     defer={defer}
     title={title}
     htmlAttributes={{ lang }}
-    titleTemplate={`%s | ${APP_NAME}`}
+    titleTemplate={`${APP_NAME} | %s`}
     meta={[
       {
         name: 'description',
@@ -87,31 +89,23 @@ const MetaInfo: FunctionComponent<MetaInfoProps> = ({
 export default MetaInfo;
 ```
 
-...and used in component `About.tsx`
+...and used in `About` component
 
 ```jsx
-import { MetaInfo } from '../../components';
-import { RoutesConfig } from '../../config/routes.config';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Alert, MetaInfo } from '../../components';
+import { getRouteMetaInfo } from '../../config/routes.config';
 
 import type { FunctionComponent } from 'react';
 
 const About: FunctionComponent = () => (
-  <section className='container view-wrapper'>
-    <MetaInfo {...RoutesConfig.About.metaInfo} />
-    <div className='tile is-parent is-8 is-vertical is-notification-tile'>
-      <div className='notification tile is-child is-primary pageSlideDown-animation'>
-        <div>
-          <FontAwesomeIcon
-            size='2x'
-            icon='info-circle'
-          />
-          <span className='title'>About Page</span>
-        </div>
-        <p className='subtitle'>Very interesting information may go here.</p>
-      </div>
-    </div>
-  </section>
+  <div className="container view-wrapper">
+    <MetaInfo {...getRouteMetaInfo('About')} />
+    <Alert
+      title="About Page"
+      alertAnimation="rubberBand_animation 1s"
+      subTitle="Very interesting information may go here."
+    />
+  </div>
 );
 
 export default About;
@@ -121,93 +115,88 @@ export default About;
 
 [`react-ga`](https://github.com/react-ga/react-ga) - This is a JavaScript module that can be used to include Google Analytics tracking code in a website or app that uses React for its front-end codebase. It does not currently use any React code internally, but has been written for use with a number of Mozilla Foundation websites that are using React, as a way to standardize our GA Instrumentation across projects.
 
-My preferred configuration - in a seperate file that initializes your google analytics settings and exports an HOC wrapper component to consume your route components with - `WithTracker.tsx`:
+My preferred configuration - in a custom hook that initializes your google analytics settings and contains an effect that reacts to the `location` object that is retrieved from the referenced `react-router-dom` hook `useLocation` - `usePageTracker.ts`:
 
 ```jsx
 import ReactGA from 'react-ga';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { clearAllToasts } from './react-toastify';
+import { routes } from '../config/routes.config';
 import { IS_PRODUCTION } from '../config/env.config';
 
-import type { ComponentType } from 'react';
-import type { RouteComponentProps } from 'react-router-dom';
-import type { FieldsObject, InitializeOptions } from 'react-ga';
-
 // Initialize the react-ga plugin using your issued GA tracker code + options
-const INIT_OPTIONS: InitializeOptions = {
+ReactGA.initialize('UA-000000-01', {
   debug: !IS_PRODUCTION,
   gaOptions: {
     cookieFlags: 'max-age=7200;secure;samesite=none'
   }
+});
+
+// Define custom hook to handle page tracking
+const usePageTracker = (): void => {
+  const location = useLocation();
+
+  useEffect(() => {
+    const { pathname, search } = location;
+    const isValidPath = routes.some((x) => x.path === pathname);
+
+    if (isValidPath) {
+      const page = pathname + search;
+      ReactGA.set({ page });
+      ReactGA.pageview(page);
+    }
+  }, [location]);
 };
 
-ReactGA.initialize('UA-000000-01', INIT_OPTIONS);
-
-// HOC component handling page tracking - e.g. WithTracker(RouteComponent)
-const WithTracker = <P extends RouteComponentProps>(
-  WrappedComponent: ComponentType<P>,
-  options: FieldsObject = {}
-) => {
-  const trackPage = (page: string): void => {
-    ReactGA.set({ page, ...options });
-    ReactGA.pageview(page);
-  };
-
-  const HOC = (props: P): JSX.Element => {
-    const location = useLocation();
-
-    useEffect(() => {
-      const { pathname, search } = location;
-      trackPage(pathname + search);
-      clearAllToasts();
-    }, [location]);
-
-    return <WrappedComponent {...props} />;
-  };
-
-  return HOC;
-};
-
-export default WithTracker;
+export default usePageTracker;
 ```
 
-...and then used as a wrapper for your route components whereever you define your `Route` objects:
+...and then use that hook in the root of the application tree:
 
-e.g. in my `App.tsx`
+e.g. in the `App.tsx` component
 
 ```jsx
 import Layout from './Layout';
-import { useEffect } from 'react';
-import { Home, About } from './containers';
-import { Route, Switch } from 'react-router-dom';
+import { routes } from './config/routes.config';
 import { MetaInfo, NotFound404 } from './components';
-import { RoutesConfig } from './config/routes.config';
-import { WithTracker, configureReactToastify } from './utils';
+import { usePageTracker, useScrollToTop } from './hooks';
+import { useLocation, Route, Switch } from 'react-router-dom';
+import { CSSTransition, SwitchTransition } from 'react-transition-group';
 
 import type { FunctionComponent } from 'react';
 
 const App: FunctionComponent = () => {
-  useEffect(() => {
-    configureReactToastify();
-  }, []);
+  useScrollToTop();
+  usePageTracker();
+
+  const location = useLocation();
+  const cssKey = location.pathname?.split('/')[1] || '/';
 
   return (
     <Layout>
       <MetaInfo />
-      <Switch>
-        <Route
-          path={RoutesConfig.Home.path}
-          component={WithTracker(Home)}
-          exact={RoutesConfig.Home.exact}
-        />
-        <Route
-          path={RoutesConfig.About.path}
-          component={WithTracker(About)}
-          exact={RoutesConfig.About.exact}
-        />
-        <Route component={NotFound404} />
-      </Switch>
+      <SwitchTransition mode="out-in">
+        <CSSTransition
+          key={cssKey}
+          timeout={250}
+          classNames="fade"
+        >
+          <Switch location={location}>
+            {routes.map(({ path, exact, component }) => (
+              <Route
+                key={path}
+                path={path}
+                exact={exact}
+                component={component}
+              />
+            ))}
+            <Route
+              path="*"
+              children={<NotFound404 />}
+            />
+          </Switch>
+        </CSSTransition>
+      </SwitchTransition>
     </Layout>
   );
 };
@@ -215,48 +204,43 @@ const App: FunctionComponent = () => {
 export default App;
 ```
 
-### react-snapshot
+### react-snap
 
-[`react-snapshot`](https://github.com/geelen/react-snapshot) - Unlike some of the various solutions I have experimented with for `Vue`, this is essentially zero-configuration. Visit the link to review how it works in detail, but the basic premise is that server-side rendering is a big feature of React, but for most apps it can be more trouble than its worth and this plugin serves a static snapshot of all your site's publicly-accessible pages (leaving anything requiring authentication as a normal, JS-driven Single Page App).
+[`react-snapshot`](https://github.com/stereobooster/react-snap) - Pre-renders a web app into static HTML. Uses Headless Chrome to crawl all available links starting from the root. Heavily inspired by prep and react-snapshot, but written from scratch. Uses best practices to get the best loading performance.
 
-Configured in a React (TypeScript) as follows:
+Configured in two simple steps:
 
-`react-snapshot.d.ts` - in this typings file add the following module declaration...
+Added following entry to `package.json`:
 
-```typescript
-declare module 'react-snapshot' {
-  import * as ReactDOM from 'react-dom';
-  const render: ReactDOM.Renderer;
+```json
+"scripts": {
+  "postbuild": "react-snap"
 }
 ```
 
-`index.tsx` - import the `render` method from `react-snapshot`...
+And then in `src/index.tsx`:
 
 ```jsx
-import { render } from 'react-snapshot';
+import { hydrate, render } from 'react-dom';
 import { StrictMode } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 
-import './assets/style/main.scss';
-import './config/fa.config';
-
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
-import reportWebVitals from './reportWebVitals';
-
-render(
+const appNode = (
   <BrowserRouter>
     <StrictMode>
       <App />
     </StrictMode>
-  </BrowserRouter>,
-  document.getElementById('root')
+  </BrowserRouter>
 );
+
+const rootElement = document.getElementById('root');
+const hasChildNodes = !!rootElement?.hasChildNodes();
+
+hasChildNodes
+  ? hydrate(appNode, rootElement)
+  : render(appNode, rootElement);
 ```
-
-`package.json` - under the "scripts" section for the "build" option, change to reflect...
-
-`"build": "react-scripts build && react-snapshot"`
 
 ## Scripts
 

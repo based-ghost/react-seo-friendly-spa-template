@@ -1,16 +1,12 @@
-﻿// Custom variables/mixins
-@import 'base/variables.scss';
+﻿// Overrides + custom variables/mixins def
+@use 'base/variables.scss';
 
-// Overrides for third-party packages
-@import 'overrides/react-toastify.scss';
-
-// Third-party (Bulma, react-toastify)
-@import '~bulma/bulma';
-@import '~react-toastify/scss/main.scss';
+// Third-party libs (Bulma)
+@use '../../../node_modules/bulma/bulma.sass';
 
 // Custom
-@import 'base/generic.scss';
-@import 'base/animation.scss';
-@import 'components/home.scss';
-@import 'components/navbar.scss';
-@import 'components/footer.scss';
+@use 'base/generic.scss';
+@use 'base/animation.scss';
+@use 'components/home.scss';
+@use 'components/navbar.scss';
+@use 'components/footer.scss';

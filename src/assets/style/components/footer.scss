@@ -1,17 +1,15 @@
+@use '../base/variables.scss' as *;
+
 .footer {
   color: #fff;
   background-color: $color-nav-bar;
-  padding: 3rem 1.5rem 3rem;
+  padding: 3rem 1.5rem;
   font-size: 1.15rem;
   width: 100%;
   margin: auto;
 
   @include centerStackedColumnContent {
     font-size: 1rem;
-  }
-
-  > .content {
-    text-align: center;
   }
 
   > .buttons {
@@ -21,6 +19,7 @@
       margin-bottom: 0;
       margin-right: 0 !important;
       color: #fff;
+      font-size: 1.4rem;
       background-color: transparent;
       border-color: transparent;
       padding: 0 .5em;

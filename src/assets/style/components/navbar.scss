@@ -1,4 +1,6 @@
-﻿.navbar {
+﻿@use '../base/variables.scss' as *;
+
+.navbar {
   width: 100%;
   position: fixed;
   z-index: 30;
@@ -6,6 +8,7 @@
   background-color: $color-nav-bar;
   padding-left: 11rem;
   padding-right: 11rem;
+  box-shadow: 0 4px 6px 0 rgb(0 0 0 / 5%);
 
   @include reduceNavBarPadding {
     padding-left: 7rem;
@@ -17,7 +20,7 @@
     padding-right: 1rem;
   }
 
-  @include renderMobileTitleText {
+  @include renderMobileDevice {
     padding-right: 0rem;
   }
 
@@ -26,7 +29,6 @@
     margin: auto;
     display: flex;
     height: 100%;
-
 
     .brand-wrapper {
       display: flex;
@@ -51,11 +53,11 @@
       align-items: center;
 
       > .seperator {
-        width: 2px;
+        width: 1.5px;
         margin: 1rem 1.25rem;
         align-self: stretch;
         box-sizing: border-box;
-        background-color: rgba(255,255,255,0.15);
+        background-color: rgba(255, 255, 255, 0.13);
       }
 
       > .navbar-item {
@@ -90,7 +92,7 @@
         }
 
         svg {
-          font-size: .95em;
+          font-size: 0.87em;
           margin-left: 0.55rem;
           color: rgba(255,255,255,.45);
           transition: color 0.2s ease-out;

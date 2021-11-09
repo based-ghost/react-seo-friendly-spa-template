@@ -1,15 +1,6 @@
-import Alert from './Alert';
-import Footer from './Footer';
-import Navbar from './Navbar';
-import MetaInfo from './MetaInfo';
-import BackToTop from './BackToTop';
-import NotFound404 from './NotFound404';
-
-export {
-  Alert,
-  Footer,
-  Navbar,
-  MetaInfo,
-  BackToTop,
-  NotFound404
-};
+export { default as Alert } from './Alert';
+export { default as Footer } from './Footer';
+export { default as Navbar } from './Navbar';
+export { default as MetaInfo } from './MetaInfo';
+export { default as BackToTop } from './BackToTop';
+export { default as NotFound404 } from './NotFound404';

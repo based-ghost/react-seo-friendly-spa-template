@@ -1,95 +1,83 @@
-﻿.hero.is-dark {
+﻿@use '../base/variables.scss' as *;
+
+.hero.is-dark {
   background-color: $color-hero-is-dark;
 
   .hero-body {
-    padding: 1.25rem 1.5rem 2.5rem;
+    padding: 1.5rem 1.5rem 2.5rem;
 
     svg {
       color: $color-blue-highlight;
     }
 
-    .container {
-      > .subtitle {
-        svg {
-          font-size: 94%;
-          margin-right: 0.35rem;
-        }
-      }
-
-      hr {
-        background-color: rgba(255,255,255,0.15);
-        height: 2px;
-        margin: 0 auto 1.75em auto;
-        width: 65%;
-      }
+    hr {
+      background-color: rgba(255,255,255,0.13);
+      height: 1.5px;
+      margin: 0 auto 1.55rem auto;
+      width: 65%;
     }
 
-    .subtitle {
-      color: #fff;
-      font-size: 1.1em;
-
-      &:first-of-type {
-        margin-top: -0.025rem;
-      }
+    .feature {
+      font-size: 1.05em;
+      line-height: 1.25;
 
       &:not(:last-child) {
-        margin-bottom: 0.75rem;
+        margin-bottom: 0.65rem;
+      }
+
+      svg {
+        font-size: 90%;
+        margin-right: 5px;
       }
 
       @include centerStackedColumnContent {
         line-height: 1.6;
-        font-size: 1.025em;
-        &:not(:last-child) {
-          margin-bottom: 0.65rem;
-        }
       }
     }
   }
 
   .title {
     color: #fff;
-    margin-bottom: 2.55rem;
+    font-size: 2.8em;
+    margin: auto auto 1.25rem;
+    font-family: Segoe Script;
 
-    &.blog-title {
-      font-size: 3em;
-      font-family: Segoe Script;
-      letter-spacing: 0.015em;
-      padding-bottom: 1.5rem;
-      margin: auto;
-
-      @include renderMobileTitleText {
-        font-size: 2em;
-      }
+    @include renderMobileDevice {
+      font-size: 1.8em;
     }
   }
 }
 
 .dashboard-content {
-  padding: 1.75rem 0 2rem;
+  padding: 1.5rem 0 2rem;
+  transition: color 0.2s ease-out;
 
   code {
-    background-color: rgba(97, 218, 251, 0.25);
-    color: black;
+    transition: color 0.2s ease-out, background-color 0.2s ease-out;
+    background-color: #ebedf0;
+    color: #242424;
   }
 
   hr {
-    background-color: hsla(0,100%,0%,.125);
-    margin: 0.5rem 0;
-    height: 1px;
+    transition: background-color 0.2s ease-out;
+    background-color: hsla(0,100%,0%,.13);
+    margin: 0.75rem 0;
+    height: 1.5px;
   }
 
   > .columns {
     > .column {
-      padding: 2rem !important;
+      padding: 1.85rem 1.25rem !important;
 
       > .title {
         color: #6d6d6d;
         text-align: center;
-        font-size: 1.875rem;
+        font-size: 1.825rem;
+        transition: color 0.2s ease-out;
       }
     }
 
-    @media (min-width: 769px) {
+    @media all and (min-width: 769px) {
       > hr {
         display: none;
       }

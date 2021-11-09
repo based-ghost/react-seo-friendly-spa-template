@@ -1,7 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const SPIN_CLOCKWISE_KEYFRAMES = keyframes`
+const ROTATE_KEYFRAMES = keyframes`
   from {
     transform: rotate(0deg);
   } to {
@@ -12,7 +12,7 @@ const SPIN_CLOCKWISE_KEYFRAMES = keyframes`
 const ReactIcon = styled(FontAwesomeIcon).attrs({
   icon: ['fab', 'react']
 })`
-  animation: ${SPIN_CLOCKWISE_KEYFRAMES} infinite 10s linear;
+  animation: ${ROTATE_KEYFRAMES} infinite 10s linear;
 
   && {
     width: 88%;
