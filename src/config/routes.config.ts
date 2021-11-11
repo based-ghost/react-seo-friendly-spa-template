@@ -8,6 +8,7 @@ export type MetaInfoProps = Partial<
     lang: string;
     title: string;
     defer: boolean;
+    locale: string;
     description: string;
   }>
 >;
