@@ -18,18 +18,18 @@
     "react-transition-group": "^4.4.2",
     "styled-components": "^5.3.3",
     "web-vitals": "^2.1.2",
-    "workbox-background-sync": "^6.3.0",
-    "workbox-broadcast-update": "^6.3.0",
-    "workbox-cacheable-response": "^6.3.0",
-    "workbox-core": "^6.3.0",
-    "workbox-expiration": "^6.3.0",
-    "workbox-google-analytics": "^6.3.0",
-    "workbox-navigation-preload": "^6.3.0",
-    "workbox-precaching": "^6.3.0",
-    "workbox-range-requests": "^6.3.0",
-    "workbox-routing": "^6.3.0",
-    "workbox-strategies": "^6.3.0",
-    "workbox-streams": "^6.3.0"
+    "workbox-background-sync": "^6.4.1",
+    "workbox-broadcast-update": "^6.4.1",
+    "workbox-cacheable-response": "^6.4.1",
+    "workbox-core": "^6.4.1",
+    "workbox-expiration": "^6.4.1",
+    "workbox-google-analytics": "^6.4.1",
+    "workbox-navigation-preload": "^6.4.1",
+    "workbox-precaching": "^6.4.1",
+    "workbox-range-requests": "^6.4.1",
+    "workbox-routing": "^6.4.1",
+    "workbox-strategies": "^6.4.1",
+    "workbox-streams": "^6.4.1"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.15.0",
@@ -37,7 +37,7 @@
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.0.2",
     "@types/node": "^16.11.7",
-    "@types/react": "^17.0.34",
+    "@types/react": "^17.0.35",
     "@types/react-dom": "^17.0.11",
     "@types/react-helmet": "^6.1.4",
     "@types/react-router-dom": "^5.3.2",
@@ -47,7 +47,7 @@
     "react-snap": "^1.23.0",
     "sass": "^1.43.4",
     "sitemap-generator": "^8.5.1",
-    "typescript": "^4.4.4"
+    "typescript": "^4.5.2"
   },
   "scripts": {
     "start": "react-scripts start",

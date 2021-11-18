@@ -2,6 +2,8 @@ import { Home, About } from '../containers';
 
 import type { ComponentType } from 'react';
 
+const DESC_SUFFIX = 'description - length <= 160 chars.';
+
 export type MetaInfoProps = Partial<
   Readonly<{
     meta: any[];
@@ -19,8 +21,6 @@ export type Route = Readonly<{
   metaInfo: MetaInfoProps;
   Component: ComponentType;
 }>;
-
-const DESC_SUFFIX = 'description - length <= 160 chars.';
 
 export const routes: Route[] = [
   {

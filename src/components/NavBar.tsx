@@ -1,5 +1,5 @@
-import { NavLink } from 'react-router-dom';
 import ToggleTheme from './ToggleTheme';
+import { NavLink } from 'react-router-dom';
 import { routes } from '../config/routes.config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ReactComponent as ReactSeoLogoSvg } from '../assets/img/ReactSeoLogo.svg';
