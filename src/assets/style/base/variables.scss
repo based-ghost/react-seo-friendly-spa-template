@@ -5,7 +5,7 @@ $navbar-height: 66px;
 
 $theme-primary-body-bg-color: white;
 $theme-secondary-body-bg-color: #353941;
-$theme-secondary-code-bg-color: #1B1E25;
+$theme-secondary-code-bg-color: $color-nav-bar;
 
 @mixin removeNavBarPadding {
   @media all and (max-width: 1099px) {
