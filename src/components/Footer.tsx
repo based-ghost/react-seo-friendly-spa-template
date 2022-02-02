@@ -31,7 +31,7 @@ const Footer: FunctionComponent = () => (
       </a>
     </div>
     <div className="content has-text-centered">
-      {`Copyright © 2022 ${APP_NAME?.toLowerCase()}.com`}
+      {`Copyright © ${new Date().getFullYear()} ${APP_NAME?.toLowerCase()}.com`}
     </div>
   </footer>
 );
