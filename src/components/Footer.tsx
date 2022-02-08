@@ -27,7 +27,7 @@ const Footer: FunctionComponent = () => (
         aria-label="Medium"
         className="button is-medium"
       >
-        <FontAwesomeIcon icon={["fab", "medium-m"]} />
+        <FontAwesomeIcon icon={["fab", "etsy"]} />
       </a>
     </div>
     <div className="content has-text-centered">

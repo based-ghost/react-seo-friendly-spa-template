@@ -11,19 +11,19 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
+  faEtsy,
   faReact,
   faGithub,
-  faMediumM,
   faTwitter,
 } from '@fortawesome/free-brands-svg-icons';
 
 library.add(
   faSun,
   faMoon,
+  faEtsy,
   faCheck,
   faReact,
   faGithub,
-  faMediumM,
   faTwitter,
   faInfoCircle,
   faAngleDoubleUp,

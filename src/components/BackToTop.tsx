@@ -16,9 +16,9 @@ const AngleDoubleUpIcon = styled(FontAwesomeIcon).attrs({
 })`
   display: block;
   color: #20232a;
-  font-size: 1.8em;
+  font-size: 1.5em;
   padding-left: 0.1rem;
-  margin: 0.75rem auto auto;
+  margin: 0.95rem auto auto;
 `;
 
 const BackToTopLink = styled.a<{ show: boolean }>`
