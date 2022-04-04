@@ -1,4 +1,4 @@
-import { hydrate, render } from 'react-dom';
+import { hydrateRoot, createRoot } from 'react-dom/client';
 import { StrictMode } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
@@ -15,12 +15,12 @@ const appElement = (
   </StrictMode>
 );
 
-const rootElement = document.getElementById('root');
-const hasChildNodes = !!rootElement?.hasChildNodes();
+const container = document.getElementById('root')!;
+const hasChildNodes = !!container?.hasChildNodes();
 
 hasChildNodes
-  ? hydrate(appElement, rootElement)
-  : render(appElement, rootElement);
+  ? hydrateRoot(container, appElement)
+  : createRoot(container).render(appElement);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
