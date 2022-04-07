@@ -1,8 +1,6 @@
-import { useEffect, Fragment } from 'react';
 import Alert from './Alert';
 import MetaInfo from './MetaInfo';
-
-import type { FunctionComponent } from 'react';
+import { useEffect, Fragment, type FunctionComponent } from 'react';
 
 const PATH_404 = '/404';
 const NOT_FOUND_TITLE = '404: Not Found';

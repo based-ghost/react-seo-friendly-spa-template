@@ -1,5 +1,4 @@
 import { memo } from 'react';
-
 import type { Package as PackageProps } from '../../config/packages.config';
 
 const Package = memo<PackageProps>(({

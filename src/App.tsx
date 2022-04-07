@@ -4,7 +4,6 @@ import { MetaInfo, NotFound404 } from './components';
 import { usePageTracker, useScrollToTop } from './hooks';
 import { useLocation, Route, Routes } from 'react-router-dom';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
-
 import type { FunctionComponent } from 'react';
 
 const App: FunctionComponent = () => {

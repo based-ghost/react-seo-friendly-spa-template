@@ -1,6 +1,5 @@
 import { Alert, MetaInfo } from '../../components';
 import { getRouteMetaInfo } from '../../config/routes.config';
-
 import type { FunctionComponent } from 'react';
 
 const About: FunctionComponent = () => (

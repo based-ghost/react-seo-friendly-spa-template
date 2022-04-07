@@ -1,6 +1,5 @@
 import { APP_NAME } from '../config/env.config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import type { FunctionComponent } from 'react';
 
 const Footer: FunctionComponent = () => (

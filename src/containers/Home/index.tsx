@@ -5,7 +5,6 @@ import { MetaInfo } from '../../components';
 import { Features } from '../../config/features.config';
 import { Packages } from '../../config/packages.config';
 import { getRouteMetaInfo } from '../../config/routes.config';
-
 import type { FunctionComponent } from 'react';
 
 const LOREM_IPSUM_TEXT = `

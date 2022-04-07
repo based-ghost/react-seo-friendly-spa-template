@@ -1,5 +1,4 @@
 import { Home, About } from '../containers';
-
 import type { ComponentType } from 'react';
 
 const DESC_SUFFIX = 'description - length <= 160 chars.';

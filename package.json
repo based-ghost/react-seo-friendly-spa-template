@@ -32,7 +32,7 @@
     "workbox-streams": "^6.5.2"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.16.3",
+    "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^14.0.4",
     "@types/jest": "^27.4.1",
@@ -45,7 +45,7 @@
     "@types/react-transition-group": "^4.4.4",
     "@types/styled-components": "^5.1.24",
     "react-snap": "^1.23.0",
-    "sass": "^1.49.11",
+    "sass": "^1.50.0",
     "sitemap-generator": "^8.5.1",
     "typescript": "^4.6.3"
   },

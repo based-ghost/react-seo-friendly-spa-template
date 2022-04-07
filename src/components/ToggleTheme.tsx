@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 import { useUpdateEffect, useOnClickOutside } from '../hooks';
-import { useState, useRef, useCallback, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import type { FunctionComponent } from 'react';
+import { useState, useRef, useCallback, useEffect, type FunctionComponent } from 'react';
 
 type ToggleThemeProps = Readonly<{
   onThemeChange?: (checked: boolean) => any;

@@ -1,9 +1,7 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, type FunctionComponent } from 'react';
 import styled from 'styled-components';
 import { animateScroll } from 'react-scroll';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import type { FunctionComponent } from 'react';
 
 const SCROLL_OPTIONS = {
   delay: 0,

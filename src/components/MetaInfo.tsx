@@ -7,7 +7,6 @@ import {
   DEFAULT_LANG,
   DEFAULT_LOCALE
 } from '../config/env.config';
-
 import type { FunctionComponent } from 'react';
 import type { MetaInfoProps } from '../config/routes.config';
 
