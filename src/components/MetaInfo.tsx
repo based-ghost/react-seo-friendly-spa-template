@@ -1,5 +1,6 @@
 import Helmet from 'react-helmet';
-import { getRouteMetaInfo } from '../config/routes.config';
+import type { FunctionComponent } from 'react';
+import { getRouteMetaInfo, type MetaInfoProps } from '../config/routes.config';
 import {
   APP_NAME,
   BASE_URL,
@@ -7,8 +8,6 @@ import {
   DEFAULT_LANG,
   DEFAULT_LOCALE
 } from '../config/env.config';
-import type { FunctionComponent } from 'react';
-import type { MetaInfoProps } from '../config/routes.config';
 
 const {
   title: DEFAULT_TITLE,
