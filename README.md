@@ -122,11 +122,11 @@ import ReactGA from 'react-ga';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { routes } from '../config/routes.config';
-import { IS_PRODUCTION } from '../config/env.config';
 
 // Initialize the react-ga plugin using your issued GA tracker code + options
 ReactGA.initialize('UA-000000-01', {
-  debug: !IS_PRODUCTION,
+  testMode: process.env.NODE_ENV === 'test',
+  debug: process.env.NODE_ENV !== 'production',
   gaOptions: {
     cookieFlags: 'max-age=7200;secure;samesite=none'
   }
@@ -157,13 +157,12 @@ e.g. in the `App.tsx` component
 
 ```jsx
 import Layout from './Layout';
+import type { FunctionComponent } from 'react';
 import { routes } from './config/routes.config';
 import { MetaInfo, NotFound404 } from './components';
 import { usePageTracker, useScrollToTop } from './hooks';
 import { useLocation, Route, Routes } from 'react-router-dom';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
-
-import type { FunctionComponent } from 'react';
 
 const App: FunctionComponent = () => {
   useScrollToTop();
@@ -220,9 +219,9 @@ Added following entry to `package.json`:
 And then in `src/index.tsx`:
 
 ```jsx
-import { hydrate, render } from 'react-dom';
 import { StrictMode } from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import { hydrateRoot, createRoot } from 'react-dom/client';
 import App from './App';
 
 const appElement = (
@@ -233,12 +232,12 @@ const appElement = (
   </StrictMode>
 );
 
-const rootElement = document.getElementById('root');
-const hasChildNodes = !!rootElement?.hasChildNodes();
+const container = document.getElementById('root')!;
+const hasChildNodes = !!container?.hasChildNodes();
 
 hasChildNodes
-  ? hydrate(appElement, rootElement)
-  : render(appElement, rootElement);
+  ? hydrateRoot(container, appElement)
+  : createRoot(container).render(appElement);
 ```
 
 ## Scripts

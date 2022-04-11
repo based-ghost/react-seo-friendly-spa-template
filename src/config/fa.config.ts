@@ -1,5 +1,4 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
-
 import {
   faSun,
   faMoon,
@@ -9,7 +8,6 @@ import {
   faExternalLinkAlt,
   faExclamationCircle,
 } from '@fortawesome/free-solid-svg-icons';
-
 import {
   faEtsy,
   faReact,
@@ -17,16 +15,18 @@ import {
   faTwitter,
 } from '@fortawesome/free-brands-svg-icons';
 
-library.add(
-  faSun,
-  faMoon,
-  faEtsy,
-  faCheck,
-  faReact,
-  faGithub,
-  faTwitter,
-  faInfoCircle,
-  faAngleDoubleUp,
-  faExternalLinkAlt,
-  faExclamationCircle,
-);
+export default function registerIcons(): void {
+  library.add(
+    faSun,
+    faMoon,
+    faEtsy,
+    faCheck,
+    faReact,
+    faGithub,
+    faTwitter,
+    faInfoCircle,
+    faAngleDoubleUp,
+    faExternalLinkAlt,
+    faExclamationCircle
+  );
+}
