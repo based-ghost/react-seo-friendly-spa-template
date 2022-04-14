@@ -3,11 +3,13 @@ import type { ReactNode } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 
-const TestComponentHOC = ({ children }: { children?: ReactNode }) => (
-  <BrowserRouter>
-    {children}
-  </BrowserRouter>
-);
+const TestComponentHOC = ({ children }: { children?: ReactNode }) => {
+  return (
+    <BrowserRouter>
+      {children}
+    </BrowserRouter>
+  );
+};
 
 const renderApp = () => {
   return render(

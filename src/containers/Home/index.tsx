@@ -2,10 +2,10 @@ import Feature from './Feature';
 import Package from './Package';
 import ReactIcon from './ReactIcon';
 import { MetaInfo } from '../../components';
+import type { FunctionComponent } from 'react';
 import { Features } from '../../config/features.config';
 import { Packages } from '../../config/packages.config';
 import { getRouteMetaInfo } from '../../config/routes.config';
-import type { FunctionComponent } from 'react';
 
 const LOREM_IPSUM_TEXT = `
   Lorem ipsum dolor sit amet, alia appareat usu id, has legere facilis in. Nam

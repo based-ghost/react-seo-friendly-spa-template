@@ -1,6 +1,8 @@
+import type { FunctionComponent } from 'react';
 import { APP_NAME } from '../config/env.config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import type { FunctionComponent } from 'react';
+
+const COPYRIGHT_ENTITY = `Copyright © ${new Date().getFullYear()} ${APP_NAME?.toLowerCase()}.com`;
 
 const Footer: FunctionComponent = () => (
   <footer className="footer">
@@ -30,7 +32,7 @@ const Footer: FunctionComponent = () => (
       </a>
     </div>
     <div className="content has-text-centered">
-      {`Copyright © ${new Date().getFullYear()} ${APP_NAME?.toLowerCase()}.com`}
+      {COPYRIGHT_ENTITY}
     </div>
   </footer>
 );
