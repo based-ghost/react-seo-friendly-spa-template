@@ -21,7 +21,7 @@ const renderApp = () => {
 
 test('App component mounts and renders without error', async () => {
   renderApp();
-  const titleElement = screen.getByText(/SEO Friendly SPA/i);
-  expect(titleElement).toBeInTheDocument();
+  const titleEl = screen.getByText(/SEO Friendly SPA/i);
+  expect(titleEl).toBeInTheDocument();
 });
 
