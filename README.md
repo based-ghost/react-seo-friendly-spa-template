@@ -34,11 +34,9 @@ I have it configured to use one more level of abstraction, where I have the Helm
 `MetaInfo.tsx`
 ```jsx
 import Helmet from 'react-helmet';
-import { getRouteMetaInfo } from '../config/routes.config';
-import { APP_NAME, DEFAULT_LOCALE, BASE_URL, AUTHOR_NAME } from '../config/env.config';
-
 import type { FunctionComponent } from 'react';
-import type { MetaInfoProps } from '../config/routes.config';
+import { getRouteMetaInfo, type MetaInfoProps } from '../config/routes.config';
+import { APP_NAME, BASE_URL, AUTHOR_NAME, DEFAULT_LANG, DEFAULT_LOCALE } from '../config/env.config';
 
 const {
   title: DEFAULT_TITLE,
@@ -48,43 +46,66 @@ const {
 const MetaInfo: FunctionComponent<MetaInfoProps> = ({
   meta = [],
   defer = false,
-  lang = DEFAULT_LOCALE,
+  lang = DEFAULT_LANG,
   title = DEFAULT_TITLE,
+  locale = DEFAULT_LOCALE,
   description = DEFAULT_DESCRIPTION
-}) => (
-  <Helmet
-    defer={defer}
-    title={title}
-    htmlAttributes={{ lang }}
-    titleTemplate={`${APP_NAME} | %s`}
-    meta={[
-      {
-        name: 'description',
-        content: description
-      },
-      {
-        property: 'og:description',
-        content: description
-      },
-      {
-        property: 'og:title',
-        content: title
-      },
-      {
-        property: 'og:type',
-        content: 'website'
-      },
-      {
-        property: 'og:image',
-        content: `${BASE_URL}logo192.png`
-      },
-      {
-        name: 'author',
-        content: AUTHOR_NAME
-      }
-    ].concat(meta)}
-  />
-);
+}) => {
+  const url = window?.location.href || 'unknown';
+
+  return (
+    <Helmet
+      defer={defer}
+      title={title}
+      htmlAttributes={{ lang }}
+      titleTemplate={`${APP_NAME} | %s`}
+      link={[
+        {
+          rel: 'canonical',
+          href: url
+        }
+      ]}
+      meta={[
+        {
+          name: 'description',
+          content: description
+        },
+        {
+          property: 'og:description',
+          content: description
+        },
+        {
+          property: 'og:title',
+          content: title
+        },
+        {
+          property: 'og:site_name',
+          content: APP_NAME
+        },
+        {
+          property: 'og:type',
+          content: 'website'
+        },
+        {
+          property: 'og:url',
+          content: url
+        },
+        {
+          property: 'og:locale',
+          content: locale
+        },
+        {
+          property: 'og:image',
+          content: `${BASE_URL}logo192.png`
+        },
+        {
+          name: 'author',
+          content: AUTHOR_NAME
+        }
+      ].concat(meta)}
+    />
+  );
+};
 
 export default MetaInfo;
 ```
@@ -92,10 +113,9 @@ export default MetaInfo;
 ...and used in `About` component
 
 ```jsx
+import type { FunctionComponent } from 'react';
 import { Alert, MetaInfo } from '../../components';
 import { getRouteMetaInfo } from '../../config/routes.config';
-
-import type { FunctionComponent } from 'react';
 
 const About: FunctionComponent = () => (
   <div className="container view-wrapper">
