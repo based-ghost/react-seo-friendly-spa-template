@@ -1,12 +1,12 @@
-﻿// Overrides + custom variables/mixins def
-@use 'base/variables.scss';
+﻿// overrides + custom variables/mixins
+@use 'base/variables';
 
-// Third-party libs (Bulma)
-@use '../../../node_modules/bulma/bulma.sass';
+// node_module imports
+@use 'bulma/bulma';
 
-// Custom
-@use 'base/generic.scss';
-@use 'base/animation.scss';
-@use 'components/home.scss';
-@use 'components/navbar.scss';
-@use 'components/footer.scss';
+// custom modules
+@use 'base/generic';
+@use 'base/animation';
+@use 'components/home';
+@use 'components/navbar';
+@use 'components/footer';
