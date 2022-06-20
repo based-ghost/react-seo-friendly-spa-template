@@ -75,7 +75,9 @@ const Alert: FunctionComponent<AlertProps> = ({
             icon={iconName}
             size={iconSize}
           />
-          <span className="title">{title}</span>
+          <span className="title">
+            {title}
+          </span>
         </div>
         <p className="subtitle">
           {subTitle}

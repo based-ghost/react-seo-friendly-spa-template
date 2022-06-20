@@ -91,10 +91,7 @@ const ToggleTheme: FunctionComponent<ToggleThemeProps> = ({
   const onThemeChangeRef = useRef<typeof onThemeChangeDefaultFn>(onThemeChange);
 
   // Deps list has "focused" to limit extraneous setStates causing rerenders on every outside click
-  const onParentClickOutside = useCallback(
-    () => focused && setFocused(false),
-    [focused]
-  );
+  const onParentClickOutside = useCallback(() => focused && setFocused(false), [focused]);
 
   useOnClickOutside(parentDivRef, onParentClickOutside);
 
