@@ -17,7 +17,7 @@
     "react-scroll": "^1.8.7",
     "react-transition-group": "^4.4.5",
     "styled-components": "^5.3.5",
-    "web-vitals": "^2.1.4",
+    "web-vitals": "^3.0.0",
     "workbox-background-sync": "^6.5.4",
     "workbox-broadcast-update": "^6.5.4",
     "workbox-cacheable-response": "^6.5.4",
@@ -35,8 +35,8 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^14.4.3",
-    "@types/jest": "^28.1.7",
-    "@types/node": "^18.7.9",
+    "@types/jest": "^28.1.8",
+    "@types/node": "^18.7.13",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "@types/react-helmet": "^6.1.5",
@@ -47,7 +47,7 @@
     "react-snap": "^1.23.0",
     "sass": "^1.54.5",
     "sitemap-generator": "^8.5.1",
-    "typescript": "^4.7.4"
+    "typescript": "^4.8.2"
   },
   "scripts": {
     "start": "react-scripts start",
