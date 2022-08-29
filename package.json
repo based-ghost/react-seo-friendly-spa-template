@@ -45,7 +45,7 @@
     "@types/react-transition-group": "^4.4.5",
     "@types/styled-components": "^5.1.26",
     "react-snap": "^1.23.0",
-    "sass": "^1.54.5",
+    "sass": "^1.54.6",
     "sitemap-generator": "^8.5.1",
     "typescript": "^4.8.2"
   },
