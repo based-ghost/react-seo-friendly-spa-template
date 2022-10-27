@@ -24,6 +24,7 @@ const Navbar: FunctionComponent = () => (
       <div className="navbar-routes">
         {routes.map(({ path, name }) => (
           <NavLink
+            end
             to={path}
             key={path}
             className={({ isActive }) => 'navbar-item' + (isActive ? ' is-active' : '')}
