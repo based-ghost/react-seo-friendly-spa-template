@@ -106,7 +106,7 @@ const ToggleTheme: FunctionComponent<ToggleThemeProps> = ({
     onThemeChangeRef.current(checked);
   }, [checked]);
 
-  const onToggleTheme = () => {
+  const toggleTheme = () => {
     setFocused(true);
     setChecked((prevChecked) => !prevChecked);
   };
@@ -114,7 +114,7 @@ const ToggleTheme: FunctionComponent<ToggleThemeProps> = ({
   return (
     <ToggleContainer
       ref={parentDivRef}
-      onClick={onToggleTheme}
+      onClick={toggleTheme}
     >
       <ToggleTrack>
         <div>

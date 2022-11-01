@@ -1,13 +1,6 @@
 import styled from 'styled-components';
-import { animateScroll } from 'react-scroll';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState, useRef, type FunctionComponent } from 'react';
-
-const SCROLL_OPTIONS = {
-  delay: 0,
-  duration: 500,
-  smooth: 'easeInOutCubic'
-};
 
 const AngleDoubleUpIcon = styled(FontAwesomeIcon).attrs({
   icon: 'angle-double-up'
@@ -47,36 +40,39 @@ const BackToTop: FunctionComponent = () => {
   const [show, setShow] = useState<boolean>(false);
 
   useEffect(() => {
-    function updateShow(val: boolean) {
-      showRef.current = val;
-      setShow(val);
-    }
-
-    function scrollHandler() {
+    const showScrollBtn = () => {
       const { pageYOffset } = window;
-      const { current: show } = showRef;
+      const { current: showVal } = showRef;
 
-      if ((!show && pageYOffset > 100) || (show && pageYOffset === 0)) {
-        updateShow(!show);
+      if ((!showVal && pageYOffset > 100) || (showVal && pageYOffset === 0)) {
+        showRef.current = !showVal;
+        setShow(!showVal);
       }
-    }
+    };
 
-    window.addEventListener('scroll', scrollHandler, {
+    window.addEventListener('scroll', showScrollBtn, {
       passive: true,
       capture: false
     });
 
     return () => {
-      window.removeEventListener('scroll', scrollHandler);
+      window.removeEventListener('scroll', showScrollBtn);
     };
   }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
 
   return (
     <BackToTopLink
       show={show}
       role="button"
       aria-label="Back to top"
-      onClick={() => animateScroll.scrollToTop(SCROLL_OPTIONS)}
+      onClick={scrollToTop}
     >
       <AngleDoubleUpIcon />
     </BackToTopLink>

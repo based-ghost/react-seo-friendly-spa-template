@@ -12,7 +12,7 @@ export const Features: Feature[] = [
   },
   {
     description: 'Meta tags dynamically handled per route using',
-    package_name: 'react-helmet'
+    package_name: 'react-helmet-async'
   },
   {
     description: 'Google Analytics ready to go and easily configurable using',

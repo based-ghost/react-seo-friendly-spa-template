@@ -6,7 +6,7 @@ export type Package = Readonly<{
 
 export const Packages: Package[] = [
   {
-    package_name: 'react-helmet',
+    package_name: 'react-helmet-async',
     description_1: `is a React plugin that allows you to manage your app's meta information, much like vue-meta does for Vue (vue-meta is based on react-helmet). It makes use of a reusable component that takes plain HTML tags and outputs plan HTML tags.`,
     description_2: `These properties, when set on a deeply nested component, will cleverly overwrite their parent components' meta tag information, thereby enabling custom info for each top-level view as well as coupling meta info directly to deeply nested subcomponents for more maintainable code.`,
   },

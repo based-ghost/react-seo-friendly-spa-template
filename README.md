@@ -7,7 +7,7 @@ Features:
 - Route transitions handled using [`react-transition-group`](https://github.com/reactjs/react-transition-group)
 - Written entirely with `React Hooks` (no legacy class components)
 - Google analytics management with [`react-ga`](https://github.com/react-ga/react-ga)
-- Route meta tag management with [`react-helmet`](https://github.com/nfl/react-helmet)
+- Route meta tag management with [`react-helmet-async`](https://github.com/staylor/react-helmet-async)
 - Configured to serve prerendered static HTML with [`react-snap`](https://github.com/stereobooster/react-snap)
 - Custom `BackToTop.tsx` component that uses [`react-scroll`](https://github.com/fisshy/react-scroll)
 - Custom `ToggleTheme.tsx` component that handles light/dark theme transitions
@@ -25,15 +25,15 @@ This is the React version based on my Vue SEO template which you can find here: 
 
 initial scaffolding
 
-### react-helmet
+### react-helmet-async
 
-[`react-helmet`](https://github.com/nfl/react-helmet) - plugin that allows you to manage your app's meta information. It is a reusable React component that will manage all of your changes to the document head - Helmet takes plain HTML tags and outputs plain HTML tags. It's dead simple, and React beginner friendly.
+[`react-helmet-async`](https://github.com/staylor/react-helmet-async) - plugin that allows you to manage your app's meta information. It is a reusable React component that will manage all of your changes to the document head - Helmet takes plain HTML tags and outputs plain HTML tags. It's dead simple, and React beginner friendly. This is the thread safe fork of [`react-helmet`](https://github.com/nfl/react-helmet).
 
 I have it configured to use one more level of abstraction, where I have the Helmet component and child meta tags broken out to its own component `MetaInfo.tsx` - referenced at the root of the app i `App.tsx` to initialize data and then referenced in each route component to override route-specific values (`Home.tsx`, `About.tsx`, `NotFound404.tsx`):
 
 `MetaInfo.tsx`
 ```jsx
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import type { FunctionComponent } from 'react';
 import { getRouteMetaInfo, type MetaInfoProps } from '../config/routes.config';
 import { APP_NAME, BASE_URL, AUTHOR_NAME, DEFAULT_LANG, DEFAULT_LOCALE } from '../config/env.config';
@@ -241,15 +241,18 @@ And then in `src/index.tsx`:
 ```jsx
 import { StrictMode } from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import { hydrateRoot, createRoot } from 'react-dom/client';
 import App from './App';
 
 const appElement = (
-  <StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </StrictMode>
+  <BrowserRouter>
+    <HelmetProvider>
+      <StrictMode>
+        <App />
+      </StrictMode>
+    </HelmetProvider>
+  </BrowserRouter>
 );
 
 const container = document.getElementById('root')!;
