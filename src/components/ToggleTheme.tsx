@@ -86,7 +86,6 @@ const ToggleTheme: FunctionComponent<ToggleThemeProps> = ({
 }) => {
   const [checked, setChecked] = useState<boolean>(false);
   const [focused, setFocused] = useState<boolean>(false);
-
   const parentDivRef = useRef<HTMLDivElement | null>(null);
   const onThemeChangeRef = useRef<typeof onThemeChangeDefaultFn>(onThemeChange);
 

@@ -42,18 +42,14 @@ const BackToTop: FunctionComponent = () => {
   useEffect(() => {
     const showScrollBtn = () => {
       const { pageYOffset } = window;
-      const { current: showVal } = showRef;
-
-      if ((!showVal && pageYOffset > 100) || (showVal && pageYOffset === 0)) {
-        showRef.current = !showVal;
-        setShow(!showVal);
+      const { current: show } = showRef;
+      if ((!show && pageYOffset > 100) || (show && pageYOffset === 0)) {
+        showRef.current = !show;
+        setShow(!show);
       }
     };
 
-    window.addEventListener('scroll', showScrollBtn, {
-      passive: true,
-      capture: false
-    });
+    window.addEventListener('scroll', showScrollBtn, { passive: true });
 
     return () => {
       window.removeEventListener('scroll', showScrollBtn);

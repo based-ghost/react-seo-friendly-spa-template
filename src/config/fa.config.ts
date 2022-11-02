@@ -15,7 +15,7 @@ import {
   faTwitter,
 } from '@fortawesome/free-brands-svg-icons';
 
-export default function registerIcons(): void {
+export default function registerIcons() {
   library.add(
     faSun,
     faMoon,
