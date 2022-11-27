@@ -1,7 +1,6 @@
 ﻿@use 'variables' as *;
 
 body {
-  will-change: background-color;
   background-color: $theme-primary-body-bg-color;
   transition: background-color 0.2s ease-out;
 

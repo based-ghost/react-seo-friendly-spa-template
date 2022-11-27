@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import { useUpdateEffect, useOnClickOutside } from '../hooks';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useState, useRef, useCallback, useEffect, type FunctionComponent } from 'react';
+import { useCallbackRef, useUpdateEffect, useOnClickOutside } from '../hooks';
+import { useState, useRef, useCallback, type FunctionComponent } from 'react';
 
 type ToggleThemeProps = Readonly<{
-  onThemeChange?: (checked: boolean) => any;
+  onToggle?: (checked: boolean) => any;
 }>;
 
 type ToggleControlProps = Readonly<{
@@ -17,7 +17,7 @@ const ACCENT_COLOR = '#61dafb';
 const PRIMARY_COLOR = '#4d4d4d';
 const TOGGLE_CTRL_COLOR = '#fafafa';
 
-const onThemeChangeDefaultFn = (checked: boolean) => {
+const onToggleDefault = (checked: boolean) => {
   const theme = checked ? 'secondary' : 'primary';
   document.body.className = `${theme}-theme`;
 };
@@ -69,7 +69,6 @@ const ToggleControl = styled.div<ToggleControlProps>`
   position: absolute;
   border-radius: 50%;
   box-sizing: border-box;
-  will-change: transform;
   background-color: ${TOGGLE_CTRL_COLOR};
 
   transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1),
@@ -82,28 +81,20 @@ const ToggleControl = styled.div<ToggleControlProps>`
 `;
 
 const ToggleTheme: FunctionComponent<ToggleThemeProps> = ({
-  onThemeChange = onThemeChangeDefaultFn
+  onToggle = onToggleDefault
 }) => {
   const [checked, setChecked] = useState<boolean>(false);
   const [focused, setFocused] = useState<boolean>(false);
-  const parentDivRef = useRef<HTMLDivElement | null>(null);
-  const onThemeChangeRef = useRef<typeof onThemeChangeDefaultFn>(onThemeChange);
+  const parentElRef = useRef<HTMLDivElement | null>(null);
+  const onParentClickOutside = useCallback(() => setFocused(false), []);
+  const onToggleFn = useCallbackRef(onToggle);
 
-  // Deps list has "focused" to limit extraneous setStates causing rerenders on every outside click
-  const onParentClickOutside = useCallback(() => focused && setFocused(false), [focused]);
+  useOnClickOutside(parentElRef, onParentClickOutside);
 
-  useOnClickOutside(parentDivRef, onParentClickOutside);
-
-  // Write onThemeChange prop to ref and then execute in effect below to gaurd
-  // ..against non-memoized props causing the effect to fire when it should not
-  useEffect(() => {
-    onThemeChangeRef.current = onThemeChange;
-  }, [onThemeChange]);
-
-  // Update theme global state in this effect
+  // Effect to update theme global state
   useUpdateEffect(() => {
-    onThemeChangeRef.current(checked);
-  }, [checked]);
+    onToggleFn(checked);
+  }, [onToggleFn, checked]);
 
   const toggleTheme = () => {
     setFocused(true);
@@ -112,7 +103,7 @@ const ToggleTheme: FunctionComponent<ToggleThemeProps> = ({
 
   return (
     <ToggleContainer
-      ref={parentDivRef}
+      ref={parentElRef}
       onClick={toggleTheme}
     >
       <ToggleTrack>

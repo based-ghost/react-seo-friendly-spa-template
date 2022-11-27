@@ -1,6 +1,6 @@
 
 import { useLocation } from 'react-router-dom';
-import { default as useUpdateEffect } from './useUpdateEffect';
+import useUpdateEffect from './useUpdateEffect';
 
 const useScrollToTop = (): void => {
   const location = useLocation();

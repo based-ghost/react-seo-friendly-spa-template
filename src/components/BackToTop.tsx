@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { useLatestRef } from '../hooks';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useEffect, useState, useRef, type FunctionComponent } from 'react';
+import { useEffect, useState, type FunctionComponent } from 'react';
 
 const AngleDoubleUpIcon = styled(FontAwesomeIcon).attrs({
   icon: 'angle-double-up'
@@ -23,12 +24,10 @@ const BackToTopLink = styled.a<{ show: boolean }>`
   user-select: none;
   border-radius: 50%;
   background: #61dafb;
-  will-change: opacity, bottom;
   border: 1px solid transparent;
   -webkit-tap-highlight-color: transparent;
   box-shadow: rgba(0, 0, 0, 0.265) 0px 0px 20px;
   transition: opacity 0.4s ease, bottom 0.4s ease;
-
   opacity: ${({ show }) => show ? 1 : 0};
   bottom: ${({ show }) => show ? 1.25 : -3.5}rem;
 `;
@@ -36,25 +35,25 @@ const BackToTopLink = styled.a<{ show: boolean }>`
 // Write the show state value to a ref so we can use it as a check to prevent
 // ...re-renders on every scroll down that triggers a show for the button
 const BackToTop: FunctionComponent = () => {
-  const showRef = useRef<boolean>(false);
   const [show, setShow] = useState<boolean>(false);
+  const showRef = useLatestRef<boolean>(show);
 
   useEffect(() => {
-    const showScrollBtn = () => {
-      const { pageYOffset } = window;
-      const { current: show } = showRef;
-      if ((!show && pageYOffset > 100) || (show && pageYOffset === 0)) {
-        showRef.current = !show;
-        setShow(!show);
+    const onScroll = () => {
+      if (
+        (!showRef.current && window.pageYOffset > 100) ||
+        (showRef.current && window.pageYOffset === 0)
+      ) {
+        setShow((prevShow) => !prevShow);
       }
     };
 
-    window.addEventListener('scroll', showScrollBtn, { passive: true });
+    window.addEventListener('scroll', onScroll, { passive: true });
 
     return () => {
-      window.removeEventListener('scroll', showScrollBtn);
+      window.removeEventListener('scroll', onScroll);
     };
-  }, []);
+  }, [showRef]);
 
   const scrollToTop = () => {
     window.scrollTo({

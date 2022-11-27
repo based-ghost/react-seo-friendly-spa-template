@@ -14,12 +14,14 @@ type AlertProps = Readonly<{
   alertBackgroundColor?: string;
 }>;
 
+type NotificationProps = Partial<AlertProps>;
+
 const TileContainer = styled.div`
   margin: 0 auto;
   padding: 15rem 0 20rem !important;
 `;
 
-const Notification = styled.div<Partial<AlertProps>>`
+const Notification = styled.div<NotificationProps>`
   text-align: center;
   padding: 1.75rem .25rem;
   box-shadow: 0 2px 15px 0 rgba(18,16,19,.2);
