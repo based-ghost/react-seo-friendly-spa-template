@@ -9,7 +9,7 @@ Features:
 - Google analytics management with [`react-ga`](https://github.com/react-ga/react-ga)
 - Route meta tag management with [`react-helmet-async`](https://github.com/staylor/react-helmet-async)
 - Configured to serve prerendered static HTML with [`react-snap`](https://github.com/stereobooster/react-snap)
-- Custom `BackToTop.tsx` component that uses [`react-scroll`](https://github.com/fisshy/react-scroll)
+- Custom `BackToTop.tsx` component
 - Custom `ToggleTheme.tsx` component that handles light/dark theme transitions
 
 ## Demo
