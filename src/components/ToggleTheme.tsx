@@ -1,7 +1,7 @@
 import styled from 'styled-components';
+import { useState, useRef, type FunctionComponent } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useCallbackRef, useUpdateEffect, useOnClickOutside } from '../hooks';
-import { useState, useRef, useCallback, type FunctionComponent } from 'react';
 
 type ToggleThemeProps = Readonly<{
   onToggle?: (checked: boolean) => any;
@@ -80,16 +80,13 @@ const ToggleControl = styled.div<ToggleControlProps>`
   box-shadow: ${({ focused }) => focused ? `0 0 2.75px 1.75px ${ACCENT_COLOR}` : 'none'};
 `;
 
-const ToggleTheme: FunctionComponent<ToggleThemeProps> = ({
-  onToggle = onToggleDefault
-}) => {
+const ToggleTheme: FunctionComponent<ToggleThemeProps> = ({ onToggle }) => {
   const [checked, setChecked] = useState<boolean>(false);
   const [focused, setFocused] = useState<boolean>(false);
   const parentElRef = useRef<HTMLDivElement | null>(null);
-  const onParentClickOutside = useCallback(() => setFocused(false), []);
-  const onToggleFn = useCallbackRef(onToggle);
+  const onToggleFn = useCallbackRef(onToggle || onToggleDefault);
 
-  useOnClickOutside(parentElRef, onParentClickOutside);
+  useOnClickOutside(parentElRef, () => setFocused(false));
 
   // Effect to update theme global state
   useUpdateEffect(() => {
