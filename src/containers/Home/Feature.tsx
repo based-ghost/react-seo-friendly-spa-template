@@ -1,8 +1,8 @@
-import { memo } from 'react';
+import type { FunctionComponent } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { Feature as FeatureProps } from '../../config/features.config';
 
-const Feature = memo<FeatureProps>(({
+const Feature: FunctionComponent<FeatureProps> = ({
   description,
   package_name
 }) => (
@@ -11,8 +11,6 @@ const Feature = memo<FeatureProps>(({
     {` ${description} `}
     {package_name && <code>{package_name}</code>}
   </p>
-));
-
-Feature.displayName = 'Feature';
+);
 
 export default Feature;

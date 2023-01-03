@@ -1,7 +1,7 @@
-import { memo } from 'react';
+import type { FunctionComponent } from 'react';
 import type { Package as PackageProps } from '../../config/packages.config';
 
-const Package = memo<PackageProps>(({
+const Package: FunctionComponent<PackageProps> = ({
   package_name,
   description_1,
   description_2
@@ -15,8 +15,6 @@ const Package = memo<PackageProps>(({
       <p>{description_2}</p>
     </div>
   </div>
-));
-
-Package.displayName = 'Feature';
+);
 
 export default Package;

@@ -33,7 +33,7 @@ const BackToTopLink = styled.a<{ show: boolean }>`
 `;
 
 // Write the show state value to a ref so we can use it as a check to prevent
-// ...re-renders on every scroll down that triggers a show for the button
+// ...re-renders on every scroll event
 const BackToTop: FunctionComponent = () => {
   const [show, setShow] = useState<boolean>(false);
   const showRef = useLatestRef<boolean>(show);
