@@ -6,11 +6,11 @@ const Feature: FunctionComponent<FeatureProps> = ({
   description,
   package_name
 }) => (
-  <p className="feature">
+  <div className="feature">
     <FontAwesomeIcon icon="check" />
     {` ${description} `}
     {package_name && <code>{package_name}</code>}
-  </p>
+  </div>
 );
 
 export default Feature;

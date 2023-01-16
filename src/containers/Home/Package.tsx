@@ -9,9 +9,9 @@ const Package: FunctionComponent<PackageProps> = ({
   <div className="column">
     <p className="title">{package_name}</p>
     <div className="content">
-      <p>
+      <div>
         <code>{package_name}</code> {description_1}
-      </p>
+      </div>
       <p>{description_2}</p>
     </div>
   </div>

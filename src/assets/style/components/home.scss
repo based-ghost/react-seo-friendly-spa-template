@@ -75,6 +75,10 @@
         font-size: 1.825rem;
         transition: color 0.2s ease-out;
       }
+
+      .content div:not(:last-child) {
+        margin-bottom: 1em;
+      }
     }
 
     @media all and (min-width: 769px) {
