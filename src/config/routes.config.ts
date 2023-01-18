@@ -43,6 +43,10 @@ export const routes: Route[] = [
 ];
 
 export const getRouteMetaInfo = (name: string): MetaInfoProps => {
-  const route = routes.find((x) => x.name === name);
+  const route = routes.find((r) => r.name === name);
   return route?.metaInfo ?? {};
+};
+
+export const isLocationValidRoute = (pathname: string): boolean => {
+  return routes.some((r) => r.path === pathname);
 };

@@ -141,7 +141,7 @@ My preferred configuration - in a custom hook that initializes your google analy
 import ReactGA from 'react-ga';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { routes } from '../config/routes.config';
+import { isLocationValidRoute } from '../config/routes.config';
 
 // Initialize the react-ga plugin using your issued GA tracker code + options
 ReactGA.initialize('UA-000000-01', {
@@ -158,9 +158,8 @@ const usePageTracker = (): void => {
 
   useEffect(() => {
     const { pathname, search } = location;
-    const isValidPath = routes.some((x) => x.path === pathname);
 
-    if (isValidPath) {
+    if (isLocationValidRoute(pathname)) {
       const page = pathname + search;
       ReactGA.set({ page });
       ReactGA.pageview(page);
@@ -187,18 +186,16 @@ import { CSSTransition, SwitchTransition } from 'react-transition-group';
 const App: FunctionComponent = () => {
   useScrollToTop();
   usePageTracker();
-
   const location = useLocation();
-  const cssKey = location.pathname?.split('/')[1] || '/';
 
   return (
     <Layout>
       <MetaInfo />
       <SwitchTransition mode="out-in">
         <CSSTransition
-          key={cssKey}
           timeout={250}
           classNames="fade"
+          key={location.key}
         >
           <Routes location={location}>
             {routes.map(({ path, Component }) => (

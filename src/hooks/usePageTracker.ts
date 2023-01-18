@@ -1,7 +1,7 @@
 import ReactGA from 'react-ga';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { routes } from '../config/routes.config';
+import { isLocationValidRoute } from '../config/routes.config';
 
 // Initialize the react-ga plugin using your issued GA tracker code + options
 ReactGA.initialize('UA-000000-01', {
@@ -18,9 +18,8 @@ const usePageTracker = (): void => {
 
   useEffect(() => {
     const { pathname, search } = location;
-    const isValidPath = routes.some((x) => x.path === pathname);
 
-    if (isValidPath) {
+    if (isLocationValidRoute(pathname)) {
       const page = pathname + search;
       ReactGA.set({ page });
       ReactGA.pageview(page);

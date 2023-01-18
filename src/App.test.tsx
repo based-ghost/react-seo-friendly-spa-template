@@ -4,7 +4,7 @@ import type { FC, PropsWithChildren } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { render, screen } from '@testing-library/react';
 
-const TestComponentHOC: FC<PropsWithChildren> = ({ children }) => {
+const TestHarness: FC<PropsWithChildren> = ({ children }) => {
   return (
     <BrowserRouter>
       <HelmetProvider>
@@ -16,13 +16,13 @@ const TestComponentHOC: FC<PropsWithChildren> = ({ children }) => {
 
 const renderApp = () => {
   return render(
-    <TestComponentHOC>
+    <TestHarness>
       <App />
-    </TestComponentHOC>
+    </TestHarness>
   );
 };
 
-test('App component mounts and renders without errors', async () => {
+test('App component mounts and renders without errors', () => {
   renderApp();
   const titleEl = screen.getByText(/SEO Friendly SPA/i);
   expect(titleEl).toBeInTheDocument();

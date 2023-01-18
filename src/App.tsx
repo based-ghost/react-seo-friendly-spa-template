@@ -9,18 +9,16 @@ import { CSSTransition, SwitchTransition } from 'react-transition-group';
 const App: FunctionComponent = () => {
   useScrollToTop();
   usePageTracker();
-
   const location = useLocation();
-  const cssKey = location.pathname?.split('/')[1] || '/';
 
   return (
     <Layout>
       <MetaInfo />
       <SwitchTransition mode="out-in">
         <CSSTransition
-          key={cssKey}
           timeout={250}
           classNames="fade"
+          key={location.key}
         >
           <Routes location={location}>
             {routes.map(({ path, Component }) => (
