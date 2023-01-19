@@ -15,7 +15,7 @@ import {
   faTwitter,
 } from '@fortawesome/free-brands-svg-icons';
 
-export default function registerIcons() {
+export const registerIcons = () => {
   library.add(
     faSun,
     faMoon,
@@ -29,4 +29,4 @@ export default function registerIcons() {
     faExternalLinkAlt,
     faExclamationCircle
   );
-}
+};
