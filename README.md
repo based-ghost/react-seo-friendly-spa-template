@@ -5,7 +5,7 @@ Features:
 - TypeScript
 - Incorporates [`styled-components`](https://github.com/styled-components/styled-components)
 - Route transitions handled using [`react-transition-group`](https://github.com/reactjs/react-transition-group)
-- Written entirely with `React Hooks` (no legacy class components)
+- Built entirely with `React Hooks` API (no legacy class components)
 - Google analytics management with [`react-ga`](https://github.com/react-ga/react-ga)
 - Route meta tag management with [`react-helmet-async`](https://github.com/staylor/react-helmet-async)
 - Configured to serve prerendered static HTML with [`react-snap`](https://github.com/stereobooster/react-snap)
@@ -225,13 +225,18 @@ export default App;
 
 Configured in two simple steps:
 
-Added following entry to `package.json`:
+Add the following entries to `package.json`:
 
 ```json
 "scripts": {
   "postbuild": "react-snap"
+},
+"reactSnap": {
+  "skipThirdPartyRequests": true
 }
 ```
+
+The `reactSnap.skipThirdPartyRequests = true` entry is critical since it prevents the analytics related requests from executing during static HTML generation. During the build process you may notice the following error logged (per route): `Failed to load resource: net::ERR_FAILED`. This is a non-issue as it represents the analytics request being intercepted.
 
 And then in `src/index.tsx`:
 
@@ -252,8 +257,8 @@ const appElement = (
   </BrowserRouter>
 );
 
-const container = document.getElementById('root')!;
-const hasChildNodes = !!container?.hasChildNodes();
+const container = document.getElementById('root') as HTMLElement;
+const hasChildNodes = container?.hasChildNodes() ?? false;
 
 hasChildNodes
   ? hydrateRoot(container, appElement)

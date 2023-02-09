@@ -20,8 +20,8 @@ const appElement = (
   </BrowserRouter>
 );
 
-const container = document.getElementById('root')!;
-const hasChildNodes = !!container?.hasChildNodes();
+const container = document.getElementById('root') as HTMLElement;
+const hasChildNodes = container?.hasChildNodes() ?? false;
 
 hasChildNodes
   ? hydrateRoot(container, appElement)
